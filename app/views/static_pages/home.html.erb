@@ -1,7 +1,46 @@
 <% provide(:title, "トップページ") %>
-<h1>Sample App</h1>
-<p>
-  This is the home page for the
-  <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+
+<header>
+  <div class="header-wrapper">
+    <div class="header-left">
+      <p class="mb-0">科学的知見を共有するSNS「Eureka」</p>
+      <button type="button" id="sidebarCollapse"><i class="fas fa-align-left fa-lg"></i></button>
+      <%= link_to image_tag('header-logo.png', :class => "header-logo"), root_path, class: "ml-3" %>
+    </div>
+
+    <div class="header-right">
+      <select class="lang-list mt-1">
+        <option value="japanese">日本語</option>
+        <option value="english">英語</option>
+      </select>
+      <button type="button" class="btn btn-scarlet login-button">ログイン</button>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+  <%= image_tag 'ants.jpeg', :class => "top-image" %>
+  <div class="top-image-text">
+    <div>
+     <p class="m-0">科学をもっと身近に</p>
+     <button type="button" class="btn-lg btn-primary mt-3" id="signup-bottun">新規登録</button>
+    </div>
+</div>
+
+<div class="topics">
+  <div class="container">
+    <h2>Topics <span>(人気の記事)</span></h2>
+    ここに人気の記事が入る
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-contact">
+     <p>Contact</p>
+    </div>
+    <div class="footer-copyright">
+     <p>&copy eureeeeka.com</p>
+    </div>
+  </div>
+</footer>

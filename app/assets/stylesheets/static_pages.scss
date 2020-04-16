@@ -3,3 +3,61 @@
 
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* トップページ */
+
+.main {
+  position: relative;
+  text-align: center;
+}
+
+.top-image {
+  width: 100%;
+  margin-top: 10px;
+  display: block;
+}
+
+.top-image-text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+}
+
+.top-image-text p {
+    width: 100%;
+    margin: 0 auto;
+    font-size: calc(8px + 3vw);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.topics h2 {
+  color: #C00300;
+  border-bottom: 2px #C00300 solid;
+  margin: 40px 0 10px 0;
+}
+
+.lang-list {
+  font-size: 0.8rem;
+}
+
+#signup-bottun {
+  padding:10px 40px;
+}
+
+
+/* 768px以下の場合 */
+@media screen and (max-width: 768px) {
+  #signup-bottun {
+    padding:0 20px;
+  }
+}
+
+ /* 480px以下の場合 */
+@media screen and (max-width: 481px) {
+ 
+}

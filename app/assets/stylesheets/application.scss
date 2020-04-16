@@ -10,6 +10,117 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_self
+ *= require_tree
  */
 
- @import "bootstrap";
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+/* ヘッダー */
+
+header {
+  background-color: #000000;
+  color: white;
+  padding-top: 5px;
+}
+
+#sidebarCollapse {
+ background-color: #000;
+}
+
+.header-wrapper {
+ padding:0 30px;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+
+.header-left p {
+ font-size: 0.9rem;
+ padding-left: 60px;
+}
+
+.fa-align-left {
+ color: #fff;
+}
+
+.header-right {
+  display:flex;
+  flex-direction: column;
+}
+
+.login-button {
+  margin: auto 0;
+}
+
+.footer-copyright {
+  font-size: 0.7rem;
+}
+
+/* 通常のボタン色 */
+.btn-scarlet,
+.btn-scarlet.disabled, .btn-scarlet:disabled {
+  color: #fff;
+  background-color: #C00300;
+  border-color: #C00300;
+}
+
+/* focusされた時の枠線の色 */
+.btn-scarlet:focus, .btn-scarlet.focus,
+.btn-scarlet:not(:disabled):not(.disabled):active:focus, .btn-scarlet:not(:disabled):not(.disabled).active:focus,
+.show > .btn-scarlet.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(85, 26, 26, 0.5);
+}
+
+/* hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定） */
+.btn-scarlet:hover {
+  color: #fff;
+  background-color: rgb(136, 13, 10);
+  border-color: rgb(136, 13, 10);
+}
+
+/* active時の色（hover時と同等かさらに濃いor暗めの色を指定） */
+.btn-scarlet:not(:disabled):not(.disabled):active, .btn-scarlet:not(:disabled):not(.disabled).active,
+.show > .btn-scarlet.dropdown-toggle {
+  color: #fff;
+  background-color: rgb(92, 4, 2);
+  border-color: rgb(92, 4, 2);
+}
+
+/* フッター */
+
+footer {
+  background-color: black;
+  color: white;
+}
+
+.footer-contact {
+  text-align: left;
+}
+ 
+
+ /* 768px以下の場合 */
+@media screen and (max-width: 768px) {
+  .header-logo {
+    width: 150px;
+    height: auto;
+  }
+
+  .header-left p {
+    font-size: 0.7rem;
+  }
+
+  .login-button {
+    padding: 5px !important;
+  }
+}
+
+ /* 480px以下の場合 */
+@media screen and (max-width: 480px) {
+  .header-logo {
+    width: 150px;
+    height: auto;
+  }
+}
