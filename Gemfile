@@ -41,9 +41,9 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.4.1'
 
 gem 'bcrypt', '~> 3.1.7'
-
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
