@@ -1,5 +1,10 @@
 server '18.180.45.154', user: 'masaru', roles: %w{app db web}
-set :ssh_options, keys: '~/.ssh/ssh_key_rsa'
+set :ssh_options, {
+  keys: '~/.ssh/ssh_key_rsa',
+  forward_agent: true,
+  auth_methods: %w(publickey),
+  port: 22
+}
 
 # server-based syntax
 # ======================
