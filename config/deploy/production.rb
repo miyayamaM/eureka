@@ -1,5 +1,6 @@
 server '18.180.45.154', user: 'masaru', roles: %w{app db web}
 set :ssh_options, keys: '~/.ssh/ssh_key_rsa'
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
