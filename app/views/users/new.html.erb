@@ -1,7 +1,7 @@
 <% provide(:title, "新規アカウント登録") %>
 
 <div class="container">
-  <div class="signup-form-container">
+  <div class="form-container">
   <h1 class="mb-4">新規アカウント作成</h1>
     <%= form_with(model: @user, url: users_path, local: true) do |f| %>
 
@@ -25,7 +25,7 @@
       </div>
 
       <%= f.submit "登録する", class: 'btn btn-primary'%>
-    <p class="mt-3">アカウントを既にお持ちの方は<a href="#">こちら</a></p>
+    <p class="mt-3">アカウントを既にお持ちの方は<%= link_to "こちら", login_path %></p>
     <% end %>
   </div>
 </div>
