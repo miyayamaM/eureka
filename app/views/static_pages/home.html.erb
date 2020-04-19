@@ -1,30 +1,13 @@
 <% provide(:title, "トップページ") %>
 
-<header>
-  <div class="header-wrapper">
-    <div class="header-left">
-      <p class="mb-0">科学的知見を共有するSNS「Eureka」</p>
-      <button type="button" id="sidebarCollapse"><i class="fas fa-align-left fa-lg"></i></button>
-      <%= link_to image_tag('header-logo.png', :class => "header-logo"), root_path, class: "ml-3" %>
-    </div>
-
-    <div class="header-right">
-      <select class="lang-list mt-1">
-        <option value="japanese">日本語</option>
-        <option value="english">英語</option>
-      </select>
-      <button type="button" class="btn btn-scarlet login-button">ログイン</button>
-    </div>
-  </div>
-</header>
-
 <div class="main">
   <%= image_tag 'ants.jpg', :class => "top-image" %>
   <div class="top-image-text">
     <div>
      <p class="m-0">科学をもっと身近に</p>
-     <button type="button" class="btn-lg btn-primary mt-3" id="signup-bottun">新規登録</button>
+     <%= link_to '新規登録', new_user_path, class: "btn-lg btn-primary", id: "signup-button" %>
     </div>
+  </div>
 </div>
 
 <div class="topics">

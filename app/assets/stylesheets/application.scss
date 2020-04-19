@@ -99,6 +99,34 @@ footer {
 .footer-contact {
   text-align: left;
 }
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* miscellaneous */
+
+.debug {
+  text-align: left;
+  padding: 30px;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  background-color:$gray-medium-light ;
+  padding: 30px;
+  border: 1px rgb(75, 73, 73) solid;
+  @include box_sizing;
+}
  
 
  /* 768px以下の場合 */
