@@ -13,9 +13,9 @@
       </select>
       
       <% if logged_in? %>
-        <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-secondary mt-3" %>
+        <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-secondary mt-3 login-button" %>
       <% else %>
-        <%= link_to "ログイン", login_path, class: "btn btn-scarlet mt-3" %>
+        <%= link_to "ログイン", login_path, class: "btn btn-scarlet mt-3 login-button" %>
       <% end %>
     </div>
   </div>

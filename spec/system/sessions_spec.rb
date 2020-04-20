@@ -4,7 +4,8 @@ RSpec.describe 'Sessions', type: :system do
 
   before do 
     @user = FactoryBot.create(:user)
-    visit login_path
+    visit root_path
+    click_on 'ログイン'
   end
 
   describe "Login" do
