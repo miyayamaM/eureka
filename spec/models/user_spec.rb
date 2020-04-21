@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  describe "Name" do
+  describe "name" do
     
     it "is invalid without a name" do
       user = FactoryBot.build(:user, name: nil)
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
 
   end
 
-  describe "Email" do
+  describe "email" do
 
     it "is invalid without an email" do
       user = FactoryBot.build(:user, email: nil)
@@ -44,7 +44,6 @@ RSpec.describe User, type: :model do
 
     it "is invalid with a long (> 255) email" do
       user = FactoryBot.build(:user, email: "#{"a"*255}@example.com")
-
       user.valid?
       expect(user.errors[:email]).to include("is too long (maximum is 255 characters)")
     end
@@ -68,7 +67,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "Password" do
+  describe "password" do
 
     it "is invalid without a password" do
       user = FactoryBot.build(:user, password: nil)
@@ -82,5 +81,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
     end
     
+  end
+
+  describe "authenticated? method" do
+    it "returns false with nil digest" do
+      user = FactoryBot.create(:user)
+      expect(user.authenticated?("")).to be_falsey
+    end
   end
 end

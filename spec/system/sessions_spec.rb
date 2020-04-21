@@ -37,7 +37,6 @@ RSpec.describe 'Sessions', type: :system do
   describe "Logout" do
 
     context "when logged in" do
-
       it "redirects to root" do
         fill_in 'メールアドレス', with: "tester@exmaple.com"
         fill_in 'パスワード', with: "password"
@@ -49,6 +48,10 @@ RSpec.describe 'Sessions', type: :system do
       end
     end
 
+    context "when not logged in" do
+      
+    end
+    
     context "when not logged in" do
     end
   end

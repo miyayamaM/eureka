@@ -8,7 +8,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
 
-require 'supports/capybara'
+require 'support/capybara'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -72,4 +72,6 @@ RSpec.configure do |config|
       end
     end
   end
+
+  config.include RequestHelpers, type: :request
 end
