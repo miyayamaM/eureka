@@ -10,7 +10,7 @@ RSpec.describe 'Sessions', type: :system do
 
   describe "Login" do
 
-    it "is successful with valid information" do
+    it "is successful with valid information", js: true do
       fill_in 'メールアドレス', with: "tester@exmaple.com"
       fill_in 'パスワード', with: "password"
       click_on 'ログインする'
@@ -20,10 +20,12 @@ RSpec.describe 'Sessions', type: :system do
       expect(page).to_not have_content 'ログインに成功しました'
       expect(page).to have_content 'Tom'
       expect(page).to_not have_content 'ログイン'
+      
+      find(".dropdown-toggle").click
       expect(page).to have_content 'ログアウト'
     end
 
-    it "fails with invalid information" do
+    it "fails with invalid information", js: true  do
       fill_in 'メールアドレス', with: "tester@exmaple.com"
       fill_in 'パスワード', with: ""
       click_on 'ログインする'
@@ -37,11 +39,12 @@ RSpec.describe 'Sessions', type: :system do
   describe "Logout" do
 
     context "when logged in" do
-      it "redirects to root" do
+      it "redirects to root", js: true  do
         fill_in 'メールアドレス', with: "tester@exmaple.com"
         fill_in 'パスワード', with: "password"
         click_on 'ログインする'
-
+        
+        find(".dropdown-toggle").click
         click_on 'ログアウト'
         expect(page).to have_content 'ログイン'
         expect(page).to have_current_path '/'

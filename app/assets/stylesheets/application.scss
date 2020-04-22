@@ -26,6 +26,8 @@ header {
   padding-top: 5px;
 }
 
+
+
 #sidebarCollapse {
  background-color: #000;
 }
@@ -58,6 +60,53 @@ header {
 
 .login-button {
   margin-bottom: 10px;
+}
+
+/* ログイン時のヘッダー */
+
+.header-left-login {
+  display:flex;
+  flex-direction: nowrap;
+}
+
+.icon-wrap {
+  width: 55px;
+  height: 55px;
+  border: 1px #cfc100 solid; 
+  padding: 3px 10px;
+  text-align: center;
+  border-radius: 6px;
+  margin: auto 20px;
+}
+
+.header-icon {
+ height: 100%;
+ width: auto;
+ margin: 0 auto;
+}
+
+.input-group {
+  margin: auto 0px; 
+}
+
+.nav-item {
+  border-top: 1px rgba(90, 89, 89, 0.5) solid;
+}
+
+.navbar-toggler {
+  border: 1px rgba(187, 184, 184, 0.5) solid !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.dropdown {
+  margin:0 0 0 auto;
+}
+
+.navbar-nav {
+   display: none;
 }
 
 .footer-copyright {
@@ -132,7 +181,8 @@ $gray-medium-light: #eaeaea;
   border: 1px rgb(75, 73, 73) solid;
   @include box_sizing;
 }
- 
+
+
 
  /* 768px以下の場合 */
 @media screen and (max-width: 768px) {
@@ -144,6 +194,15 @@ $gray-medium-light: #eaeaea;
   .header-left p {
     font-size: 0.7rem;
   }
+
+  .dropdown {
+    display: none;
+  }
+
+  .navbar-nav {
+    display: block;
+ }
+
 }
 
  /* 480px以下の場合 */
