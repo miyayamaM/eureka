@@ -1,0 +1,35 @@
+<header>
+  <div class="header-wrapper">
+    <div class="header-left-login">
+      <div class="icon-wrap">
+        <%= link_to image_tag('header-icon.png', :class => "header-icon"), user_path(current_user), class: "header-icon" %>
+      </div>
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="キーワード検索...">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-primary">検索</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="header-right mb-1">
+      <select class="lang-list mt-1">
+        <option value="japanese">日本語</option>
+        <option value="english">英語</option>
+      </select>
+      
+      <div class="dropdown mt-1">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          メニュー
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "dropdown-item" %>
+          <%= link_to "設定", "#", class: "dropdown-item" %>
+          <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
