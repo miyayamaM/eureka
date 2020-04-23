@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/about', to:'static_pages#about'
   get '/rule', to:'static_pages#rule'
+  get '/setting', to:'static_pages#setting'
 
   get '/login', to:'sessions#new'
   post '/login', to:'sessions#create'
