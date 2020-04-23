@@ -2,7 +2,7 @@
 <div class="container">
   <div class="form-container">
   <h1 class="mb-4">ユーザー情報編集</h1>
-    <%= form_with(model: @user, url: users_path, local: true) do |f| %>
+    <%= form_with(model: @user, local: true) do |f| %>
 
       <%= render 'shared/error_messages' %>
 
@@ -23,7 +23,9 @@
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
 
-      <%= f.submit "編集する", class: 'btn btn-primary'%>
+      <%= f.submit "保存する", class: 'btn btn-primary'%>
     <% end %>
+
+     <%= link_to "退会する", user_path(@user),method: :delete, class: "btn btn-danger mt-4" %>
   </div>
 </div>

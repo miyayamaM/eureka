@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
+  
+  let!(:user) { FactoryBot.create(:user) }
 
   describe 'Signup' do
     it 'is successful with valid information' do
@@ -14,7 +16,7 @@ RSpec.describe 'Users', type: :system do
         fill_in 'パスワード（確認のため再入力）', with: "foobar"
         click_on '登録する'
 
-        expect(page).to have_content 'ユーザ登録に成功しました'
+        expect(page).to have_content 'ユーザー登録に成功しました'
         expect(page).to have_content 'Tom Brady'
       }.to change(User, :count).by(1)
     end
@@ -35,4 +37,68 @@ RSpec.describe 'Users', type: :system do
       }.to change(User, :count).by(0)
     end
   end
-end
+
+  describe 'Edit' do
+
+    it 'is successful with valid information', js: true do
+      sign_in_as user
+
+      find(".dropdown-toggle").click
+      click_on 'ユーザー情報編集'
+
+      fill_in 'ユーザー名', with: "Manning"
+      fill_in 'メールアドレス', with: "tester2@example.com"
+      fill_in 'パスワード', with: "foobarbuz"
+      fill_in 'パスワード（確認のため再入力）', with: "foobarbuz"
+      click_on '保存する'
+
+      expect(page).to have_content 'ユーザー情報を変更しました'
+      visit current_path 
+      expect(page).to_not have_content 'ユーザー情報を変更しました'
+      expect(page).to have_content "Manning"
+    end
+
+    it 'fails with invalid information', js: true  do
+      sign_in_as user
+
+      find(".dropdown-toggle").click
+      click_on 'ユーザー情報編集'
+
+      fill_in 'ユーザー名', with: ""
+      fill_in 'メールアドレス', with: ""
+      fill_in 'パスワード', with: "foo"
+      fill_in 'パスワード（確認のため再入力）', with: "bar"
+      click_on '保存する'
+
+      expect(page).to have_content '5件のエラーがあります'
+    end
+  end
+
+  describe 'Index' do
+    it "shows pagination", js: true do
+      FactoryBot.create_list(:users, 40)
+
+      sign_in_as user
+      visit users_path 
+      
+      expect(page).to have_selector('.page-link')
+    end
+  end
+
+  describe 'Destroy' do
+    it "destroys his account", js: true  do
+      sign_in_as user
+
+      expect {
+        find(".dropdown-toggle").click
+        click_on 'ユーザー情報編集'
+        click_on '退会する'
+      }.to change(User, :count).by(-1)
+
+      expect(page).to have_content '退会しました。ご利用ありがとうございました'
+      expect(page).to have_content 'ログイン'
+      visit current_path
+      expect(page).to_not have_content '退会しました。ご利用ありがとうございました'
+    end
+  end
+ end
