@@ -3,12 +3,13 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @q = User.ransack(params[:q])
+    @q = User.where(activated: true).ransack(params[:q])
     @users = @q.result(distinct: true).page(params[:page])
   end 
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
       flash[:success] = "アカウント認証メールを送信しました。受信メールを確認し、アカウントを有効化してください"
       redirect_to root_url
     else
