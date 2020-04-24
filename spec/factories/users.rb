@@ -10,9 +10,17 @@ FactoryBot.define do
   factory :other_user, class: User do
     name { "Micheal" }
     email { "tester2@exmaple.com" }
-    password { "password2s" }
+    password { "password2" }
     activated { true }
     activated_at { Time.zone.now }
+  end
+
+  factory :unactivated_user, class: User do
+    name { "Jobs" }
+    email { "tester3@exmaple.com" }
+    password { "password3" }
+    activated { false }
+    activated_at { nil }
   end
 
   factory :users, class: User do

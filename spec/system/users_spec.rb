@@ -76,11 +76,21 @@ RSpec.describe 'Users', type: :system do
   describe 'Index' do
     it "shows pagination", js: true do
       FactoryBot.create_list(:users, 40)
-
+      
       sign_in_as user
       visit users_path 
       
       expect(page).to have_selector('.page-link')
+    end
+
+    it "shows only activated users", js: true do
+      unactivated_user = FactoryBot.create(:unactivated_user)
+
+      sign_in_as user
+      visit users_path
+
+      expect(page).to have_content(user.name)
+      expect(page).to_not have_content(unactivated_user.name)
     end
   end
 

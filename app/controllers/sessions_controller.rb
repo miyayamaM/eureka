@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         flash[:success] = "ログインに成功しました"
         redirect_back_or user
       else
-        message = "アカウントが有効化されていません"
+        message = "アカウントが有効化されていません。"
         message += "認証メールを確認してください。"
         flash[:warning] = message
         redirect_to root_url
