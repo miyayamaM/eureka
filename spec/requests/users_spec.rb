@@ -93,4 +93,43 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
+  describe "#Signup" do
+
+    before do
+      ActionMailer::Base.deliveries.clear
+    end
+
+    it "is successful with account activation" do
+      get new_user_path
+      expect {
+        post users_path, params: { user: {name: "test",
+                                  email: "user@example.com",
+                                  password: "password",
+                                  password_confirmation: "password" } }
+      }.to change(User, :count).by(1)
+      
+      expect(ActionMailer::Base.deliveries.size).to eq 1
+      user = User.find_by(name: "test")
+      expect(user.activated?).to be_falsey
+
+      log_in_as user
+      expect(is_logged_in?).to be_falsey
+
+      # 有効化トークンが不正な場合
+      get edit_account_activation_path("invalid token", email: user.email)
+      expect(is_logged_in?).to be_falsey
+
+      # トークンは正しいがメールアドレスが無効な場合
+      #get edit_account_activation_path(user.activation_token, email: 'wrong')
+      #expect(is_logged_in?).to be_falsey
+
+      # 有効化トークンが正しい場合
+      get edit_account_activation_path(user.activation_token, email: user.email)
+      expect(user.reload.activated?).to be_truthy
+      follow_redirect!
+      expect(response).to redirect_to('users/show')
+      expect(is_logged_in?).to be_truthy
+    end
+  end
 end

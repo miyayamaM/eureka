@@ -1,0 +1,10 @@
+<h3><%= @user.name %>様</h3>
+
+<p>
+  新しいEurekaアカウントが作成されました。メールアドレスの正当性を確認するため、以下のリンクをクリックしメールアドレスを有効化してください。
+</p>
+<%= link_to "有効化する", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+<p>Eureka運営事務局</p>
+
+<p>このメールは自動送信です。返信はご遠慮ください。</p>
