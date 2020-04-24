@@ -6,10 +6,17 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
 
     if user && user.authenticate(params[:session][:password])
-      log_in user
-      remember user
-      flash[:success] = "ログインに成功しました"
-      redirect_back_or user
+      if user.activated?
+        log_in user
+        remember user
+        flash[:success] = "ログインに成功しました"
+        redirect_back_or user
+      else
+        message = "アカウントが有効化されていません"
+        message += "認証メールを確認してください。"
+        flash[:warning] = message
+        redirect_to root_url
+      end
     else
       flash.now[:danger] = "ログインに失敗しました。入力情報を確認してください。"
       render 'new'

@@ -16,8 +16,7 @@ RSpec.describe 'Users', type: :system do
         fill_in 'パスワード（確認のため再入力）', with: "foobar"
         click_on '登録する'
 
-        expect(page).to have_content 'ユーザー登録に成功しました'
-        expect(page).to have_content 'Tom Brady'
+        expect(page).to have_content 'アカウント認証メールを送信しました。受信メールを確認し、アカウントを有効化してください'
       }.to change(User, :count).by(1)
     end
 

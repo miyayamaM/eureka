@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
   describe "authenticated? method" do
     it "returns false with nil digest" do
       user = FactoryBot.create(:user)
-      expect(user.authenticated?("")).to be_falsey
+      expect(user.authenticated?(:remember, "")).to be_falsey
     end
   end
 end

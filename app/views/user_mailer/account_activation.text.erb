@@ -1,0 +1,8 @@
+<%= @user.name %>様
+
+新しいEurekaアカウントが作成されました。メールアドレスの正当性を確認するため、以下のリンクをクリックしメールアドレスを有効化してください。
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+Eureka運営事務局
+
+このメールは自動送信です。返信はご遠慮ください。
