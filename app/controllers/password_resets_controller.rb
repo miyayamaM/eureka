@@ -28,9 +28,8 @@ class PasswordResetsController < ApplicationController
       @user.errors.add(:password, :blank)
       render 'edit'
     elsif @user.update_attributes(user_params)
-      log_in @user
       flash[:success] = "パスワードが再設定されました"
-      redirect_to @user
+      redirect_to login_path
     else
       render 'edit'
     end
@@ -43,7 +42,7 @@ class PasswordResetsController < ApplicationController
     end
 
     def get_user
-      @user = User.find_by(email: params[:id])
+      @user = User.find_by(email: params[:email])
     end
 
     def valid_user

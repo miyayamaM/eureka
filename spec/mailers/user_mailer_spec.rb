@@ -19,7 +19,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "renders the expected headers" do
       expect(mail.subject).to eq("Eureka メールアドレス確認のお願い")
       expect(mail.to).to eq(["#{user.email}"])
-      expect(mail.from).to eq(["noreply@example.com"])
+      expect(mail.from).to eq(["noreply@eureeeeka.com"])
     end
 
     it "renders the expected body" do
@@ -49,7 +49,7 @@ RSpec.describe UserMailer, type: :mailer do
       user.reset_token = User.new_token
       expect(mail.subject).to eq("Eureka パスワード再設定")
       expect(mail.to).to eq(["#{user.email}"])
-      expect(mail.from).to eq(["noreply@example.com"])
+      expect(mail.from).to eq(["noreply@eureeeeka.com"])
     end
 
     it "renders the body" do
