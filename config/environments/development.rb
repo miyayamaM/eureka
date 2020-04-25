@@ -36,7 +36,7 @@ Rails.application.configure do
   host = 'localhost:3000'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    :address        =>  ENV['AWS_ADDRESS'],
+    :address        =>  'email-smtp.ap-south-1.amazonaws.com',
     :port           => '587',
     :domain         => 'eureeeeka.com',
     :authentification => ':login',
