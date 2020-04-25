@@ -1,0 +1,25 @@
+<% provide(:title, "パスワード再設定") %>
+
+<div class="container">
+  <div class="form-container">
+  <p class="mb-4">新しいパスワードを入力してください</p>
+  <%= form_with(model: @user, url: password_reset_path(params[:id]), local: true) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= hidden_field_tag :email, @user.email %>
+
+  <div class="form-group">
+    <%= f.label :passoword, "新しいパスワード" %>
+    <%= f.text_field :passoword, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :passoword_confirmation, "新しいパスワード（確認用）" %>
+    <%= f.text_field :passoword_confirmation, class: "form-control" %>
+  </div>
+  
+   <%= f.submit "再発行を依頼", class: 'btn btn-scarlet'%>
+
+   <% end %>
+  </div>
+</div>
