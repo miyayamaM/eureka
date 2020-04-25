@@ -32,9 +32,18 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :smtp
   host = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        =>  ENV['AWS_ADDRESS'],
+    :port           => '587',
+    :domain         => 'eureeeeka.com',
+    :authentification => ':login',
+    :user_name      => ENV['AWS_USERNAME'],
+    :password       => ENV['AWS_PASSWORD'],
+    :enable_starttls_auto => true
+  }
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
