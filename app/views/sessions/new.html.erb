@@ -12,6 +12,7 @@
   <div class="form-group">
     <%= f.label :password, "パスワード" %>
     <%= f.password_field :password, class: "form-control" %>
+    <p class="mt-3"><%= link_to "パスワードをお忘れですか？", new_password_reset_path %></p>
   </div>
 
    <%= f.submit "ログインする", class: 'btn btn-scarlet'%>
