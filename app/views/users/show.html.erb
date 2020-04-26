@@ -2,12 +2,21 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-sm-3">
       <p><%= @user.name %></p>
+      <p><%= @user.articles.count %></p>
+      <%= link_to "記事を投稿", new_article_path, class: "btn"%>
     </div>
 
-    <div class="col-9">
-      <p>タイムライン</p>
+    <div class="col-sm-9">
+      <% if @user.articles.any? %>
+        <h3><%= @user.articles.count %>件の投稿</h3>
+        <ul class="articles">
+          <%= render @articles%>
+        </ul>
+        <%= paginate @articles %>
+      <% end %>
+      
     </div>
   </div>
 </div>

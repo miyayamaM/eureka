@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+
+    <div class="col-sm-10">
+    <h3>タイムライン</h3>
+     <% if @feed_items.any? %>
+      <ol class="articles" >
+        <%= render @feed_items %>
+      </ol>
+      <%= paginate @feed_items %>
+    <% end %>
+    </div>
+  </div>
+</div>

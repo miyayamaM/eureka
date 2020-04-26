@@ -1,0 +1,33 @@
+.articles {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 8px 0 4px 0;
+    border-bottom: 1px solid rgb(110, 110, 110);
+  }
+}
+
+.articles > li > span > a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: rgb(8, 25, 48);
+  display: block;
+  font-weight: bolder;
+}
+
+.articles > li > span > a:hover {
+  color: rgb(110, 110, 110);
+}
+
+.article-information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-author, .article-timestamp {
+  font-size: 0.7rem;
+  color: rgb(37, 37, 37);
+  display: block;
+  margin-top: 10px;
+}
