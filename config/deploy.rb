@@ -36,14 +36,26 @@ namespace :deploy do
     invoke 'unicorn:start'
   end
   desc 'upload master.key'
- task :upload do
-   on roles(:app) do |host|
-     if test "[ ! -d #{shared_path}/config ]"
-       execute "mkdir -p #{shared_path}/config"
-     end
-     upload!('config/master.key', "#{shared_path}/config/master.key")
-   end
- end
- before :starting, 'deploy:upload'
- after :finishing, 'deploy:cleanup'
+  task :upload do
+    on roles(:app) do |host|
+      if test "[ ! -d #{shared_path}/config ]"
+        execute "mkdir -p #{shared_path}/config"
+      end
+      upload!('config/master.key', "#{shared_path}/config/master.key")
+    end
+  end
+
+  desc 'db_seed'
+  task :db_seed do
+    on roles(:db) do |host|
+      with rails_env: fetch(:rails_env) do
+        within current_path do
+          execute :bundle, :exec, :rake, 'db:seed'
+        end
+      end
+    end
+  end
+
+  before :starting, 'deploy:upload'
+  after :finishing, 'deploy:cleanup'
 end
