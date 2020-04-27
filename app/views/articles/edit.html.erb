@@ -1,0 +1,25 @@
+
+<% provide(:title, "編集") %>
+
+<div class="container">
+  <div class="form-container">
+  <h1 class="mb-4">記事編集</h1>
+    <%= form_with(model: @article, method: :patch, local: true) do |f| %>
+
+      <%= render 'shared/error_messages', model: f.object %>
+
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content, "内容" %>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+      
+
+      <%= f.submit "投稿する", class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+</div>

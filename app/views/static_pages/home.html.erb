@@ -1,26 +1,8 @@
 <% provide(:title, "トップページ") %>
 
-<div class="main">
-  <div class="top-image-text">
-     <p>科学をもっと身近に</p>
-     <%= link_to '新規登録', new_user_path, class: "btn-lg btn-primary", id: "signup-button" %>
-  </div>
-</div>
+<% if logged_in? %>
+  <%= render 'shared/loggedin_home'%>
+<% else %>
+  <%= render 'shared/unloggedin_home'%>
+<% end %>
 
-<div class="topics">
-  <div class="container">
-    <h2>Topics <span>(人気の記事)</span></h2>
-    ここに人気の記事が入る
-  </div>
-</div>
-
-<footer>
-  <div class="container">
-    <div class="footer-contact">
-     <p>Contact</p>
-    </div>
-    <div class="footer-copyright">
-     <p>&copy eureeeeka.com</p>
-    </div>
-  </div>
-</footer>

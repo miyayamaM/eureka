@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-black">
       <div class="icon-wrap navbar-brand">
-        <%= link_to image_tag('header-icon.png', :class => "header-icon"), user_path(current_user), class: "header-icon" %>
+        <%= link_to image_tag('header-icon.png', :class => "header-icon"), root_path, class: "header-icon" %>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,15 +18,15 @@
             メニュー
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "設定", setting_path, class: "dropdown-item" %>
             <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
         
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %></li>
           <li class="nav-item"><%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "設定", "#", class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %></li>
         </ul>
 

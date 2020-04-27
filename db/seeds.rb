@@ -14,7 +14,7 @@ User.create!(name: "First User",
             activated_at: Time.zone.now)
 
 99.times do |n|
-  name = Faker::Name.name
+  name = "#{Faker::Name.name}#{n}"
   email = "example#{n+1}@example.com"
   password = "password"
   User.create!(name: name,
@@ -24,3 +24,10 @@ User.create!(name: "First User",
               activated: true,
               activated_at: Time.zone.now)
 end
+
+user = User.find(1)
+50.times do |n|
+  title = Faker::Lorem.sentence(15)
+  user.articles.create!(title: title, content: "test")
+end
+

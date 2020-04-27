@@ -1,0 +1,14 @@
+<li id="article-<%= article.id %>">
+  <div class="article-top">
+    <span><%= link_to "#{article.title}", article_path(article), class: "article-title" %></span>
+    <% if current_user?(article.user) %>
+      <%= link_to "編集", edit_article_path(article), class: "article-update-btn" %>
+      <%= link_to "削除", article, method: :delete, data: {confirm: "記事を削除しますか？"}, class: "article-delete-btn" %>
+    <% end %>
+  </div>
+  <div class="article-information">
+    <span class="article-author">投稿者: <%= article.user.name %></span>
+    <span class="article-timestamp"><%= article.created_at %></span>
+
+  </div>
+</li>
