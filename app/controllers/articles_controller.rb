@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :login_required, only: [:index,:create, :new, :edit, :update, :destroy]
+  before_action :login_required, only: [:index, :create, :new, :edit, :update, :destroy]
   before_action :correct_user,   only: :destroy
 
   def index 
@@ -7,6 +7,10 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+  end
+
+  def show
+    @article = Article.find_by(id: params[:id])
   end
 
   def create
@@ -22,9 +26,18 @@ class ArticlesController < ApplicationController
   end
   
   def edit
+    @article = current_user.articles.find_by(id: params[:id])
   end
 
   def update
+    @article = current_user.articles.find_by(id: params[:id])
+
+    if @article.update_attributes(article_params)
+      flash[:success] = "記事を編集しました"
+      redirect_to user_path(current_user)
+    else
+      render 'edit'
+    end
   end
 
   def destroy

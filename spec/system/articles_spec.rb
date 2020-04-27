@@ -38,4 +38,99 @@ RSpec.describe 'Articles', type: :system do
       expect(first('.articles a')).to have_content "Today"
     end
   end
+
+  describe "post a new article" do
+    it "saves new article " do
+      sign_in_as user
+
+      click_on "記事を投稿"
+      expect {
+        fill_in 'タイトル', with: "Test title"
+        fill_in '内容', with: "Test content"
+        click_on '投稿する'
+      }.to change(Article, :count).by(1)
+      
+      expect(page).to have_content 'Test title'
+    end
+
+    it "doesn't accept invalid article" do
+      sign_in_as user
+
+      click_on "記事を投稿"
+      expect {
+        fill_in 'タイトル', with: ""
+        fill_in '内容', with: ""
+        click_on '投稿する'
+      }.to change(Article, :count).by(0)
+
+      expect(page).to have_content "2件のエラーがあります"
+      expect(page).to have_content "Titleを入力してください"
+      expect(page).to have_content "Contentを入力してください"
+      expect(page).to have_current_path ('/articles')
+    end
+  end
+
+  describe "delete an article" do
+    it "deletes user's own article" do
+      sign_in_as user
+      post_new_article
+
+      expect {
+        first('.article-delete-btn').click
+      }.to change(Article, :count).by(-1)
+
+      expect(page).to_not have_content "Test title"
+    end
+  end
+
+  describe "edit an article" do
+    it "updates an article" do
+      sign_in_as user
+      post_new_article
+      
+      expect(page).to have_content "Test title"
+      first('.article-update-btn').click
+      fill_in 'タイトル', with: "changed title"
+      fill_in '内容', with: "changed content"
+      click_on '投稿する'
+
+      expect(page).to_not have_content "Test title"
+      expect(page).to have_content "changed title"
+    end
+
+    it "renders if invalid article" do
+      sign_in_as user
+      post_new_article
+      
+      expect(page).to have_content "Test title"
+      first('.article-update-btn').click
+      fill_in 'タイトル', with: ""
+      fill_in '内容', with: ""
+      click_on '投稿する'
+
+      expect(page).to have_content "Titleを入力してください"
+      expect(page).to have_content "Contentを入力してください"
+      expect(page).to have_css ('form')
+
+      visit user_path(user)
+      expect(page).to have_content "Test title"
+    end    
+  end
+
+  describe "article show page" do
+    it "displays title and content" do
+      sign_in_as user
+      post_new_article
+
+      click_on "Test title"
+      expect(page).to have_content "Test title"
+      expect(page).to have_content "Test content"
+    end
+
+    it "allows for user to check other user's article" do
+    end
+
+    it "allows for unloggedin user to check user's article" do
+    end
+  end
 end

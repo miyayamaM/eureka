@@ -8,15 +8,16 @@
   }
 }
 
-.articles > li > span > a {
+.article-top > span > a {
   font-size: 1.1rem;
   text-decoration: none;
   color: rgb(8, 25, 48);
   display: block;
   font-weight: bolder;
+  text-align: justify;
 }
 
-.articles > li > span > a:hover {
+.article-top > span > a:hover {
   color: rgb(110, 110, 110);
 }
 
@@ -31,3 +32,15 @@
   display: block;
   margin-top: 10px;
 }
+
+.article-top{
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-delete-btn, .article-update-btn {
+  font-size: 0.8rem;
+  min-width: 26px;
+  margin-left: 10px;
+}
+
