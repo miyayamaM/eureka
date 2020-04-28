@@ -1,9 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-3">
+     <div class="profile-top">
+        <div class="image-round">
+          <%= image_tag current_user.image.profile100.url, class: "profile-image" %>
+        </div>
+        <h3><%= current_user.name %></h3>
+      </div>
+
+      <div class="profile-info">
+        <p><%= current_user.articles.count %></p>
+        <%= link_to "記事を投稿", new_article_path, class: "btn"%>
+      </div>
     </div>
 
-    <div class="col-sm-10">
+    <div class="col-sm-9">
     <h3>タイムライン</h3>
      <% if @feed_items.any? %>
       <ol class="articles" >

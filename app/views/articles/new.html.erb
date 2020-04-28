@@ -16,7 +16,11 @@
         <%= f.label :content, "内容" %>
         <%= f.text_area :content, class: "form-control" %>
       </div>
-      
+
+      <div class="form-group">
+        <%= f.label :thumbnail, "サムネイル画像" %>
+        <%= f.file_field :thumbnail, class: "form-control" %>
+      </div>
 
       <%= f.submit "投稿する", class: 'btn btn-primary'%>
     <% end %>

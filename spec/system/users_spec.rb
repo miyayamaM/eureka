@@ -47,8 +47,6 @@ RSpec.describe 'Users', type: :system do
 
       fill_in 'ユーザー名', with: "Manning"
       fill_in 'メールアドレス', with: "tester2@example.com"
-      fill_in 'パスワード', with: "foobarbuz"
-      fill_in 'パスワード（確認のため再入力）', with: "foobarbuz"
       click_on '保存する'
 
       expect(page).to have_content 'ユーザー情報を変更しました'
@@ -65,11 +63,9 @@ RSpec.describe 'Users', type: :system do
 
       fill_in 'ユーザー名', with: ""
       fill_in 'メールアドレス', with: ""
-      fill_in 'パスワード', with: "foo"
-      fill_in 'パスワード（確認のため再入力）', with: "bar"
       click_on '保存する'
 
-      expect(page).to have_content '5件のエラーがあります'
+      expect(page).to have_content '3件のエラーがあります'
     end
   end
 
