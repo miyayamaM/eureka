@@ -27,7 +27,7 @@ end
 
 user = User.find(1)
 50.times do |n|
-  title = Faker::Lorem.sentence(15)
+  title = Faker::Lorem.sentence(10)
   user.articles.create!(title: title, content: "test")
 end
 
