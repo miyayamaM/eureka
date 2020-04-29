@@ -89,4 +89,53 @@ RSpec.describe User, type: :model do
       expect(user.authenticated?(:remember, "")).to be_falsey
     end
   end
+
+  describe "follow/unfollow method" do
+    it "manipulates following" do
+      user = FactoryBot.create(:user)
+      other_user = FactoryBot.create(:other_user)
+
+      expect(user.following?(other_user)).to be_falsey
+
+      user.follow(other_user)
+      expect(user.following?(other_user)).to be_truthy
+
+      user.unfollow(other_user)
+      expect(user.following?(other_user)).to be_falsey
+    end
+  end
+
+  describe "followers method" do
+    it "returns followers" do
+      user = FactoryBot.create(:user)
+      other_user = FactoryBot.create(:other_user)
+
+      user.follow(other_user)
+      expect(user.following?(other_user)).to be_truthy
+      expect(other_user.followers).to include user
+    end
+  end
+
+  describe "feed" do
+    
+    let(:user){ FactoryBot.create(:user) }
+    let(:other_user){ FactoryBot.create(:other_user) }
+    
+    it "includes own or follower's articles" do
+      user_article = FactoryBot.create(:article, user: user)
+      follower_article =  FactoryBot.create(:article, user: other_user)
+
+      user.follow(other_user)
+      expect(user.feed).to include user_article
+      expect(user.feed).to include follower_article
+    end
+
+    it "doesn't include articles of unfollowers" do
+      user_article = FactoryBot.create(:article, user: user)
+      unfollower_article = FactoryBot.create(:article, user: other_user)
+
+      expect(user.feed).to include user_article
+      expect(user.feed).to_not include unfollower_article
+    end
+  end
 end

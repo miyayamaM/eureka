@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :login_required, only: [:index, :edit, :update, :destroy, :show]
+  before_action :login_required, only: [:index, :edit, :update, :destroy, :show, :following, :followers]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
@@ -48,6 +48,20 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def following
+    @title = "フォロー"
+    @user = User.find(params[:id])
+    @users = @user.following.page(params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page])
+    render 'show_follow'
+  end
+  
   private 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)

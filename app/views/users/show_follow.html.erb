@@ -1,5 +1,3 @@
-<% provide(:title, "マイページ") %>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
@@ -11,7 +9,7 @@
       </div>
         <%= render 'follow_form' if logged_in? %>
 
-      <div class="profile-info">
+       <div class="profile-info">
         <p>投稿：<%= @user.articles.count %>件</p>
 
         <a href="<%= following_user_path(@user) %>">
@@ -21,17 +19,22 @@
         <a href="<%= followers_user_path(@user) %>">
           フォロワー：<strong id="followers" class="stats"><%= @user.followers.count %></strong>
         </a>
-        <%= link_to "記事を投稿", new_article_path, class: "btn" if current_user?(@user) %>
       </div>
     </div>
 
     <div class="col-sm-9">
-      <% if @user.articles.any? %>
-        <ul class="articles">
-          <%= render @articles%>
-        </ul>
-        <%= paginate @articles %>
-      <% end %>
+       <ul class="users">
+    <% @users.each do |user| %>
+      <li>
+         <div class="image-round">
+          <%= image_tag user.image.profile90.url, class: "profile-image" %>
+        </div>
+        <%= link_to user.name, user_path(user), class: "my-auto" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="my-3"><%= paginate @users %></div>
       
     </div>
   </div>

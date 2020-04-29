@@ -10,8 +10,13 @@ Rails.application.routes.draw do
   delete '/logout', to:'sessions#destroy'
   get '/easy_login', to:'sessions#easy_login'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :articles
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :relationships, only: [:create, :destroy]
 end
