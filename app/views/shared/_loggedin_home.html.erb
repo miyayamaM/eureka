@@ -9,7 +9,15 @@
       </div>
 
       <div class="profile-info">
-        <p><%= current_user.articles.count %></p>
+        <p>投稿：<%= current_user.articles.count %>件</p>
+
+        <a href="<%= following_user_path(current_user) %>">
+          フォロー：<strong id="following" class="stats"><%= current_user.following.count %></strong>
+        </a>
+
+        <a href="<%= followers_user_path(current_user) %>">
+          フォロワー：<strong id="followers" class="stats"><%= current_user.followers.count %></strong>
+        </a>
         <%= link_to "記事を投稿", new_article_path, class: "btn"%>
       </div>
     </div>

@@ -26,8 +26,25 @@ User.create!(name: "First User",
 end
 
 user = User.find(1)
-50.times do |n|
+50.times do
   title = Faker::Lorem.sentence(10)
   user.articles.create!(title: title, content: "test")
 end
+
+users = User.all
+users = users[2..30]
+users.each do |user|
+  10.times do
+    title = Faker::Lorem.sentence(10)
+    user.articles.create!(title: title, content: "test")
+  end
+end
+
+
+user = User.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed)}
+followers.each { |follower| follower.follow(user)}
+
 

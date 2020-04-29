@@ -134,4 +134,27 @@ RSpec.describe "Users", type: :request do
       expect(is_logged_in?).to be_truthy
     end
   end
+
+  describe "show followers" do
+    context "not logged in" do
+      it "redirects to login_url" do
+        get followers_user_path(user)
+        expect(response).to redirect_to(login_url)
+      end
+    
+    end
+    
+  end
+
+  describe "show followings" do
+    context "not logged in" do
+      it "redirects to login_url" do
+        get following_user_path(user)
+        expect(response).to redirect_to(login_url)
+      end
+    
+    end
+    
+  end
+ 
 end
