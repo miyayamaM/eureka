@@ -1,28 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
-     <div class="profile-top">
-        <div class="image-round">
-          <%= image_tag current_user.image.profile100.url, class: "profile-image" %>
-        </div>
-        <h3><%= current_user.name %></h3>
-      </div>
-
-      <div class="profile-info">
-        <p>投稿：<%= current_user.articles.count %>件</p>
-
-        <a href="<%= following_user_path(current_user) %>">
-          フォロー：<strong id="following" class="stats"><%= current_user.following.count %></strong>
-        </a>
-
-        <a href="<%= followers_user_path(current_user) %>">
-          フォロワー：<strong id="followers" class="stats"><%= current_user.followers.count %></strong>
-        </a>
-        <%= link_to "記事を投稿", new_article_path, class: "btn"%>
-      </div>
+    <div class="col-sm-3" id="profile-sidebar">
+      <%= render 'users/profile_sidebar'%>
     </div>
 
-    <div class="col-sm-9">
+    <div class="col-sm-9" id="timeline">
     <h3>タイムライン</h3>
      <% if @feed_items.any? %>
       <ol class="articles" >

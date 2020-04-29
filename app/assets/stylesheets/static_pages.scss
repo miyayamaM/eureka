@@ -3,7 +3,7 @@
 
 .main {
   text-align: center;
-  background-image: url('ants.jpg');
+  background-image: image-url("ants.jpg");
   background-size: cover;
   padding-top: 40%;
   position: relative;
@@ -70,5 +70,17 @@
     padding: 10px 30px;
     font-size: 20px;
     text-decoration: none;
+  }
+
+  .articles {
+    padding: 0;
+  }
+
+  #timeline {
+    h3{
+      display: inline;
+      font-size: 1.2rem;
+      margin: auto;
+    }
   }
 }

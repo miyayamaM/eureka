@@ -15,7 +15,7 @@
     </div>
     <div class="article-information">
       <span ><%= link_to "投稿者: #{article.user.name}", user_path(article.user), class: "article-author" %></span>
-      <span class="article-timestamp"><%= article.created_at %></span>
+      <span class="article-timestamp"><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></span>
     </div>
   </div>
 </li>

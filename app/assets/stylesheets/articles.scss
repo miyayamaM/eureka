@@ -63,3 +63,26 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+/* 768px以下の場合 */
+@media screen and (max-width: 768px) {
+  .article-btn-wrapper {
+    min-width: 40px;
+  }
+}
+
+ /* 480px以下の場合 */
+@media screen and (max-width: 481px) {
+  .article-top-left {
+    img {
+     display: none;
+    }
+  }
+  
+  .article-top-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

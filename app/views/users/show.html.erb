@@ -2,27 +2,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="profile-top">
-        <div class="image-round">
-          <%= image_tag @user.image.profile100.url, class: "profile-image" %>
-        </div>
-        <h3><%= @user.name %></h3>
-      </div>
-        <%= render 'follow_form' if logged_in? %>
-
-      <div class="profile-info">
-        <p>投稿：<%= @user.articles.count %>件</p>
-
-        <a href="<%= following_user_path(@user) %>">
-          フォロー：<strong id="following" class="stats"><%= @user.following.count %></strong>
-        </a>
-
-        <a href="<%= followers_user_path(@user) %>">
-          フォロワー：<strong id="followers" class="stats"><%= @user.followers.count %></strong>
-        </a>
-        <%= link_to "記事を投稿", new_article_path, class: "btn" if current_user?(@user) %>
-      </div>
+    <div class="col-sm-3", id="profile-sidebar">
+     <%= render 'users/profile_sidebar'%>
     </div>
 
     <div class="col-sm-9">
@@ -31,6 +12,8 @@
           <%= render @articles%>
         </ul>
         <%= paginate @articles %>
+      <% else %>
+      <p>このユーザーの投稿はありません</p>
       <% end %>
       
     </div>

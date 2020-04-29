@@ -27,7 +27,9 @@ header {
   margin-bottom: 10px;
 }
 
-
+.container {
+  padding-top: 10px;
+}
 
 #sidebarCollapse {
  background-color: #000;
@@ -183,7 +185,10 @@ $gray-medium-light: #eaeaea;
   @include box_sizing;
 }
 
+ /* 992px以下の場合 */
+@media screen and (max-width: 992px) {
 
+}
 
  /* 768px以下の場合 */
 @media screen and (max-width: 768px) {
@@ -208,6 +213,11 @@ $gray-medium-light: #eaeaea;
 
  /* 480px以下の場合 */
 @media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+
   header {
     padding: 0;
   }
