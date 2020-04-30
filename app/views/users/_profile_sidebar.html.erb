@@ -25,4 +25,13 @@
       <strong id="followers" class="stats profile-info-stats"><%= @user.followers.count %></strong>
     </a>
   </div>
+
+  <div class="col-6 col-sm-12 col-lg-6 profile-info-box">
+    <p>いいねした数</p>
+    <a href="<%= bookmarks_user_path(@user) %>">
+      <strong id="no_bookmarks" class="stats profile-info-stats"><%= @user.bookmarks.count %></strong>
+    </a>
+  </div>
+
+  
 </div>

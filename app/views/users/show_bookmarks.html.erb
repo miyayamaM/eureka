@@ -1,0 +1,21 @@
+<% provide(:title, "お気に入り記事") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3", id="profile-sidebar">
+     <%= render 'users/profile_sidebar'%>
+    </div>
+
+    <div class="col-sm-9">
+      <% if @articles.any? %>
+        <ul class="articles">
+          <%= render @articles%>
+        </ul>
+        <%= paginate @articles %>
+      <% else %>
+      <p>お気に入り登録した記事はありません</p>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

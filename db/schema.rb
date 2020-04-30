@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_235858) do
+ActiveRecord::Schema.define(version: 2020_04_30_032909) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2020_04_28_235858) do
     t.string "thumbnail"
     t.index ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_bookmarks_on_article_id"
+    t.index ["user_id", "article_id"], name: "index_bookmarks_on_user_id_and_article_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,4 +60,6 @@ ActiveRecord::Schema.define(version: 2020_04_28_235858) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "bookmarks", "articles"
+  add_foreign_key "bookmarks", "users"
 end

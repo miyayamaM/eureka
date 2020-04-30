@@ -63,6 +63,11 @@
   justify-content: space-between;
 }
 
+.bookmark-form {
+  margin: 5px 0 0 auto;
+  max-width: 20px;
+}
+
 
 /* article show page */
 
@@ -88,6 +93,15 @@
   }
 }
 
+#bookmark-btn{
+  color: grey;
+  text-decoration: none;
+}
+
+#unbookmark-btn{
+  color: rgb(255, 208, 0);
+  text-decoration: none;
+}
 
 /* 992px以下の場合 */
 @media screen and (max-width: 992px) {
@@ -107,6 +121,8 @@
   }
 }
 
+
+
 @media screen and (max-width: 768px) {
   .article-btn-wrapper {
     font-size: 1.2rem;
@@ -117,6 +133,11 @@
       margin: 4px 0;
       display: inline-block;
     }
+  }
+
+  .bookmark-form {
+    margin-right: 5px;
+    max-width: 20px;
   }
 }
 
