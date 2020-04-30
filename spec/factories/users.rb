@@ -15,6 +15,14 @@ FactoryBot.define do
     activated_at { Time.zone.now }
   end
 
+  factory :third_user, class: User do
+    name { "Patick" }
+    email { "tester3@exmaple.com" }
+    password { "password3" }
+    activated { true }
+    activated_at { Time.zone.now }
+  end
+
   factory :unactivated_user, class: User do
     name { "Jobs" }
     email { "tester3@exmaple.com" }
@@ -30,4 +38,5 @@ FactoryBot.define do
     activated { true }
     activated_at { Time.zone.now }
   end
+  
 end

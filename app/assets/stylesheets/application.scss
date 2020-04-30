@@ -44,11 +44,11 @@ header {
 
 .header-left  {
   margin: auto 0;
-}
 
-.header-left p {
- font-size: 0.9rem;
- padding-left: 60px;
+  p {
+    font-size: 0.9rem;
+    padding-left: 60px;
+   }
 }
 
 .fa-align-left {
@@ -59,11 +59,13 @@ header {
   display:flex;
   flex-direction: column;
   margin: auto 0;
+
+  .text-warning:hover{
+    text-decoration: underline;
+  }
+  
 }
 
-.login-button {
-  margin-bottom: 10px;
-}
 
 /* ログイン時のヘッダー */
 

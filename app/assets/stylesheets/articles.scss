@@ -44,7 +44,7 @@
 
 .article-btn-wrapper {
   margin-left: 5px;
-  min-width: 77px;
+  min-width: 50px;
 }
 
 .article-top-right {
@@ -54,7 +54,6 @@
 }
 
 .article-delete-btn, .article-update-btn {
-  font-size: 0.8rem;
   margin-left: 5px;
   display: inline-block;
 }
@@ -65,11 +64,68 @@
 }
 
 
-/* 768px以下の場合 */
+/* article show page */
+
+.article-container {
+  width:70%;
+  margin: 0 auto;
+
+  .article-posted-time {
+    font-size: 0.8rem;
+  }
+
+  .article-show-image{
+    width:300px;
+    height: auto;
+  }
+}
+
+.article-sidebar {
+  text-align: center;
+  border-left: 1px rgb(110, 110, 110) solid;
+  h5 {
+    text-decoration: underline;
+  }
+}
+
+
+/* 992px以下の場合 */
+@media screen and (max-width: 992px) {
+  .article-container {
+    width:90%;
+  }
+
+  .article-sidebar{
+    margin-top: 15px;
+    border-top: 1px rgb(110, 110, 110) solid;
+    border-left: 1px rgb(255, 255, 255) solid;
+
+    h5 {
+      margin-top: 30px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   .article-btn-wrapper {
-    min-width: 40px;
+    font-size: 1.2rem;
+    max-width: 25px;
+    min-width: 25px;
+
+    .article-delete-btn, .article-update-btn {
+      margin: 4px 0;
+      display: inline-block;
+    }
   }
+}
+
+@media screen and (max-width: 578px) {
+  .article-show-image{
+    min-width: 100%;
+    margin-bottom: 20px
+  }
+
 }
 
  /* 480px以下の場合 */
@@ -84,5 +140,19 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .article-container {
+
+    .float-right{
+      float: none;
+      text-align: center;
+    }
+   
+    .article-show-image{
+      min-width:100%;
+      height: auto;
+      margin:0 auto;
+    }
   }
 }

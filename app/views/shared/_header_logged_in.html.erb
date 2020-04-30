@@ -9,8 +9,8 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-3 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="キーワード検索" aria-label="Search">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">検索する</button>
+          <input class="form-control" type="search" placeholder="キーワード検索" aria-label="Search">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
 
         <div class="dropdown mt-1">
@@ -18,16 +18,34 @@
             メニュー
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to user_path(current_user), class: "dropdown-item" do %>
+             <i class="fas fa-user mr-1"></i>マイページ
+            <% end %>
+            <%= link_to edit_user_path(current_user), class: "dropdown-item" do %>
+              <i class="fas fa-cog mr-1"></i>ユーザー情報編集
+            <% end %>
+            <%= link_to logout_path, method: :delete, class: "dropdown-item" do %>
+             <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
+             <% end %>
           </div>
         </div>
         
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %></li>
+          <li class="nav-item">
+           <%= link_to user_path(current_user), class: "nav-link" do %>
+             <i class="fas fa-user mr-1"></i>マイページ
+            <% end %>
+          </li>
+          <li class="nav-item">
+             <%= link_to edit_user_path(current_user), class: "nav-link" do %>
+              <i class="fas fa-cog mr-1"></i>ユーザー情報編集
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to logout_path, method: :delete, class: "nav-link" do %>
+             <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
+            <% end %>
+          </li>
         </ul>
 
 

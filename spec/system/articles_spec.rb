@@ -15,12 +15,11 @@ RSpec.describe 'Articles', type: :system do
       FactoryBot.create_list(:articles, 50, user: user)
       sign_in_as user
       
-      expect(page).to have_content "#{user.articles.count}"
       expect(page).to have_selector('.page-link')
       user.articles.page(1).per(20).each do |article|
         expect(page).to have_content "#{article.title}"
         expect(page).to have_content "#{article.user.name}"
-        expect(page).to have_content "#{article.created_at}"
+        expect(page).to have_content "#{article.created_at.strftime("%Y年%m月%d日 %H:%M")}"
       end
     end
 
@@ -133,4 +132,6 @@ RSpec.describe 'Articles', type: :system do
     it "allows for unloggedin user to check user's article" do
     end
   end
+
+  
 end
