@@ -1,4 +1,12 @@
 ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "« 前ページ"
+      next: "次ページ »"
+      truncate: "..."
+
   faker:
     address:
       postcode: ["###-####"]

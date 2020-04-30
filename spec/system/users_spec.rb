@@ -98,6 +98,8 @@ RSpec.describe 'Users', type: :system do
         find(".dropdown-toggle").click
         click_on 'ユーザー情報編集'
         click_on '退会する'
+        page.driver.browser.switch_to.alert.accept
+        find('.alert')
       }.to change(User, :count).by(-1)
 
       expect(page).to have_content '退会しました。ご利用ありがとうございました'

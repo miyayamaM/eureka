@@ -1,6 +1,16 @@
-<% provide(:title, "記事") %>
+<% provide(:title, "#{@article.title}") %>
 
-<div class="container">
-  <h1><%= @article.title %></h1>
-  <p><%= @article.content %></p>
+<div class="article-container mt-4">
+  <div class="row">
+    <div class="col-lg-9">
+      <h2><%= @article.title %></h2>
+      <p class="article-posted-time mt-3"><%= @article.created_at.strftime("%Y年%m月%d日 %H:%M")%></p>
+        <div class="float-sm-right pl-sm-3 pb-sm-2"><%= image_tag @article.thumbnail.url, class: "article-show-image" %></div>
+      <%= @article.content %>
+    </div>
+
+    <div class="col-lg-3 article-sidebar">
+      <h5>関連した記事</h5>
+    </div>
+  </div>
 </div> 

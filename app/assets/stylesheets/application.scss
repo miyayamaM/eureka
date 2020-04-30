@@ -27,7 +27,9 @@ header {
   margin-bottom: 10px;
 }
 
-
+.container {
+  padding-top: 10px;
+}
 
 #sidebarCollapse {
  background-color: #000;
@@ -42,11 +44,11 @@ header {
 
 .header-left  {
   margin: auto 0;
-}
 
-.header-left p {
- font-size: 0.9rem;
- padding-left: 60px;
+  p {
+    font-size: 0.9rem;
+    padding-left: 60px;
+   }
 }
 
 .fa-align-left {
@@ -57,11 +59,13 @@ header {
   display:flex;
   flex-direction: column;
   margin: auto 0;
+
+  .text-warning:hover{
+    text-decoration: underline;
+  }
+  
 }
 
-.login-button {
-  margin-bottom: 10px;
-}
 
 /* ログイン時のヘッダー */
 
@@ -183,7 +187,10 @@ $gray-medium-light: #eaeaea;
   @include box_sizing;
 }
 
+ /* 992px以下の場合 */
+@media screen and (max-width: 992px) {
 
+}
 
  /* 768px以下の場合 */
 @media screen and (max-width: 768px) {
@@ -208,6 +215,11 @@ $gray-medium-light: #eaeaea;
 
  /* 480px以下の場合 */
 @media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+
   header {
     padding: 0;
   }

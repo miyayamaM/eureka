@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
   def easy_login
     user = User.find_by(name: "First User")
     log_in user
+    flash[:success] = "テストユーザーとしてログインしました"
     redirect_to root_path
   end
 end

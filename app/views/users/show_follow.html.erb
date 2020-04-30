@@ -1,32 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="profile-top">
-        <div class="image-round">
-          <%= image_tag @user.image.profile100.url, class: "profile-image" %>
-        </div>
-        <h3><%= @user.name %></h3>
-      </div>
-        <%= render 'follow_form' if logged_in? %>
-
-       <div class="profile-info">
-        <p>投稿：<%= @user.articles.count %>件</p>
-
-        <a href="<%= following_user_path(@user) %>">
-          フォロー：<strong id="following" class="stats"><%= @user.following.count %></strong>
-        </a>
-
-        <a href="<%= followers_user_path(@user) %>">
-          フォロワー：<strong id="followers" class="stats"><%= @user.followers.count %></strong>
-        </a>
-      </div>
+    <div class="col-sm-3", id="profile-sidebar">
+      <%= render 'users/profile_sidebar'%>
     </div>
 
     <div class="col-sm-9">
+      <h2><%= @title %></h2>
        <ul class="users">
     <% @users.each do |user| %>
       <li>
-         <div class="image-round">
+         <div class="index-image-round">
           <%= image_tag user.image.profile90.url, class: "profile-image" %>
         </div>
         <%= link_to user.name, user_path(user), class: "my-auto" %>

@@ -25,6 +25,6 @@
       <%= f.submit "保存する", class: 'btn btn-primary'%>
     <% end %>
 
-     <%= link_to "退会する", user_path(@user),method: :delete, class: "btn btn-danger mt-4" %>
+     <%= link_to "退会する", user_path(@user),method: :delete, data: {confirm: "退会するとユーザーのデータが完全に削除されます。よろしいですか？"}, class: "btn btn-danger mt-4" %>
   </div>
 </div>

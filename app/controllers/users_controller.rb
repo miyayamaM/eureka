@@ -43,9 +43,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "退会しました。ご利用ありがとうございました。"
-    redirect_to root_url
+    @user = User.find(params[:id])
+
+    unless @user.name == "First User"
+      @user.destroy
+      flash[:success] = "退会しました。ご利用ありがとうございました。"
+      redirect_to root_url
+    else 
+      flash.now[:danger] = "テストユーザーは削除できません"
+      render 'edit'
+    end
+
   end
 
   def following

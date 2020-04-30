@@ -8,7 +8,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_fill(400, 400, gravity = ::Magick::CenterGravity)
+  process resize_to_fill(600, 600, gravity = ::Magick::CenterGravity)
 
   version :thumbnail70 do
     process resize_to_fit: [70, 70]

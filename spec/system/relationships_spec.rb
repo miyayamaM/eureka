@@ -18,7 +18,7 @@ RSpec.describe 'Relationships', type: :system do
       click_on "フォローする"
       expect(find_by_id('followers')).to have_content "1"
 
-      click_on "フォローを解除"
+      click_on "フォロー中"
       expect(find_by_id('followers')).to have_content "0"
       
       click_on "フォローする"

@@ -12,7 +12,9 @@
         <option value="english">英語</option>
       </select>
       
-        <%= link_to "ログイン", login_path, class: "btn btn-scarlet mt-3 login-button" %>
+        <%= link_to login_path, :method => :get do %>
+          <div class="text-warning font-weight-bold mt-3"><i class="fa fa-sign-in-alt mr-2"></i>ログイン</div>
+        <%end%>
     </div>
   </div>
 </header>
