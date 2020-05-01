@@ -3,20 +3,20 @@ class BookmarksController < ApplicationController
 
   def create
     @article = Article.find(params[:article_id])
-    @user = current_user
-    @user.bookmark(@article)
+ 
+    current_user.bookmark(@article)
     respond_to do |format|
-      format.html {redirect_to @user}
+      format.html {redirect_to current_user}
       format.js
     end
   end
 
   def destroy
     @article = Article.find(params[:id])
-    @user = current_user
-    @user.unbookmark(@article)
+
+    current_user.unbookmark(@article)
     respond_to do |format|
-      format.html {redirect_to @user}
+      format.html {redirect_to current_user}
       format.js
     end
   end

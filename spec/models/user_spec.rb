@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  let(:user){ FactoryBot.create(:user) }
+  let(:other_user){ FactoryBot.create(:other_user) }
+  let(:article){ FactoryBot.create(:article, user_id: other_user.id) }
+
   it "is valid with a name, email and password" do
     user = FactoryBot.build(:user)
     expect(user).to be_valid
@@ -118,9 +122,6 @@ RSpec.describe User, type: :model do
 
   describe "feed" do
     
-    let(:user){ FactoryBot.create(:user) }
-    let(:other_user){ FactoryBot.create(:other_user) }
-    
     it "includes own or follower's articles" do
       user_article = FactoryBot.create(:article, user: user)
       follower_article =  FactoryBot.create(:article, user: other_user)
@@ -136,6 +137,25 @@ RSpec.describe User, type: :model do
 
       expect(user.feed).to include user_article
       expect(user.feed).to_not include unfollower_article
+    end
+  end
+
+  describe "bookmark method" do
+
+    it "bookmarks an article"do
+      user.bookmark(article)
+      expect(user.bookmark_articles).to include article
+    end
+  end
+
+  describe "unbookmark method" do
+
+    it "deletes a bookmark"do
+      user.bookmark(article)
+      expect(user.bookmark_articles).to include article
+
+      user.unbookmark(article)
+      expect(user.bookmark_articles).to_not include article
     end
   end
 end

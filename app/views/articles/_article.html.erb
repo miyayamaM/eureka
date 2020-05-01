@@ -7,22 +7,25 @@
     <div class="article-top-right-content">
       <div class="article-title-wrapper"><%= link_to "#{article.title}", article_path(article), class: "article-title" %></div>
         <div class="article-btn-wrapper">
-          <% if current_user?(article.user) %>
+          <div class="text-center">
+            <% if current_user?(article.user) %>
 
-            <%= link_to edit_article_path(article), class: "article-update-btn" do%>
-              <i class="far fa-edit"></i>
-            <% end %>
-            <%= link_to article, method: :delete, data: {confirm: "記事を削除しますか？"}, class: "article-delete-btn" do %>
-              <i class="far fa-trash-alt"></i>
-            <% end %>
-          <% end %>
+              <%= link_to edit_article_path(article), class: "article-update-btn" do%>
+                <i class="far fa-edit"></i>
+              <% end %>
+              <%= link_to article, method: :delete, data: {confirm: "記事を削除しますか？"}, class: "article-delete-btn" do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
 
-          <div class="d-flex">
+            <% end %>
+          </div>
+
+          <div class="bookmark-wrapper">
             <div class="bookmark-form", id="bookmark-form-<%= article.id %>">
               <%= render partial: 'articles/bookmark_form', locals: {article: article} %>
             </div> 
             <div id="bookmark-count-<%= article.id %>">
-              <span><%= article.bookmarks.count %></span>
+              <span id="bookmark-number"><%= article.bookmarks.count %></span>
             </div> 
           </div>
         </div>

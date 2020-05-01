@@ -1,3 +1,5 @@
 $('#bookmark-form-<%= @article.id %>').html("<%= j(render partial: 'articles/bookmark_form', locals: {article: @article}) %>");
 $('#bookmark-count-<%= @article.id %>').html('<%= @article.bookmarks.count %>');
-$("#no_bookmarks").html('<%= @user.bookmarks.count %>');
+<% if current_user?(@show_user) %>;
+  $("#no_bookmarks").html('<%= @show_user.bookmarks.count %>');
+<% end %>;
