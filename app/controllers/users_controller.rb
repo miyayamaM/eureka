@@ -69,6 +69,13 @@ class UsersController < ApplicationController
     @users = @user.followers.page(params[:page])
     render 'show_follow'
   end
+
+  def bookmarks
+    @title = "Eureka!した記事"
+    @user = User.find(params[:id])
+    @articles = @user.bookmark_articles.page(params[:page])
+    render 'show_bookmarks'
+  end
   
   private 
     def user_params

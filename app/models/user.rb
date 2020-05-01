@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_articles, through: :bookmarks, source: :article
 
   validates :name, presence: true, length: { maximum: 40 }, uniqueness: true
 
@@ -82,6 +84,14 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def bookmark(article)
+    self.bookmarks.create(article_id: article.id)
+  end
+  
+  def unbookmark(article)
+    self.bookmarks.find_by(article_id: article.id).destroy
   end
 
   private

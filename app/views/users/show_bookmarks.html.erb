@@ -1,9 +1,9 @@
-<% provide(:title, "#{@user.name}") %>
+<% provide(:title, "お気に入り記事") %>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-3", id="profile-sidebar">
-      <% if current_user?(@user) %>
+     <% if current_user?(@user) %>
        <%= render 'users/profile_sidebar', {user: @user, viewpage: "myself"}%>
       <% else %>
       <%= render 'users/profile_sidebar', {user: @user, viewpage: "show"}%>
@@ -11,13 +11,14 @@
     </div>
 
     <div class="col-sm-9">
-      <% if @user.articles.any? %>
+      <h3><i class="fas fa-lightbulb fa-lg text-warning mr-2"></i>いいねした記事</h3>
+      <% if @articles.any? %>
         <ul class="articles">
           <%= render @articles%>
         </ul>
         <%= paginate @articles %>
       <% else %>
-      <p>このユーザーの投稿はありません</p>
+      <p>お気に入り登録した記事はありません</p>
       <% end %>
       
     </div>

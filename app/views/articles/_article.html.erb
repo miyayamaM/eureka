@@ -6,16 +6,29 @@
   <div class="article-top-right">
     <div class="article-top-right-content">
       <div class="article-title-wrapper"><%= link_to "#{article.title}", article_path(article), class: "article-title" %></div>
-      <% if current_user?(article.user) %>
         <div class="article-btn-wrapper">
-          <%= link_to edit_article_path(article), class: "article-update-btn" do%>
-            <i class="far fa-edit"></i>
-          <% end %>
-          <%= link_to article, method: :delete, data: {confirm: "記事を削除しますか？"}, class: "article-delete-btn" do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
+          <div class="text-center">
+            <% if current_user?(article.user) %>
+
+              <%= link_to edit_article_path(article), class: "article-update-btn" do%>
+                <i class="far fa-edit"></i>
+              <% end %>
+              <%= link_to article, method: :delete, data: {confirm: "記事を削除しますか？"}, class: "article-delete-btn" do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
+
+            <% end %>
+          </div>
+
+          <div class="bookmark-wrapper">
+            <div class="bookmark-form", id="bookmark-form-<%= article.id %>">
+              <%= render partial: 'articles/bookmark_form', locals: {article: article} %>
+            </div> 
+            <div id="bookmark-count-<%= article.id %>">
+              <span id="bookmark-number"><%= article.bookmarks.count %></span>
+            </div> 
+          </div>
         </div>
-      <% end %>
     </div>
     <div class="article-information">
       <span ><%= link_to "投稿者: #{article.user.name}", user_path(article.user), class: "article-author" %></span>

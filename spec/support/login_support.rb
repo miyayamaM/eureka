@@ -6,6 +6,11 @@ module LoginSupport
     fill_in "パスワード", with: user.password
     click_button "ログインする"
   end
+
+  def sign_out
+    find(".dropdown-toggle").click
+    click_on 'ログアウト'
+  end
 end 
 
 RSpec.configure do |config|

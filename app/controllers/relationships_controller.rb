@@ -8,7 +8,6 @@ class RelationshipsController < ApplicationController
       format.html {redirect_to @user}
       format.js
     end
-    
   end
 
   def destroy

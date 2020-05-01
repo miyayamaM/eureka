@@ -1,0 +1,6 @@
+<%= form_for(current_user.bookmark_articles.find_by(article_id: @article.id),
+             html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit class: "btn btn-primary", id: "unfollow-btn" do %>
+   <i class="fas fa-lightbulb"></i>
+  <% end%>
+<% end %>

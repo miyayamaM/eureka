@@ -2,6 +2,7 @@
   list-style: none;
   margin: 0;
   li {
+    width: 100%;
     overflow: auto;
     padding: 8px 0 4px 0;
     border-bottom: 1px solid rgb(110, 110, 110);
@@ -45,6 +46,8 @@
 .article-btn-wrapper {
   margin-left: 5px;
   min-width: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .article-top-right {
@@ -61,6 +64,10 @@
 .article-top-right-content {
   display: flex;
   justify-content: space-between;
+}
+
+.bookmark-form {
+  max-width: 20px;
 }
 
 
@@ -88,6 +95,29 @@
   }
 }
 
+.bookmark-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+}
+
+#bookmark-btn{
+  color: grey;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+#bookmark-btn:hover {
+  color: rgb(207, 195, 148)
+}
+
+#unbookmark-btn{
+  color: rgb(255, 208, 0);
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+
 
 /* 992px以下の場合 */
 @media screen and (max-width: 992px) {
@@ -107,16 +137,31 @@
   }
 }
 
+
+
 @media screen and (max-width: 768px) {
   .article-btn-wrapper {
-    font-size: 1.2rem;
-    max-width: 25px;
-    min-width: 25px;
+    font-size: 1.3rem;
+    max-width: 40px;
+    min-width: 40px;
 
     .article-delete-btn, .article-update-btn {
       margin: 4px 0;
       display: inline-block;
     }
+
+    .bookmark-wrapper {
+      
+      #bookmark-btn, #unbookmark-btn{
+        font-size: 1.2rem;
+      }
+      
+  }
+  }
+
+  .bookmark-form {
+    margin-right: 5px;
+    max-width: 20px;
   }
 }
 

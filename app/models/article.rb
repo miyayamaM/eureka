@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
+  has_many :bookmarks, dependent: :destroy
 
   default_scope -> { order(created_at: :desc) }
 
@@ -8,4 +9,8 @@ class Article < ApplicationRecord
   validates :content, presence: true
 
   mount_uploader :thumbnail, ThumbnailUploader
+
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user.id).exists?
+  end
 end

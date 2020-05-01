@@ -1,0 +1,4 @@
+$('#bookmark-form-<%= @article.id %>').html("<%= j(render partial: 'articles/bookmark_form', locals: {article: @article}) %>");
+$('#bookmark-count-<%= @article.id %>').html('<%= @article.bookmarks.count %>');
+$("#no_bookmarks_myself").html('<%= @user.bookmark_articles.count %>');
+

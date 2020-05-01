@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3" id="profile-sidebar">
-      <%= render 'users/profile_sidebar'%>
+      <%= render 'users/profile_sidebar', {user: @user, viewpage: "myself"} %>
     </div>
 
     <div class="col-sm-9" id="timeline">

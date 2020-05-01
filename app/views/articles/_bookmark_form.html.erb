@@ -1,0 +1,10 @@
+<% if article.bookmarked_by?(current_user) %>
+  <%= link_to bookmark_path(article.id), method: :delete, remote: true do %>
+    <i class="fas fa-lightbulb fa-lg", id="unbookmark-btn"></i>
+  <% end %>
+ 
+<% else %>
+  <%= link_to article_bookmarks_path(article.id), method: :post, remote: true do %>
+    <i class="fas fa-lightbulb fa-lg", id="bookmark-btn"></i>
+  <% end %>
+<% end %>
