@@ -1,32 +1,32 @@
 
 <div class="profile-top">
   <div class="image-round">
-    <%= image_tag @user.image.profile100.url, class: "profile-image" %>
+    <%= image_tag user.image.profile100.url, class: "profile-image" %>
   </div>
-  <h3 class="mt-2"><%= @user.name %></h3>
+  <h3 class="mt-2"><%= user.name %></h3>
 </div>
-  <%= link_to "記事を投稿", new_article_path, class: "btn btn-primary mt-2", id: "post-btn" if current_user?(@user) %>
+  <%= link_to "記事を投稿", new_article_path, class: "btn btn-primary mt-2", id: "post-btn" if current_user?(user) %>
   <%= render 'users/follow_form' if logged_in? %>
 
 <div class="profile-info row">
   <div class="col-6 col-sm-12 col-lg-6 profile-info-box">
     <p>フォロー</p>
-    <a href="<%= following_user_path(@user) %>">
-      <strong id="following" class="stats profile-info-stats"><%= @user.following.count %></strong>
+    <a href="<%= following_user_path(user) %>">
+      <strong id="following" class="stats profile-info-stats"><%= user.following.count %></strong>
     </a>
   </div>
 
   <div class="col-6 col-sm-12 col-lg-6 profile-info-box">
     <p>フォロワー</p>
-    <a href="<%= followers_user_path(@user) %>">
-      <strong id="followers" class="stats profile-info-stats"><%= @user.followers.count %></strong>
+    <a href="<%= followers_user_path(user) %>">
+      <strong id="followers" class="stats profile-info-stats"><%= user.followers.count %></strong>
     </a>
   </div>
 
   <div class="col-6 col-sm-12 col-lg-6 profile-info-box">
     <p>いいねした数</p>
-    <a href="<%= bookmarks_user_path(@user) %>">
-      <strong id="no_bookmarks" class="stats profile-info-stats"><%= @user.bookmark_articles.count %></strong>
+    <a href="<%= bookmarks_user_path(user) %>">
+      <strong id="no_bookmarks_<%= viewpage %>" class="stats profile-info-stats"><%= user.bookmark_articles.count %></strong>
     </a>
   </div>
 

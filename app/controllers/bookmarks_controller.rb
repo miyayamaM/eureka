@@ -3,6 +3,7 @@ class BookmarksController < ApplicationController
 
   def create
     @article = Article.find(params[:article_id])
+    @user = current_user
  
     current_user.bookmark(@article)
     respond_to do |format|
@@ -13,6 +14,7 @@ class BookmarksController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    @user = current_user
 
     current_user.unbookmark(@article)
     respond_to do |format|
