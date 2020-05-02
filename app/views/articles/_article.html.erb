@@ -32,8 +32,8 @@
     </div>
 
     <div> 
-      <% article.tag_list.each do |tag| %>
-        <span class="badge badge-info"><%= link_to tag, tag_path(tag), class: "article-tag" %></span>
+      <% article.tags.pluck(:name).each do |tag_name| %>
+        <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
       <% end %>
       </span>
     </div>
