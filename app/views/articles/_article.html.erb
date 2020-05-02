@@ -30,6 +30,14 @@
           </div>
         </div>
     </div>
+
+    <div> 
+      <% article.tags.pluck(:name).each do |tag_name| %>
+        <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
+      <% end %>
+      </span>
+    </div>
+    
     <div class="article-information">
       <span ><%= link_to "投稿者: #{article.user.name}", user_path(article.user), class: "article-author" %></span>
       <span class="article-timestamp"><%= article.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>

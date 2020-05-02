@@ -2,7 +2,14 @@ class ArticlesController < ApplicationController
   before_action :login_required, only: [:index, :create, :new, :edit, :update, :destroy]
   before_action :correct_user,   only: :destroy
 
-  def index 
+  def index
+    if params[:tag]
+      @tag_name = params[:tag]
+      @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(20)
+    else
+      @tag_name = "全ての記事"
+      @articles = Article.includes(:tags).page(params[:page]).per(20)
+    end
   end
 
   def new
@@ -48,7 +55,7 @@ class ArticlesController < ApplicationController
 
   private 
     def article_params
-      params.require(:article).permit(:title, :content, :thumbnail)
+      params.require(:article).permit(:title, :content, :thumbnail, :tag_list)
     end
 
     def correct_user

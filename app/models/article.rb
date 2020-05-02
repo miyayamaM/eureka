@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  acts_as_taggable
+
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
 
