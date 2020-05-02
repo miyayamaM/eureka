@@ -22,7 +22,12 @@
         <%= f.file_field :thumbnail, class: "form-control" %>
       </div>
 
-      <%= f.submit "投稿する", class: 'btn btn-primary'%>
+      <div class="form-group">
+        <%= f.label :tag_list, 'タグ' %>
+        <%= text_field_tag 'article[tag_list]', @article.tag_list.join(','), class: "form-control", "data-role" => "tagsinput" %>
+      </div>
+
+      <%= f.submit "投稿する", class: 'btn btn-primary mt-2'%>
     <% end %>
   </div>
 </div>

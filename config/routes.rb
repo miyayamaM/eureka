@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/login', to:'sessions#create'
   delete '/logout', to:'sessions#destroy'
   get '/easy_login', to:'sessions#easy_login'
+  get 'tags/:tag', to:'articles#index', as: :tag
 
   resources :users do
     member do

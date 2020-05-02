@@ -3,6 +3,11 @@ class ArticlesController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def index 
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(20)
+    else
+      @articles = Article.all.page(params[:page]).per(20)
+    end
   end
 
   def new
@@ -48,7 +53,7 @@ class ArticlesController < ApplicationController
 
   private 
     def article_params
-      params.require(:article).permit(:title, :content, :thumbnail)
+      params.require(:article).permit(:title, :content, :thumbnail, :tag_list)
     end
 
     def correct_user
