@@ -1,6 +1,10 @@
 <li id="article-<%= article.id %>">
   <div class="article-top-left">
-    <%= image_tag article.thumbnail.thumbnail70.url, class: "article-image" %>
+    <% if article.category.nil? %>
+      <%= image_tag article.thumbnail.thumbnail70.url, class: "article-image" %>
+    <% else %>
+      <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-image", size: "70x70" %>
+    <% end %>
   </div>
 
   <div class="article-top-right">
@@ -32,6 +36,9 @@
     </div>
 
     <div> 
+      <span class="article-category badge badge-warning">
+        カテゴリ：<%= (article.category.nil?) ? "なし" : article.category.name %>
+      </span>
       <% article.tags.pluck(:name).each do |tag_name| %>
         <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
       <% end %>

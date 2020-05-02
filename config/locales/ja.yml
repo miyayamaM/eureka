@@ -1,4 +1,10 @@
 ja:
+  activerecord:
+    models:
+      category: "カテゴリ"
+    attributes:
+      category:
+        name:  
   views:
     pagination:
       first: "&laquo; 最初"
@@ -6,7 +12,6 @@ ja:
       previous: "« 前ページ"
       next: "次ページ »"
       truncate: "..."
-
   faker:
     address:
       postcode: ["###-####"]

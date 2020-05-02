@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @categories = Category.all
   end
 
   def show
@@ -34,6 +35,7 @@ class ArticlesController < ApplicationController
   
   def edit
     @article = current_user.articles.find_by(id: params[:id])
+    @categories = Category.all
   end
 
   def update
@@ -55,7 +57,7 @@ class ArticlesController < ApplicationController
 
   private 
     def article_params
-      params.require(:article).permit(:title, :content, :thumbnail, :tag_list)
+      params.require(:article).permit(:title, :content, :thumbnail, :category_id, :tag_list)
     end
 
     def correct_user
