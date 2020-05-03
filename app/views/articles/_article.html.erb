@@ -1,9 +1,11 @@
 <li id="article-<%= article.id %>">
   <div class="article-top-left">
-    <% if article.category.nil? %>
-      <%= image_tag article.thumbnail.thumbnail70.url, class: "article-image" %>
-    <% else %>
+    <% if article.thumbnail.url %>
+      <%= image_tag article.thumbnail.url, class: "article-image", size: "70x70"  %>
+    <% elsif article.category %>
       <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-image", size: "70x70" %>
+    <% else %>
+      <%= image_tag 'default_thumbnail.png', class: "article-image", size: "70x70" %>
     <% end %>
   </div>
 
@@ -12,16 +14,16 @@
       <div class="article-title-wrapper"><%= link_to "#{article.title}", article_path(article), class: "article-title" %></div>
         <div class="article-btn-wrapper">
           <div class="text-center">
-            <% if current_user?(article.user) %>
 
+            <% if current_user?(article.user) %>
               <%= link_to edit_article_path(article), class: "article-update-btn" do%>
                 <i class="far fa-edit"></i>
               <% end %>
               <%= link_to article, method: :delete, data: {confirm: "記事を削除しますか？"}, class: "article-delete-btn" do %>
                 <i class="far fa-trash-alt"></i>
               <% end %>
-
             <% end %>
+
           </div>
 
           <div class="bookmark-wrapper">
