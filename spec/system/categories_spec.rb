@@ -39,6 +39,8 @@ RSpec.describe 'Categories', type: :system do
         }.to change(Article, :count).by(1)
         
         expect(page).to have_css "#default-picture"
+        expect(page).to_not have_css "#category-picture"
+        expect(page).to_not have_css "#attached-picture"
       end
 
     end
@@ -57,6 +59,8 @@ RSpec.describe 'Categories', type: :system do
         }.to change(Article, :count).by(1)
         
         expect(page).to have_css "#category-picture"
+        expect(page).to_not have_css "#default-picture"
+        expect(page).to_not have_css "#attached-picture"
       end
 
     end
@@ -75,6 +79,8 @@ RSpec.describe 'Categories', type: :system do
         }.to change(Article, :count).by(1)
         
         expect(page).to have_css "#attached-picture"
+        expect(page).to_not have_css "#category-picture"
+        expect(page).to_not have_css "#default-picture"
       end
 
     end
@@ -94,6 +100,8 @@ RSpec.describe 'Categories', type: :system do
         }.to change(Article, :count).by(1)
         
         expect(page).to have_css "#attached-picture"
+        expect(page).to_not have_css "#category-picture"
+        expect(page).to_not have_css "#default-picture"
       end
 
     end
