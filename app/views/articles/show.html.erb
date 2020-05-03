@@ -21,7 +21,7 @@
           <% if @article.thumbnail.url %>
             <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "300x300"  %>
           <% elsif @article.category %>
-            <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
+            <%= image_tag "categories/category_#{@article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
           <% else %>
             <%= image_tag 'default_thumbnail.png', class: "article-show-image", size: "300x300" %>
           <% end %>

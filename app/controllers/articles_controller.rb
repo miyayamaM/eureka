@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :login_required, only: [:index, :create, :new, :edit, :update, :destroy]
   before_action :correct_user,   only: :destroy
+  before_action :get_all_categories,   only: [:new, :create, :edit, :update]
 
   def index
     if params[:tag]
@@ -14,7 +15,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @categories = Category.all
   end
 
   def show
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
   
   def edit
     @article = current_user.articles.find_by(id: params[:id])
-    @categories = Category.all
+    
   end
 
   def update
@@ -63,6 +63,10 @@ class ArticlesController < ApplicationController
     def correct_user
       @article = current_user.articles.find_by(id: params[:id])
       redirect_to root_url if @article.nil?
+    end
+
+    def get_all_categories
+      @categories = Category.all
     end
   
 end
