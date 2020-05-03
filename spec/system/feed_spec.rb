@@ -9,9 +9,9 @@ RSpec.describe 'Feeds', type: :system do
     let(:following) { FactoryBot.create(:third_user) }
 
     it "displays expected articles" do
-      FactoryBot.create_list(:articles, 10, user: user)
-      FactoryBot.create_list(:articles, 10, user: follower)
-      FactoryBot.create_list(:articles, 10, user: following)
+      FactoryBot.create_list(:articles, 5, user: user)
+      FactoryBot.create_list(:articles, 5, user: follower)
+      FactoryBot.create_list(:articles, 5, user: following)
       Relationship.create(follower_id: user.id, followed_id: following.id)
       Relationship.create(follower_id: follower.id, followed_id: user.id)
 

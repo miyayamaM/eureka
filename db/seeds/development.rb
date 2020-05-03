@@ -47,4 +47,8 @@ followers = users[3..40]
 following.each { |followed| user.follow(followed)}
 followers.each { |follower| follower.follow(user)}
 
+categories = %w[遺伝学 医学 化学 環境学 経済学 古生物学 昆虫学 細胞学 植物学 水産学 天文学 動物学 文学]
+
+categories.each {|category| Category.create(name: category)}
+
 

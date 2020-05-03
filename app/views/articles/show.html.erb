@@ -3,10 +3,31 @@
 <div class="article-container mt-4">
   <div class="row">
     <div class="col-lg-9">
+
       <h2><%= @article.title %></h2>
+
+      <div>
+        <span class="article-category badge badge-warning">
+          カテゴリ：<%= (@article.category.nil?) ? "なし" : @article.category.name %>
+        </span>
+        <% @article.tags.pluck(:name).each do |tag_name| %>
+          <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
+        <% end %>
+        </span>
+      </div>
+
       <p class="article-posted-time mt-3"><%= @article.created_at.strftime("%Y年%m月%d日 %H:%M")%></p>
-        <div class="float-sm-right pl-sm-3 pb-sm-2"><%= image_tag @article.thumbnail.url, class: "article-show-image" %></div>
+        <div class="float-right pl-sm-3 pb-sm-2">
+          <% if @article.thumbnail.url %>
+            <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "300x300"  %>
+          <% elsif @article.category %>
+            <%= image_tag "categories/category_#{@article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
+          <% else %>
+            <%= image_tag 'default_thumbnail.png', class: "article-show-image", size: "300x300" %>
+          <% end %>
+        </div>
       <%= @article.content %>
+
     </div>
 
     <div class="col-lg-3 article-sidebar">

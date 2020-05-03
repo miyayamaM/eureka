@@ -128,6 +128,10 @@
   color: #fff;
 }
 
+.article-category{
+  font-size: 0.8rem;
+}
+
 
 
 /* 992px以下の場合 */
@@ -177,15 +181,20 @@
 }
 
 @media screen and (max-width: 578px) {
-  .article-show-image{
-    min-width: 100%;
-    margin-bottom: 20px
+  .article-container {
+   
+    .article-show-image{
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px
+    }
   }
+  
 
 }
 
  /* 480px以下の場合 */
-@media screen and (max-width: 481px) {
+@media screen and (max-width: 480px) {
   .article-top-left {
     img {
      display: none;
@@ -199,16 +208,12 @@
   }
 
   .article-container {
-
-    .float-right{
-      float: none;
-      text-align: center;
-    }
    
     .article-show-image{
-      min-width:100%;
+      width: 100%;
       height: auto;
-      margin:0 auto;
+      margin-bottom: 20px
     }
   }
+
 }
