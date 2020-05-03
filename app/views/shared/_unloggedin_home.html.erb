@@ -9,13 +9,39 @@
 <div class="topics">
   <div class="container">
     <h2>Topics <span>(人気の記事)</span></h2>
-    ここに人気の記事が入る
+
+    <div class="row">
+      <% @top_articles.each do |article| %>
+        <div class="col-12 col-sm-6 col-lg-4">
+           <% if article.thumbnail.url %>
+            <%= image_tag article.thumbnail.url, class: "article-image", size: "300x300", id: "attached-picture" %>
+          <% elsif article.category %>
+            <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-image", size: "300x300", id: "category-picture" %>
+          <% else %>
+            <%= image_tag 'default_thumbnail.png', class: "article-image", size: "300x300", id: "default-picture" %>
+          <% end %>
+          <h3><%= article.title %></h3>
+
+          <div> 
+            <span class="article-category badge badge-warning">
+              カテゴリ：<%= (article.category.nil?) ? "なし" : article.category.name %>
+            </span>
+            <% article.tags.pluck(:name).each do |tag_name| %>
+              <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
+            <% end %>
+            </span>
+          </div>
+      
+        </div>
+      <% end %>
+      
+    </div>
   </div>
 </div>
 
 
 <footer>
-  <div class="container">
+  <div class="container mt-5">
     <div class="footer-contact">
      <p>Contact</p>
     </div>
