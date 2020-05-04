@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Articles', type: :system do
+RSpec.describe 'ArticlesCRUD', type: :system do
   
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
@@ -116,22 +116,4 @@ RSpec.describe 'Articles', type: :system do
     end    
   end
 
-  describe "article show page" do
-    it "displays title and content" do
-      sign_in_as user
-      post_new_article
-
-      click_on "Test title"
-      expect(page).to have_content "Test title"
-      expect(page).to have_content "Test content"
-    end
-
-    it "allows for user to check other user's article" do
-    end
-
-    it "allows for unloggedin user to check user's article" do
-    end
-  end
-
-  
 end

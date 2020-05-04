@@ -32,6 +32,18 @@
 
     <div class="col-lg-3 article-sidebar">
       <h5>関連した記事</h5>
+        <% @related_articles.each do |article| %>
+          <div class="related-article-wrapper">
+            <% if article.thumbnail.url %>
+              <%= image_tag article.thumbnail.url, class: "article-sidebar-image", size: "300x300"  %>
+            <% elsif article.category %>
+              <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-sidebar-image", size: "300x300" %>
+            <% else %>
+              <%= image_tag 'default_thumbnail.png', class: "article-sidebar-image", size: "300x300" %>
+            <% end %>
+            <p><%=link_to article.title, article_path(article), class: "h6 d-block"  %></p>
+          </div>
+        <% end %>
     </div>
   </div>
 </div> 

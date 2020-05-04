@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
       @user = current_user
       @feed_items = current_user.feed.page(params[:page]).per(15)
     else
-      @top_articles = Article.find(Bookmark.group(:article_id).order('count(article_id) desc').limit(6).pluck(:article_id))
+      @top_articles = Article.find(Bookmark.group(:article_id).order(Arel.sql('count(article_id) desc')).limit(6).pluck(:article_id))
     end
   end
   

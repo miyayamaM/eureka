@@ -88,11 +88,31 @@
 }
 
 .article-sidebar {
-  text-align: center;
   border-left: 1px rgb(110, 110, 110) solid;
+
   h5 {
     text-decoration: underline;
   }
+
+  .related-article-wrapper {
+
+    padding: 5px 0;
+
+    .article-sidebar-image {
+      width: 70%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      border-radius: 5px;
+    }
+  
+    p {
+      width: 70%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+  }  
 }
 
 .bookmark-wrapper {

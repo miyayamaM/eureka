@@ -44,7 +44,6 @@
       <% article.tags.pluck(:name).each do |tag_name| %>
         <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
       <% end %>
-      </span>
     </div>
     
     <div class="article-information">
