@@ -115,6 +115,14 @@ header {
    display: none;
 }
 
+.header-search-form {
+
+  .form-control {
+    width: 80%;
+    display: inline-block;
+  }
+}
+
 .footer-copyright {
   font-size: 0.7rem;
 }
@@ -212,6 +220,18 @@ $gray-medium-light: #eaeaea;
     display: block;
  }
 
+ .header-search-form {
+  margin: 8px 0;  
+
+  form {
+    width:50%;
+    min-width: 300px;
+  }
+
+  .form-control {
+    display: inline-block;
+  }
+}
 }
 
  /* 480px以下の場合 */

@@ -8,10 +8,14 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-3 my-lg-0">
-          <input class="form-control" type="search" placeholder="キーワード検索" aria-label="Search">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-        </form>
+        <div class="d-flex header-search-form">
+          <%= search_form_for @search_words, url: result_path do |f| %>
+            <%= f.search_field :title_or_content_or_category_name_or_tags_name_cont, placeholder: "キーワード検索", required: true, class: "form-control", id: "article-search-form" %>
+            <%= button_tag :type => "submit", :class => "btn btn-primary mb-1", :id=> "search-button" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </div>
 
         <div class="dropdown mt-1">
           <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

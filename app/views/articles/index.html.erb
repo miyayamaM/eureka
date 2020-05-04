@@ -10,7 +10,7 @@
     <div class="col-sm-9">
       <h3><%= @tag_name %></h3>
         <ul class="articles">
-          <%= render @articles%>
+          <%= render partial: "articles/article", collection: @articles%>
         </ul>
         <%= paginate @articles %>
     </div>
