@@ -19,6 +19,12 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(id: params[:id])
+
+    if @article.category_id.nil?
+      @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql("RAND()")).limit(5)
+    else
+      @related_articles = Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql("RAND()")).limit(5)
+    end
   end
 
   def create
@@ -35,7 +41,6 @@ class ArticlesController < ApplicationController
   
   def edit
     @article = current_user.articles.find_by(id: params[:id])
-    
   end
 
   def update

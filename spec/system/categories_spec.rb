@@ -5,7 +5,7 @@ RSpec.describe 'Categories', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:article) { FactoryBot.create(:article, user: user) }
   
-  before :all do
+  before do
     categories = %w[遺伝学 天文学 医学 水産学 動物学]
     categories.each {|category| Category.create(name: category)}
   end

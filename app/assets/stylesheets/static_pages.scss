@@ -43,6 +43,28 @@
   font-size: 0.8rem;
 }
 
+.article-top-wrapper {
+  margin: 15px 0;
+}
+
+.article-top-image {
+  display:block;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.article-top-info {
+  padding:15px 0;
+  border-bottom: 1px rgb(158, 157, 157) solid;
+}
+
+/* 992px以下の場合 */
+@media screen and (max-width: 992px) {
+  .article-top-image {
+    width: 100%;
+    height: auto;
+  }
+}
 
 
 /* 768px以下の場合 */
@@ -51,6 +73,20 @@
     padding:0 20px;
   }
 }
+
+/* 576px以下の場合 */
+@media screen and (max-width: 576px) {
+  .article-top-image {
+    width: 80%;
+    height: auto;
+  }
+
+  .article-top-info {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
 
  /* 480px以下の場合 */
 @media screen and (max-width: 481px) {
