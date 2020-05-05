@@ -33,6 +33,7 @@ RSpec.describe 'Categories', type: :system do
         click_on "記事を投稿"
         expect {
           fill_in 'タイトル', with: "Test title"
+          fill_in '引用', with: "Book"
           fill_in '内容', with: "Test content"
           select "選択してください", from: "カテゴリー"
           click_on '投稿する'
@@ -53,6 +54,7 @@ RSpec.describe 'Categories', type: :system do
         click_on "記事を投稿"
         expect {
           fill_in 'タイトル', with: "Test title"
+          fill_in '引用', with: "Book"
           fill_in '内容', with: "Test content"
           select "遺伝学", from: "カテゴリー"
           click_on '投稿する'
@@ -73,6 +75,7 @@ RSpec.describe 'Categories', type: :system do
         click_on "記事を投稿"
         expect {
           fill_in 'タイトル', with: "Test title"
+          fill_in '引用', with: "Book"
           fill_in '内容', with: "Test content"
           attach_file 'サムネイル画像', "#{Rails.root}/spec/factories/thumbnail.png"
           click_on '投稿する'
@@ -93,6 +96,7 @@ RSpec.describe 'Categories', type: :system do
         click_on "記事を投稿"
         expect {
           fill_in 'タイトル', with: "Test title"
+          fill_in '引用', with: "Book"
           fill_in '内容', with: "Test content"
           attach_file 'サムネイル画像', "#{Rails.root}/spec/factories/thumbnail.png"
           select "遺伝学", from: "カテゴリー"

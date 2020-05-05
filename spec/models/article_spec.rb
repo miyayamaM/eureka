@@ -48,6 +48,15 @@ RSpec.describe Article, type: :model do
     end
   end
 
+  describe "without citation" do
+    it "is invalid" do
+      article = Article.new(title: "Title", citation: nil, user: user)
+      article.valid?
+      
+      expect(article.errors[:citation]).to include("を入力してください")
+    end
+  end
+
   describe "when user is deleted" do
     it "is deleted together" do
       article = FactoryBot.create(:article, user: user)

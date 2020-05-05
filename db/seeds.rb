@@ -20,7 +20,7 @@ end
 user = User.find(1)
 50.times do
   title = Faker::Lorem.sentence(10)
-  user.articles.create!(title: title, content: "test")
+  user.articles.create!(title: title, content: "test", citation: "Book")
 end
 
 users = User.all
@@ -28,7 +28,7 @@ users = users[2..30]
 users.each do |user|
   10.times do
     title = Faker::Lorem.sentence(10)
-    user.articles.create!(title: title, content: "test")
+    user.articles.create!(title: title, content: "test", citation: "Book")
   end
 end
 

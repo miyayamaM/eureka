@@ -13,7 +13,8 @@ RSpec.describe "Articles", type: :request do
 
         get new_article_path
         expect {
-          post articles_path, params: { article: { title: "Title", 
+          post articles_path, params: { article: { title: "Title",
+                                            citation: "Book",
                                             content: "Content" } }
         }.to change(Article, :count).by(1)
 
@@ -26,6 +27,7 @@ RSpec.describe "Articles", type: :request do
         get new_article_path
         expect {
           post articles_path, params: { article: { title: "Title", 
+                                            citation: "Book",
                                             content: "Content" } }
         }.to change(Article, :count).by(0)
 
