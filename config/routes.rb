@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete '/logout', to:'sessions#destroy'
   get '/easy_login', to:'sessions#easy_login'
   get 'tags/:tag', to:'articles#index', as: :tag
+  get '/result', to:'articles#result'
 
   resources :users do
     member do

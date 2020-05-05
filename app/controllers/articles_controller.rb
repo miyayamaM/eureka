@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :login_required, only: [:index, :create, :new, :edit, :update, :destroy]
+  before_action :login_required, only: [:index, :create, :new, :edit, :update, :destroy, :result]
   before_action :correct_user,   only: :destroy
   before_action :get_all_categories,   only: [:new, :create, :edit, :update]
 
@@ -58,6 +58,9 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:success] = "記事を削除しました"
     redirect_to request.referrer || root_url
+  end
+
+  def result
   end
 
   private 

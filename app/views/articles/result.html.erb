@@ -1,0 +1,19 @@
+<% provide(:title, "検索結果") %>
+
+<div class="container">
+  <div class="row">
+      <div class="col-sm-3">
+      
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+      <h3><%= @key_words.map{|word| "\"#{word}\""}.join(', ')%>による検索結果</h3>
+      <h5 class="mt-4"><%=  @hit_articles.count %>件見つかりました</h5>
+        <ul class="articles">
+          <%= render partial: "articles/article", collection: @hit_articles%>
+        </ul>
+       
+    </div>
+  </div>
+</div>
