@@ -14,6 +14,11 @@
       </div>
 
       <div class="form-group">
+        <%= f.label :citation, "引用", class: "d-inline" %> <span class="badge badge-danger ml-2">必須</span>
+        <%= f.text_field :citation, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
         <%= f.label :content, "内容", class: "d-inline"  %>
         <%= f.text_area :content, class: "form-control article-content-form" %>
       </div>

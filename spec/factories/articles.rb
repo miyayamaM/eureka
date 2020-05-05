@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :article do
     title "Title"
     content "Very interesting research"
+    citation "Nature 1999, Vol 20"
     created_at Time.zone.now
     association :user
 
@@ -29,6 +30,7 @@ FactoryBot.define do
 
   factory :articles, class: Article do
     sequence(:title) { |n| "title#{n}" }
+    sequence(:citation) { |n| "Book vol.#{n}" }
     sequence(:content) { |n| "content#{n}" }
   end
 end

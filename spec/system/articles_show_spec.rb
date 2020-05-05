@@ -16,7 +16,7 @@ RSpec.describe 'ArticlesShow', type: :system do
     it "displays related articles" do
       Category.create(id:1, name: "天文学")
       Category.create(id:2, name: "遺伝学")
-      article = Article.create(title: "Test title", content: "Test content", user_id: user.id, category_id: 1)
+      article = Article.create(title: "Test title", citation: "book", content: "Test content", user_id: user.id, category_id: 1)
       articles_in_same_category = FactoryBot.create_list(:articles, 4, user: user, category_id:1)
       articles_in_different_category = FactoryBot.create_list(:articles, 4, user: user, category_id:2)
 

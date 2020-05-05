@@ -10,7 +10,7 @@ RSpec.describe "Bookmarks", type: :request do
     context "logged in" do
       it "allows for a user to bookmark an article" do
         log_in_as user
-        article = user.articles.create(title: "test", content: "content")
+        article = user.articles.create(title: "test", citation: "book", content: "content")
 
         expect {
           post article_bookmarks_path(article.id), xhr: true
@@ -19,7 +19,7 @@ RSpec.describe "Bookmarks", type: :request do
 
       it "doesn't allow for a user to duplicated bookmark" do
         log_in_as user
-        article = user.articles.create(title: "test", content: "content")
+        article = user.articles.create(title: "test", citation: "book", content: "content")
 
         post article_bookmarks_path(article.id), xhr: true
        
@@ -44,7 +44,7 @@ RSpec.describe "Bookmarks", type: :request do
     context "logged in" do
       it "allows for a user to delete an bookmark" do
         log_in_as user
-        article = user.articles.create(title: "test", content: "content")
+        article = user.articles.create(title: "test", citation: "book", content: "content")
         
         post article_bookmarks_path(article.id), xhr: true
 
