@@ -45,7 +45,7 @@ gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'dotenv-rails'
 
-gem 'faker', '1.7.3'
+gem 'faker', '2.11.0'
 gem 'kaminari'
 gem 'ransack'
 
