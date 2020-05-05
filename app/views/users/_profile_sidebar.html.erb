@@ -30,5 +30,12 @@
     </a>
   </div>
 
+  <div class="col-6 col-sm-12 col-lg-6 profile-info-box">
+    <p>投稿した記事</p>
+    <a href="<%= user_path(user) %>">
+      <strong id="no_bookmarks_<%= viewpage %>" class="stats profile-info-stats"><%= user.articles.count %></strong>
+    </a>
+  </div>
+
   
 </div>

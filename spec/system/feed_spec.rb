@@ -19,8 +19,6 @@ RSpec.describe 'Feeds', type: :system do
       sign_in_as user
       visit root_path
 
-      expect(page).to have_content "タイムライン"
-
       user.articles.each do |article|
         expect(page).to have_content "#{article.title}"
       end

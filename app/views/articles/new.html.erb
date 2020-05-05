@@ -8,27 +8,27 @@
       <%= render 'shared/error_messages', model: f.object %>
 
       <div class="form-group">
-        <%= f.label :title, "タイトル" %>
+        <%= f.label :title, "タイトル", class: "d-inline" %> <span class="badge badge-danger ml-2">必須</span>
         <%= f.text_field :title, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :content, "内容" %>
-        <%= f.text_area :content, class: "form-control" %>
+        <%= f.label :content, "内容", class: "d-inline"  %><span class="badge badge-danger ml-2">必須</span>
+        <%= f.text_area :content, class: "form-control article-content-form" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :thumbnail, "サムネイル画像" %>
+        <%= f.label :thumbnail, "サムネイル画像", class: "d-inline"  %><span class="badge badge-secondary ml-2">任意</span>
         <%= f.file_field :thumbnail, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :category_id, "カテゴリー" %>
-        <%= f.collection_select :category_id, @categories, :id, :name, include_blank: "選択してください", class: "form-control" %>
+        <%= f.label :category_id, "カテゴリー", class: "d-inline"  %><span class="badge badge-secondary ml-2">任意</span>
+        <%= f.collection_select :category_id, @categories, :id, :name, {include_blank: "選択してください"}, {class: "form-control"} %>
       </div>
 
       <div class="form-group">
-        <%= f.label :tag_list, 'タグ' %>
+        <%= f.label :tag_list, 'タグ', class: "d-inline" %><span class="badge badge-secondary ml-2">任意</span>
         <%= text_field_tag 'article[tag_list]', @article.tag_list.join(','),class: "form-control", "data-role" => "tagsinput" %>
       </div>
 

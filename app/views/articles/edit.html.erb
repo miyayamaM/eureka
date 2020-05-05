@@ -6,34 +6,34 @@
   <h1 class="mb-4">記事編集</h1>
     <%= form_with(model: @article, method: :patch, local: true) do |f| %>
 
-      <%= render 'shared/error_messages', model: f.object %>
+       <%= render 'shared/error_messages', model: f.object %>
 
       <div class="form-group">
-        <%= f.label :title, "タイトル" %>
+        <%= f.label :title, "タイトル", class: "d-inline" %> 
         <%= f.text_field :title, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :content, "内容" %>
-        <%= f.text_area :content, class: "form-control" %>
+        <%= f.label :content, "内容", class: "d-inline"  %>
+        <%= f.text_area :content, class: "form-control article-content-form" %>
       </div>
 
-       <div class="form-group">
-        <%= f.label :thumbnail, "サムネイル画像" %>
+      <div class="form-group">
+        <%= f.label :thumbnail, "サムネイル画像", class: "d-inline"  %>
         <%= f.file_field :thumbnail, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :category_id, "カテゴリー" %>
-        <%= f.collection_select :category_id, @categories, :id, :name, include_blank: "選択してください", class: "form-control" %>
+        <%= f.label :category_id, "カテゴリー", class: "d-inline"  %>
+        <%= f.collection_select :category_id, @categories, :id, :name, {include_blank: "選択してください"}, {class: "form-control"} %>
       </div>
-      
+
       <div class="form-group">
-        <%= f.label :tag_list, 'タグ' %>
-        <%= text_field_tag 'article[tag_list]', @article.tag_list.join(','), class: "form-control", "data-role" => "tagsinput"  %>
-       </div>
-       
-      <%= f.submit "投稿する", class: 'btn btn-primary'%>
+        <%= f.label :tag_list, 'タグ', class: "d-inline" %>
+        <%= text_field_tag 'article[tag_list]', @article.tag_list.join(','),class: "form-control", "data-role" => "tagsinput" %>
+      </div>
+
+      <%= f.submit "投稿する", class: 'btn btn-primary mt-2' %>
     <% end %>
   </div>
 </div>

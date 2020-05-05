@@ -22,7 +22,7 @@
           <% end %>
 
           <div class="article-top-info"> 
-            <%= link_to article.title, article_path(article), class: "h3 d-block" %>
+            <%= link_to article.title, article_path(article), class: "article-top-title d-block" %>
             <span class="article-category badge badge-warning">
               カテゴリ：<%= (article.category.nil?) ? "なし" : article.category.name %>
             </span>
@@ -39,13 +39,3 @@
 </div>
 
 
-<footer>
-  <div class="container mt-5">
-    <div class="footer-contact">
-     <p>Contact</p>
-    </div>
-    <div class="footer-copyright">
-     <p>&copy eureeeeka.com</p>
-    </div>
-  </div>
-</footer>
