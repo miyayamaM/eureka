@@ -2,16 +2,10 @@
   <div class="header-wrapper">
     <div class="header-left">
       <p class="mb-0">科学的知見を共有するSNS「Eureka」</p>
-      <button type="button" id="sidebarCollapse"><i class="fas fa-align-left fa-lg"></i></button>
-      <%= link_to image_tag('header-logo.png', :class => "header-logo"), root_path, class: "ml-3" %>
+      <%= link_to image_tag('header-logo.png', :class => "header-logo"), root_path, class: "ml-5" %>
     </div>
 
     <div class="header-right">
-      <select class="lang-list mt-1">
-        <option value="japanese">日本語</option>
-        <option value="english">英語</option>
-      </select>
-      
         <%= link_to login_path, :method => :get do %>
           <div class="text-warning font-weight-bold mt-3"><i class="fa fa-sign-in-alt mr-2"></i>ログイン</div>
         <%end%>

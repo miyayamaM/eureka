@@ -56,6 +56,27 @@
 .article-top-info {
   padding:15px 0;
   border-bottom: 1px rgb(158, 157, 157) solid;
+
+  .article-top-title {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: rgb(8, 25, 48);
+  }
+
+  .article-top-title:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}
+
+.static_page_container {
+  width: 80%;
+  color: rgb(77, 77, 77);
+
+  h3, h2, h1 {
+    margin-top: 30px;
+    color: rgb(0, 0, 0);
+  }
 }
 
 /* 992px以下の場合 */
@@ -63,7 +84,7 @@
   .article-top-image {
     width: 100%;
     height: auto;
-  }
+  } 
 }
 
 
@@ -84,6 +105,10 @@
   .article-top-info {
     width: 80%;
     margin: 0 auto;
+
+    .article-top-title {
+      font-size: 1.2rem;
+    }
   }
 }
 
