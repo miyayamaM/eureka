@@ -4,8 +4,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /eureka/config/unicorn.rb  
+    command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -c /eureka/config/unicorn.rb -E production -l 3000
     tty: true #pry-byebugを使えるようにする
+    environment:
+      RAILS_ENV: 'production'
+      RACK_ENV: 'production'
     stdin_open: true
     depends_on:
       - db 
