@@ -1,53 +1,46 @@
-version: '3'
+version: '2'
 services:
-  web:
+  app:
     build:
       context: .
-      dockerfile: Dockerfile
-    command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -c /eureka/config/unicorn.rb -E production -l 3000
-    tty: true #pry-byebugを使えるようにする
-    environment:
-      RAILS_ENV: 'production'
-      RACK_ENV: 'production'
-    stdin_open: true
-    depends_on:
-      - db 
+      dockerfile: ./docker/rails/Dockerfile
+    command: bundle exec puma -C config/puma.rb 
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
-      - .:/eureka:cached 
-      #ソケット通信用ファイルをnginxコンテナと共有
-      - tmp-data:/eureka/tmp/sockets
-      #画像データとかをnginxと共有
-      - public-data:/eureka/public
-
+      - .:/app
+      - /var/tmp
+      # socketファイルの共有
+      - sockets:/app/tmp/sockets
+    tty: true
+    depends_on:
+      - db
+    extends:
+      file: ./docker/mysql/password.yml
+      service: password
   db:
-    image: mysql:5.7
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports: 
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    ports:
       - '3306:3306'
-    environment:
-      MYSQL_DATABASE: eureka_development
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-    #dbのデータを永続化しておく
     volumes:
-      - mysql-data:/var/lib/mysql
-
+      - db_data:/var/lib/mysql
+    extends:  
+      file: ./docker/mysql/password.yml
+      service: password
   nginx:
     build:
-      context: ./nginx
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
     ports:
-      - 80:80
-    restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
-    volumes:
-      - tmp-data:/eureka/tmp/sockets
-      - public-data:/eureka/public
-    depends_on:
-      - web 
+      - '80:80'
+      #socketファイルの共有
+    volumes: 
+      - sockets:/app/tmp/sockets
+    depends_on: 
+      - app
 
 volumes:
-  public-data:
-  tmp-data:
-  mysql-data:
+  db_data:
+  sockets:
