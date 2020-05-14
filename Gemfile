@@ -65,7 +65,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8.0'
   gem 'rubocop'
   gem 'rspec_junit_formatter'
-  gem 'webdrivers', '~> 3.0'
 end
 
 group :development do
