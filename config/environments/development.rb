@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -36,13 +38,13 @@ Rails.application.configure do
   host = 'localhost:3000'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    :address        =>  ENV['AWS_ADDRESS'],
-    :port           => '587',
-    :domain         => 'eureeeeka.com',
-    :authentification => ':login',
-    :user_name      => ENV['AWS_USERNAME'],
-    :password       => ENV['AWS_PASSWORD'],
-    :enable_starttls_auto => true
+    address: ENV['AWS_ADDRESS'],
+    port: '587',
+    domain: 'eureeeeka.com',
+    authentification: ':login',
+    user_name: ENV['AWS_USERNAME'],
+    password: ENV['AWS_PASSWORD'],
+    enable_starttls_auto: true
   }
   config.action_mailer.perform_caching = false
 
@@ -69,5 +71,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
 end

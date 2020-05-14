@@ -1,1 +1,3 @@
-server '18.180.45.154', user: 'masaru', roles: %w{app db web}
+# frozen_string_literal: true
+
+server '18.180.45.154', user: 'masaru', roles: %w[app db web]

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'rails_helper'
 
 # RSpec.describe 'Bookmarks', type: :system do
@@ -14,17 +15,16 @@
 #         # post_new_article
 
 #         # expect(find_by_id("bookmark-number")).to have_content "0"
-        
+
 #         # find_by_id('bookmark-btn').click
 
 #         # save_and_open_page
 #         # expect(find_by_id('bookmark-number')).to have_content "1"
 #         # expect(page).to_not have_selector('#bookmark-btn')
-        
 
 #         # find_by_id('unbookmark-btn').click
 
-#         # wait_for_ajax do 
+#         # wait_for_ajax do
 #         #   expect(find_by_id('bookmark-number')).to have_content "0"
 #         #   expect(page).to_not have_selector('#unbookmark-btn')
 #         end
@@ -42,7 +42,7 @@
 
 #         # find_by_id('bookmark-btn').click
 
-#         # wait_for_ajax do 
+#         # wait_for_ajax do
 #         #   expect(find_by_id('bookmark-number')).to have_content "1"
 #         #   expect(page).to_not have_selector('#bookmark-btn')
 #         # end
@@ -52,14 +52,14 @@
 #         # sign_in_as user
 #         # expect(find_by_id('bookmark-number')).to have_content "1"
 #         # expect(page).to have_selector('#bookmark-btn')
-        
+
 #       end
 #     end
 #   end
 
 #   describe "show_bookmark page" do
 #     it "shows view as expected" do
-      
+
 #     end
 #   end
 # end

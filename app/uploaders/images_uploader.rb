@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
@@ -26,10 +28,10 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
-  def default_url(*args)
-    "/images/" + [version_name, "default.png"].compact.join('_')
+  def default_url(*_args)
+    '/images/' + [version_name, 'default.png'].compact.join('_')
   end
 end

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class ArticlesController < ApplicationController
-  before_action :login_required, only: [:index, :create, :new, :edit, :update, :destroy, :result]
+  before_action :login_required, only: %i[index create new edit update destroy result]
   before_action :correct_user,   only: :destroy
-  before_action :get_all_categories,   only: [:new, :create, :edit, :update]
+  before_action :get_all_categories,   only: %i[new create edit update]
 
   def index
     if params[:tag]
       @tag_name = params[:tag]
       @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(20)
     else
-      @tag_name = "全ての記事"
+      @tag_name = '全ての記事'
       @articles = Article.includes(:tags).page(params[:page]).per(20)
     end
   end
@@ -21,9 +23,9 @@ class ArticlesController < ApplicationController
     @article = Article.find_by(id: params[:id])
 
     if @article.category_id.nil?
-      @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql("RAND()")).limit(5)
+      @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql('RAND()')).limit(5)
     else
-      @related_articles = Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql("RAND()")).limit(5)
+      @related_articles = Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql('RAND()')).limit(5)
     end
   end
 
@@ -32,13 +34,13 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.build(article_params)
 
     if @article.save
-      flash[:success] = "記事が投稿されました!"
+      flash[:success] = '記事が投稿されました!'
       redirect_to user_path(@user)
     else
       render 'new'
     end
   end
-  
+
   def edit
     @article = current_user.articles.find_by(id: params[:id])
   end
@@ -47,7 +49,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.find_by(id: params[:id])
 
     if @article.update_attributes(article_params)
-      flash[:success] = "記事を編集しました"
+      flash[:success] = '記事を編集しました'
       redirect_to user_path(current_user)
     else
       render 'edit'
@@ -56,25 +58,24 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    flash[:success] = "記事を削除しました"
+    flash[:success] = '記事を削除しました'
     redirect_to request.referrer || root_url
   end
 
-  def result
+  def result; end
+
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :citation, :content, :thumbnail, :category_id, :tag_list)
   end
 
-  private 
-    def article_params
-      params.require(:article).permit(:title,:citation, :content, :thumbnail, :category_id, :tag_list)
-    end
+  def correct_user
+    @article = current_user.articles.find_by(id: params[:id])
+    redirect_to root_url if @article.nil?
+  end
 
-    def correct_user
-      @article = current_user.articles.find_by(id: params[:id])
-      redirect_to root_url if @article.nil?
-    end
-
-    def get_all_categories
-      @categories = Category.all
-    end
-  
+  def get_all_categories
+    @categories = Category.all
+  end
 end

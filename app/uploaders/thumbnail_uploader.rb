@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ThumbnailUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
@@ -17,5 +19,4 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   # def default_url(*args)
   #   "/images/" + [version_name, "default_thumbnail.png"].compact.join('_')
   # end
-
 end
