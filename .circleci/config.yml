@@ -107,13 +107,13 @@ jobs:
         repo: rails
         tag: "${CIRCLE_SHA1}"
 
-    - aws-ecs/deploy-service-update:
-        family: '${ECS_TASK}'
-        cluster-name: '${ECS_ARN}'
-        service-name: '${ECS_SERVICE}'
-        container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
+      - aws-ecs/deploy-service-update:
+          family: '${ECS_TASK}'
+          cluster-name: '${ECS_ARN}'
+          service-name: '${ECS_SERVICE}'
+          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
 
-        
+
 workflows:
   version: 2.1
   test_and_deploy:
