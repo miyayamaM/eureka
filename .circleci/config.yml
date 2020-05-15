@@ -5,7 +5,7 @@ orbs:
   aws-ecs: circleci/aws-ecs@1.1.0
 
 jobs:
-  test:
+  build_and_test:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.1-node-browsers
@@ -87,6 +87,7 @@ workflows:
           filters:
             branches:
               only: master
+          requires: build-and-test
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -109,6 +110,7 @@ workflows:
           filters:
             branches:
               only: master
+          requires: build-and-test
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
