@@ -78,7 +78,7 @@ workflows:
   # Railsアプリのテスト
   test:
     jobs:
-      - build-and-test
+      - build_and_test
   
   # Nginxのデプロイ
   nginx-deploy:
