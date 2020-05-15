@@ -76,9 +76,9 @@ jobs:
 workflows:
   version: 2.1
   # Railsアプリのテスト
-  build-and-test:
+  test:
     jobs:
-      - test
+      - build-and-test
   
   # Nginxのデプロイ
   nginx-deploy:
