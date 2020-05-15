@@ -1,5 +1,6 @@
-class StaticPagesController < ApplicationController
+# frozen_string_literal: true
 
+class StaticPagesController < ApplicationController
   def home
     if logged_in?
       @user = current_user
@@ -8,13 +9,10 @@ class StaticPagesController < ApplicationController
       @top_articles = Article.find(Bookmark.group(:article_id).order(Arel.sql('count(article_id) desc')).limit(6).pluck(:article_id))
     end
   end
-  
-  def rule
-  end
 
-  def about
-  end
+  def rule; end
 
-  def contact
-  end
+  def about; end
+
+  def contact; end
 end

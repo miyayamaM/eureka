@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -23,11 +25,11 @@ module Eureka
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
-    config.generators do |g| 
+    config.generators do |g|
       g.test_framework :rspec,
-          view_specs: false,
-          routing_specs: false,
-          controller_specs: false
+                       view_specs: false,
+                       routing_specs: false,
+                       controller_specs: false
     end
   end
 end

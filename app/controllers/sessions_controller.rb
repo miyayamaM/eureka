@@ -1,24 +1,25 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
 
-    if user && user.authenticate(params[:session][:password])
+    if user&.authenticate(params[:session][:password])
       if user.activated?
         log_in user
         remember user
-        flash[:success] = "ログインに成功しました"
+        flash[:success] = 'ログインに成功しました'
         redirect_back_or user
       else
-        message = "アカウントが有効化されていません。"
-        message += "認証メールを確認してください。"
+        message = 'アカウントが有効化されていません。'
+        message += '認証メールを確認してください。'
         flash[:warning] = message
         redirect_to root_url
       end
     else
-      flash.now[:danger] = "ログインに失敗しました。入力情報を確認してください。"
+      flash.now[:danger] = 'ログインに失敗しました。入力情報を確認してください。'
       render 'new'
     end
   end
@@ -29,9 +30,9 @@ class SessionsController < ApplicationController
   end
 
   def easy_login
-    @user = User.find_by(name: "First User")
+    @user = User.find_by(name: 'First User')
     log_in @user
-    flash[:success] = "テストユーザーとしてログインしました"
+    flash[:success] = 'テストユーザーとしてログインしました'
     redirect_to user_path(@user)
   end
 end

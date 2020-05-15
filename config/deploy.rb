@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config valid only for current version of Capistrano
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
 lock '3.13.0'
@@ -6,7 +8,7 @@ lock '3.13.0'
 set :application, 'eureka'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url,  'git@github.com:miyayamaM/eureka.git'
+set :repo_url, 'git@github.com:miyayamaM/eureka.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
@@ -15,11 +17,11 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1'
 
 # credentials.yml.encではmasterkeyにする
-set :linked_files, %w{config/master.key}
+set :linked_files, %w[config/master.key]
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['~/.ssh/ssh_key_rsa'] 
+                  keys: ['~/.ssh/ssh_key_rsa']
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
@@ -37,7 +39,7 @@ namespace :deploy do
   end
   desc 'upload master.key'
   task :upload do
-    on roles(:app) do |host|
+    on roles(:app) do |_host|
       if test "[ ! -d #{shared_path}/config ]"
         execute "mkdir -p #{shared_path}/config"
       end
@@ -47,7 +49,7 @@ namespace :deploy do
 
   desc 'db_seed'
   task :db_seed do
-    on roles(:db) do |host|
+    on roles(:db) do |_host|
       with rails_env: fetch(:rails_env) do
         within current_path do
           execute :bundle, :exec, :rake, 'db:seed'

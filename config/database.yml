@@ -26,7 +26,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: eureka_test
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+  host: <%= ENV['MYSQL_HOST'] %>
+  database: <%= ENV['MYSQL_DATABASE'] %>
 
 production:
   <<: *default
