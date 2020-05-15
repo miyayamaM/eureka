@@ -78,6 +78,7 @@ jobs:
   nginx-deploy:
     executor: container
     steps:
+      - setup_remote_docker
       - aws-ecr/build-and-push-image:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
@@ -97,6 +98,7 @@ jobs:
   rails-deploy:
     executor: container
     steps:
+      - setup_remote_docker
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
@@ -111,7 +113,7 @@ jobs:
           family: '${ECS_TASK}'
           cluster-name: '${ECS_ARN}'
           service-name: '${ECS_SERVICE}'
-          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=app,tag=${CIRCLE_SHA1}"
 
 
 workflows:
@@ -127,7 +129,7 @@ workflows:
               only: master
       - rails-deploy:
           requires:
-            - nginx-deploy
+            - test
           filters:
             branches:
               only: master
