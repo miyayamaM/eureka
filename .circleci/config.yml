@@ -88,7 +88,7 @@ jobs:
           dockerfile: ./nginx/Dockerfile
           tag: "${CIRCLE_SHA1}"
 
-      -  aws-ecs/deploy-service-update:
+      -  aws-ecs/update-service:
           family: '${ECS_TASK}'
           cluster-name: '${ECS_ARN}'
           service-name: '${ECS_SERVICE}'
@@ -98,16 +98,16 @@ jobs:
     executor: container
     steps:
       - aws-ecr/build-and-push-image:
-        account-url: AWS_ECR_ACCOUNT_URL
-        region: AWS_REGION
-        aws-access-key-id: AWS_ACCESS_KEY_ID
-        aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-        create-repo: true
-        dockerfile: ./rails/Dockerfile
-        repo: rails
-        tag: "${CIRCLE_SHA1}"
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./rails/Dockerfile
+          repo: rails
+          tag: "${CIRCLE_SHA1}"
 
-      - aws-ecs/deploy-service-update:
+      - aws-ecs/update-service:
           family: '${ECS_TASK}'
           cluster-name: '${ECS_ARN}'
           service-name: '${ECS_SERVICE}'
@@ -119,16 +119,16 @@ workflows:
   test_and_deploy:
     jobs:
       - test
-      - nginx-deploy
-        requires:
-          - test
-        filter:
-          branches:
-            only: master
-      - rails-deploy
-        requires:
-          - test
-        filter:
-          branches:
-            only: master
+      - nginx-deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - rails-deploy:
+          requires:
+            - nginx-deploy
+          filters:
+            branches:
+              only: master
     
