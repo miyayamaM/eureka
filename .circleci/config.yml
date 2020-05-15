@@ -87,7 +87,7 @@ jobs:
           create-repo: true
           repo: nginx
           account-url: AWS_ECR_ACCOUNT_URL
-          dockerfile: ./eureka/nginx/Dockerfile
+          dockerfile: ./docker/nginx/Dockerfile
           tag: "${CIRCLE_SHA1}"
 
       -  aws-ecs/update-service:
@@ -107,7 +107,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./eureka/rails/Dockerfile
+          dockerfile: ./docker/rails/Dockerfile
           repo: rails
           tag: "${CIRCLE_SHA1}"
 
