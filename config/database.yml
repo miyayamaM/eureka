@@ -28,7 +28,7 @@ test:
   <<: *default
   username: root
   password: password
-  host: <%= ENV['MYSQL_HOST'] %>d
+  host: <%= ENV['MYSQL_HOST'] %>
   database: <%= ENV['MYSQL_DATABASE'] %>
 
 production:
