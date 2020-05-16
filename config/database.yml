@@ -27,9 +27,8 @@ development:
 test:
   <<: *default
   username: root
-  password:
-  socket: /tmp/mysql.sock
-  host: <%= ENV['MYSQL_HOST'] %>
+  password: password
+  host: <%= ENV['MYSQL_HOST'] %>d
   database: <%= ENV['MYSQL_DATABASE'] %>
 
 production:
