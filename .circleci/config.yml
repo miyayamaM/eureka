@@ -21,7 +21,7 @@ jobs:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: 'root'
-          MYSQL_PASSWORD: ''
+          MYSQL_PASSWORD: 'password'
           MYSQL_PORT: 3306
           MYSQL_DATABASE: 'circle_ci_test-test'
           BUNDLER_VERSION: 1.17.3
