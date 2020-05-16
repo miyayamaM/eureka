@@ -95,6 +95,7 @@ jobs:
           cluster-name: '${ECS_ARN}'
           service-name: '${ECS_SERVICE}'
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+          force-new-deployment: true
       
       - aws-ecs/run-task:
           cluster: '${ECS_ARN}'
