@@ -95,6 +95,10 @@ jobs:
           cluster-name: '${ECS_ARN}'
           service-name: '${ECS_SERVICE}'
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+      
+      - aws-ecs/run-task:
+          cluster: '${ECS_ARN}'
+          task-definition: '${ECS_TASK}'
 
   rails-deploy:
     executor: container
@@ -125,7 +129,7 @@ workflows:
       - test
       - nginx-deploy:
           requires:
-            - test
+            - rails-deploy
           filters:
             branches:
               only: master
