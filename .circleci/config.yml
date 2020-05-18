@@ -84,8 +84,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_REGION
-          create-repo: true
-          repo: nginx
+          repo: nginx-eureka
           account-url: AWS_ECR_ACCOUNT_URL
           dockerfile: ./docker/nginx/Dockerfile
           tag: "${CIRCLE_SHA1}"
@@ -96,7 +95,6 @@ jobs:
           service-name: '${ECS_SERVICE}'
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
           force-new-deployment: true
-      
 
   rails-deploy:
     executor: container
@@ -108,9 +106,8 @@ jobs:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
           dockerfile: ./docker/rails/Dockerfile
-          repo: rails
+          repo: rails-eureka
           tag: "${CIRCLE_SHA1}"
 
       - aws-ecs/update-service:
