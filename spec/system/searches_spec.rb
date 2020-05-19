@@ -6,7 +6,7 @@ RSpec.describe 'Searches', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   describe 'search articles' do
-    context 'fill in search word' do
+    context 'enter search word' do
       before do
         fishery = FactoryBot.create(:fishery)
         zoology = FactoryBot.create(:zoology)
@@ -25,7 +25,7 @@ RSpec.describe 'Searches', type: :system do
       end
 
       it 'finds articles including the word in title or content or category or tags' do
-        sign_in_as user
+        visit root_path
 
         find('#article-search-form').set('水産学')
         find('#search-button').click
@@ -39,7 +39,7 @@ RSpec.describe 'Searches', type: :system do
       end
 
       it 'finds articles including both words anywhere in title or content or category or tags' do
-        sign_in_as user
+        visit root_path
 
         find('#article-search-form').set('水産学 日本')
         find('#search-button').click

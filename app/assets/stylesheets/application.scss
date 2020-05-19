@@ -26,6 +26,16 @@ header {
   color: white;
   padding-top: 5px;
   margin-bottom: 10px;
+
+  p {
+    font-size: 0.7rem;
+    padding-left: 50px;
+   }
+}
+
+.header-logo {
+  width: 150px;
+  height: auto;
 }
 
 .container {
@@ -41,15 +51,16 @@ header {
  width: 100%;
  display: flex;
  justify-content: space-between;
+
+ 
 }
 
 .header-left  {
   margin: auto 0;
+  display: flex;
+  align-items: center;
 
-  p {
-    font-size: 0.9rem;
-    padding-left: 60px;
-   }
+  
 }
 
 .fa-align-left {
@@ -65,6 +76,10 @@ header {
     text-decoration: underline;
   }
   
+}
+
+.loggin-button{
+  margin: 0 15px 0 auto;
 }
 
 
@@ -212,13 +227,13 @@ $gray-medium-light: #eaeaea;
 
  /* 768px以下の場合 */
 @media screen and (max-width: 768px) {
-  .header-logo {
-    width: 150px;
-    height: auto;
+  .header-wrapper {
+    padding:0 15px;
   }
 
-  .header-left p {
+  header p {
     font-size: 0.7rem;
+    padding-left: 0px;
   }
 
   .dropdown {
@@ -232,15 +247,18 @@ $gray-medium-light: #eaeaea;
  .header-search-form {
   margin: 8px 0;  
 
-  form {
-    width:50%;
-    min-width: 300px;
+    .form-control {
+      display: inline-block;
+    }
   }
 
-  .form-control {
-    display: inline-block;
+  #loggin-button{
+    display: none;
   }
-}
+
+  .loggin-button {
+    margin: 0;
+  }
 }
 
  /* 480px以下の場合 */
@@ -252,16 +270,16 @@ $gray-medium-light: #eaeaea;
 
   header {
     padding: 0;
+
+    p {
+      display: none;
+    }
   }
   
   .header-wrapper {
     padding: 0 10px;
   }
-  
-  .header-logo {
-    width: 120px;
-    height: auto;
-  }
+
 
   .header-left p {
     padding: 0;

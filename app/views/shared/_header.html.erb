@@ -1,14 +1,38 @@
 <header>
-  <div class="header-wrapper">
-    <div class="header-left">
-      <p class="mb-0">科学的知見を共有するSNS「Eureka」</p>
-      <%= link_to image_tag('header-logo.png', :class => "header-logo"), root_path, class: "ml-5" %>
+  <p class="mb-0 ml-3 ml-lg-4">科学的知見を共有するSNS「Eureka」</p>
+  
+  <nav class="navbar navbar-expand-md navbar-dark bg-black">
+    <div>
+      <%= link_to image_tag('header-logo.png', :class => "header-logo mr-3"), root_path, class: "ml-sm-3 ml-lg-5" %>
     </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="header-right">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="d-flex header-search-form mt-2">
+        <%= search_form_for @search_words, url: result_path do |f| %>
+          <%= f.search_field :title_or_content_or_category_name_or_tags_name_cont, placeholder: "キーワード検索", required: true, class: "form-control", id: "article-search-form" %>
+          <%= button_tag :type => "submit", :class => "btn btn-primary mb-1", :id=> "search-button" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%= link_to login_path, :method => :get, :class => "loggin-button" do %>
+        <div class="text-warning font-weight-bold" id="loggin-button"><i class="fa fa-sign-in-alt mr-2"></i>ログイン</div>
+      <%end%>
+      
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
         <%= link_to login_path, :method => :get do %>
           <div class="text-warning font-weight-bold mt-3"><i class="fa fa-sign-in-alt mr-2"></i>ログイン</div>
         <%end%>
+        </li>
+      </ul>
+
+
     </div>
-  </div>
+  </nav>
+  
 </header>

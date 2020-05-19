@@ -26,14 +26,16 @@
 
           </div>
 
-          <div class="bookmark-wrapper">
-            <div class="bookmark-form", id="bookmark-form-<%= article.id %>">
-              <%= render partial: 'articles/bookmark_form', locals: {article: article} %>
-            </div> 
-            <div id="bookmark-count-<%= article.id %>">
-              <span id="bookmark-number"><%= article.bookmarks.count %></span>
-            </div> 
-          </div>
+          <% if logged_in? %>
+            <div class="bookmark-wrapper">
+              <div class="bookmark-form", id="bookmark-form-<%= article.id %>">
+                <%= render partial: 'articles/bookmark_form', locals: {article: article} %>
+              </div> 
+              <div id="bookmark-count-<%= article.id %>">
+                <span id="bookmark-number"><%= article.bookmarks.count %></span>
+              </div> 
+            </div>
+          <% end %>
         </div>
     </div>
 
