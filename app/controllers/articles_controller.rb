@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :login_required, only: %i[index create new edit update destroy result]
+  before_action :login_required, only: %i[create new edit update destroy]
   before_action :correct_user,   only: :destroy
   before_action :get_all_categories,   only: %i[new create edit update]
 
@@ -46,9 +46,9 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = current_user.articles.find_by(id: params[:id])
+    @article = current_user.articles.find_by(params[:id])
 
-    if @article.update_attributes(article_params)
+    if @article && @article.update_attributes(article_params)
       flash[:success] = '記事を編集しました'
       redirect_to user_path(current_user)
     else
@@ -62,7 +62,8 @@ class ArticlesController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
-  def result; end
+  def result
+  end
 
   private
 
