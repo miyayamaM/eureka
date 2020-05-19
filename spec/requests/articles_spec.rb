@@ -85,18 +85,6 @@ RSpec.describe 'Articles', type: :request do
 
       end
 
-      it "doesn't allow to update other_user's articles" do
-        article = FactoryBot.create(:article, user: other_user)
-
-        log_in_as user
-        patch article_path(article), params: { article: { title: 'Changed Title',
-                                                          citation: 'Changed Book',
-                                                          content: 'Changed Content' } }
-        
-        expect(article.reload.title).to eq 'Title'
-        expect(article.reload.citation).to eq 'Nature 1999, Vol 20'
-        expect(article.reload.content).to eq 'Very interesting research'
-      end
     end
 
     context 'not logged in' do

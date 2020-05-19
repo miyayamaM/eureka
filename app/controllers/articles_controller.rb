@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   def update
     @article = current_user.articles.find_by(id: params[:id])
 
-    if @article && @article.update_attributes(article_params)
+    if @article.update_attributes(article_params)
       flash[:success] = '記事を編集しました'
       redirect_to user_path(current_user)
     else
