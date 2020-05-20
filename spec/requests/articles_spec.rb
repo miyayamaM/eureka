@@ -81,7 +81,7 @@ RSpec.describe 'Articles', type: :request do
         
         expect(article.reload.title).to eq 'Changed Title'
         expect(article.reload.citation).to eq 'Changed Book'
-        expect(article.reload.content.body).to include 'Changed Content'
+        expect(article.reload.content.body.to_plain_text).to  eq 'Changed Content'
 
       end
 
@@ -96,7 +96,7 @@ RSpec.describe 'Articles', type: :request do
         expect(response).to redirect_to login_url
         expect(article.reload.title).to eq 'Title'
         expect(article.reload.citation).to eq 'Nature 1999, Vol 20'
-        expect(article.reload.content.body).to include'Very interesting research'
+        expect(article.reload.content.body.to_plain_text).to eq 'Very interesting research'
       end
     end
   end

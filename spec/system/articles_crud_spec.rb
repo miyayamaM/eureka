@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'ArticlesCRUD', type: :system do
+RSpec.describe 'ArticlesCRUD', type: :system, js: true do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
   let!(:article_last_year) { FactoryBot.create(:article_last_year, user: user) }
@@ -46,7 +46,7 @@ RSpec.describe 'ArticlesCRUD', type: :system do
       expect do
         fill_in 'タイトル', with: 'Test title'
         fill_in '引用', with: 'Book vol.1'
-        fill_in_rich_text_area '内容', with: 'Test content'
+        fill_in_rich_text_area "article_content", with: 'Test content'
         click_on '投稿する'
       end.to change(Article, :count).by(1)
 
@@ -60,7 +60,7 @@ RSpec.describe 'ArticlesCRUD', type: :system do
       expect do
         fill_in 'タイトル', with: ''
         fill_in '引用', with: ''
-        fill_in_rich_text_area '内容', with: ''
+        fill_in_rich_text_area "article_content", with: ''
         click_on '投稿する'
       end.to change(Article, :count).by(0)
 
@@ -77,8 +77,12 @@ RSpec.describe 'ArticlesCRUD', type: :system do
       sign_in_as user
       post_new_article
 
+      
       expect do
         first('.article-delete-btn').click
+        expect(page.driver.browser.switch_to.alert.text).to eq "記事を削除しますか？"
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content '記事を削除しました'      
       end.to change(Article, :count).by(-1)
 
       expect(page).to_not have_content 'Test title'
@@ -94,7 +98,7 @@ RSpec.describe 'ArticlesCRUD', type: :system do
       first('.article-update-btn').click
       fill_in 'タイトル', with: 'changed title'
       fill_in '引用', with: 'changed book'
-      fill_in_rich_text_area '内容', with: 'changed content'
+      fill_in_rich_text_area "article_content", with: 'changed content'
       click_on '投稿する'
 
       expect(page).to_not have_content 'Test title'
@@ -109,7 +113,7 @@ RSpec.describe 'ArticlesCRUD', type: :system do
       first('.article-update-btn').click
       fill_in 'タイトル', with: ''
       fill_in '引用', with: ''
-      fill_in_rich_text_area '内容', with: ''
+      fill_in_rich_text_area "article_content", with: ''
       click_on '投稿する'
 
       expect(page).to have_content 'Titleを入力してください'

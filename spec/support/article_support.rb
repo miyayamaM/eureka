@@ -6,7 +6,7 @@ module ArticleSupport
 
     fill_in 'タイトル', with: 'Test title'
     fill_in '引用', with: 'Book'
-    fill_in_rich_text_area '内容', with: 'Test content'
+    fill_in_rich_text_area "article_content", with: 'Test content'
     click_on '投稿する'
   end
 end

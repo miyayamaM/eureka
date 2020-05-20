@@ -6,7 +6,7 @@ end
 
 
 Capybara.add_selector :rich_text_area do
-  label "rich-text area"
+  label '内容'
   xpath do |locator|
     if locator.nil?
       XPath.descendant(:"trix-editor")

@@ -4,7 +4,7 @@ RSpec.describe 'ArticlesShow', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   describe 'article show page' do
-    it 'displays title and content' do
+    it 'displays title and content', js:true do
       sign_in_as user
       post_new_article
 
