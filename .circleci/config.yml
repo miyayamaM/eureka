@@ -68,7 +68,7 @@ jobs:
       - run:
           name: waiting for stating database
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
-      - run: rake action_text:install
+      - run: bundle exec rake action_text:install
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       # run tests
