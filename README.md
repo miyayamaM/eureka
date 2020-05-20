@@ -33,7 +33,5 @@ CircleCIによるCI/CDパイプラインの構築
 ・タグ機能/ gem:acts_as_taggable_on
 
 ・検索機能（記事のタイトル・内容・タグ・カテゴリから検索）/ gem:ransack
+
 ・お気に入り機能/ Ajax
-
-
-
