@@ -46,13 +46,13 @@ jobs:
             sudo apt-get install -y libappindicator1 fonts-liberation
             export CHROME_BIN=/usr/bin/google-chrome
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            yarn install --check-files
             sudo dpkg -i google-chrome*.deb
             gem install bundler:1.17.3
             bundle _1.17.3_ install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
+            - ./node_modules
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       # Database setup
       - run:
@@ -60,6 +60,7 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+      - run: bundle exec bin/webpack
       # run tests
       - run:
           name: Run rspec in parallel
