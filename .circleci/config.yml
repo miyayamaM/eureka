@@ -60,6 +60,12 @@ jobs:
             - yarn-cache-v1-{{ checksum "yarn.lock" }}  
             - yarn-cache-v1-
 
+      - run: 
+          name: setup node
+          command: |
+            curl -sL https://deb.nodesource.com/setup_10.x | bash -
+            apt-get install -y nodejs
+
       - run: yarn install --check-files
 
       - save_cache:  
