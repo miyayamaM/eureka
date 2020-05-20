@@ -54,13 +54,26 @@ jobs:
             - ./vendor/bundle
             - ./node_modules
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - restore_cache:  
+          keys:  
+            - yarn-cache-v1-{{ checksum "yarn.lock" }}  
+            - yarn-cache-v1-  
+
+      - run:  
+          name: Yarn Install  
+          command: yarn install --cache-folder ~/.cache/yarn  
+
+      - save_cache:  
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}  
+          paths:  
+            - ~/.cache/yarn  
       # Database setup
       - run:
           name: waiting for stating database
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
-      - run: bundle exec bin/webpack
       # run tests
       - run:
           name: Run rspec in parallel
