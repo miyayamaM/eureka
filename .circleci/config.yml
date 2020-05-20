@@ -58,7 +58,9 @@ jobs:
       - restore_cache:  
           keys:  
             - yarn-cache-v1-{{ checksum "yarn.lock" }}  
-            - yarn-cache-v1-  
+            - yarn-cache-v1-
+
+      - run: yarn install --check-files
 
       - save_cache:  
           key: yarn-cache-v1-{{ checksum "yarn.lock" }}  
