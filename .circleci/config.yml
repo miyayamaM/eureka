@@ -63,12 +63,12 @@ jobs:
       - run: 
           name: setup node
           command: |
-            curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
-            sudo apt-get install -y nodejs
-            sudo npm install -g yarn@10.20.1
-            node -v
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            source $BASH_ENV
 
-      - run: yarn install --check-files
+      - run: nvm install v11.9.0
 
       - save_cache:  
           key: yarn-cache-v1-{{ checksum "yarn.lock" }}  
