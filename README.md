@@ -10,7 +10,9 @@ Ruby 2.5.1
 
 Rails 5.2
 
-AWS(EC2,RDS,Route53,SES,ACM), Docker
+Nginx + puma
+
+AWS(EC2,RDS(mysql),Route53,SES,ACM), Docker
 
 CircleCIによるCI/CDパイプラインの構築
 
