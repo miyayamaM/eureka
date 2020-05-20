@@ -65,6 +65,8 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
             sudo apt-get install -y nodejs
+            npm install -g
+            node -v
 
       - run: yarn install --check-files
 
