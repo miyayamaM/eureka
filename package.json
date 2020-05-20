@@ -1,5 +1,11 @@
 {
   "name": "eureka",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "4.2.2",
+    "actiontext": "https://github.com/kobaltz/actiontext"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
+  }
 }

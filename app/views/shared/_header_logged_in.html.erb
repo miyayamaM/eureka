@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="d-flex header-search-form">
           <%= search_form_for @search_words, url: result_path do |f| %>
-            <%= f.search_field :title_or_content_or_category_name_or_tags_name_cont, placeholder: "キーワード検索", required: true, class: "form-control", id: "article-search-form" %>
+            <%= f.search_field :title_or_action_text_rich_text_body_or_category_name_or_tags_name_cont, placeholder: "キーワード検索", required: true, class: "form-control", id: "article-search-form" %>
             <%= button_tag :type => "submit", :class => "btn btn-primary mb-1", :id=> "search-button" do %>
               <i class="fas fa-search"></i>
             <% end %>

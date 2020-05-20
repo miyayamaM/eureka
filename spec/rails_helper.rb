@@ -79,4 +79,6 @@ RSpec.configure do |config|
   end
 
   config.include RequestHelpers, type: :request
+
+  config.include ActionTextHelper, type: :system
 end

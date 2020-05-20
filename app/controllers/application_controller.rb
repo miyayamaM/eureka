@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     @search_words = Article.ransack(params[:q])
 
     if !params[:q].nil?
-      @key_words = params[:q][:title_or_content_or_category_name_or_tags_name_cont].split(/[\p{blank}\s]+/)
-      word_array = @key_words.inject([]) { |array, word| array.push({ title_or_content_or_category_name_or_tags_name_cont: word }) }
+      @key_words = params[:q][:title_or_action_text_rich_text_body_or_category_name_or_tags_name_cont].split(/[\p{blank}\s]+/)
+      word_array = @key_words.inject([]) { |array, word| array.push({ title_or_action_text_rich_text_body_or_category_name_or_tags_name_cont: word }) }
       @hit_articles = Article.ransack(combinator: 'and', groupings: word_array).result
     else
       @hit_articles = @search_words.result
