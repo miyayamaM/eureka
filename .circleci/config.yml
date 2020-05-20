@@ -46,6 +46,7 @@ jobs:
             sudo apt-get install -y libappindicator1 fonts-liberation
             export CHROME_BIN=/usr/bin/google-chrome
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            yarn install --check-files
             sudo dpkg -i google-chrome*.deb
             gem install bundler:1.17.3
             bundle _1.17.3_ install --jobs=4 --retry=3 --path vendor/bundle
