@@ -65,7 +65,7 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
             sudo apt-get install -y nodejs
-            sudo npm install -g yarn build-essential
+            sudo npm install -g yarn@10.20.1
             node -v
 
       - run: yarn install --check-files
