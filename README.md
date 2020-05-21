@@ -1,24 +1,39 @@
-# README
+# Eureka
+ 研究論文や書籍などで知った科学的な知見を記事として共有するSNS風アプリです。
+ 
+ 自分は大学院で数年研究をしておりましたが、一般の方々にとって学術研究は敷居の高いものであったり、縁のないものという印象を持たれていると感じました。
+ 
+ そこで研究の面白さ、身近さが共有できるようなwebサービスがあって欲しいという思いから作成しました。
+ 
+# 制作環境
+Ruby 2.5.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 5.2
 
-Things you may want to cover:
+Nginx + puma
 
-* Ruby version
+AWS(EC2,RDS(mysql),Route53,SES,ACM), Docker
 
-* System dependencies
+CircleCIによるCI/CDパイプラインの構築
 
-* Configuration
+# URL
 
-* Database creation
+現在作成中（ドメインは取得していますが開発中のためエラーが帰ってきます）
 
-* Database initialization
+# 機能一覧
 
-* How to run the test suite
+・ユーザー登録機能
 
-* Services (job queues, cache servers, search engines, etc.)
+・ユーザーのフォロー機能/ Ajax
 
-* Deployment instructions
+・アカウント登録時の有効化、パスワードリセット時にメールを送信/ AWS:SES
 
-* ...
+・ログイン機能
+
+・記事投稿機能（エンリッチテキスト）/ gem: action-text
+
+・タグ機能/ gem:acts_as_taggable_on
+
+・検索機能（記事のタイトル・内容・タグ・カテゴリから検索）/ gem:ransack
+
+・お気に入り機能/ Ajax
