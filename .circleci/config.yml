@@ -154,4 +154,3 @@ workflows:
           filters:
             branches:
               only: master
-    
