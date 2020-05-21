@@ -29,6 +29,7 @@ RUN bundle install -j4
 
 ADD . /app
 
+RUN  bundle exec rake webpacker:compile
 
 EXPOSE 3000
 
