@@ -19,17 +19,17 @@ RUN gem install bundler:1.17.3
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn install --check-files
-
-
 ADD Gemfile .
 ADD Gemfile.lock .
 RUN bundle install -j4
 
+COPY package.json yarn.lock ./
+RUN yarn install --check-files
+
 ADD . /app
 
-RUN  bundle exec rake webpacker:compile
+RUN bundle exec rake action_text:install
+RUN bundle exec rake webpacker:compile
 
 EXPOSE 3000
 
