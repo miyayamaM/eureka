@@ -29,7 +29,7 @@ RUN yarn install --check-files
 ADD . /app
 
 RUN bundle exec rake action_text:install
-RUN bundle exec rake webpacker:compile
+RUN bundle exec rails assets:precompile
 
 EXPOSE 3000
 
