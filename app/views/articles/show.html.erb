@@ -24,9 +24,9 @@
         <% if @article.thumbnail.url %>
           <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "300x300"  %>
         <% elsif @article.category %>
-          <%= image_tag "categories/category_#{@article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
+          <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{@article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
         <% else %>
-          <%= image_tag 'default_thumbnail.png', class: "article-show-image", size: "300x300" %>
+          <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-show-image", size: "300x300" %>
         <% end %>
       </div>
       <%= @article.content %>
@@ -37,12 +37,12 @@
       <h5>関連した記事</h5>
         <% @related_articles.each do |article| %>
           <div class="related-article-wrapper">
-            <% if article.thumbnail.url %>
-              <%= image_tag article.thumbnail.url, class: "article-sidebar-image", size: "300x300"  %>
-            <% elsif article.category %>
-              <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-sidebar-image", size: "300x300" %>
+            <% if @article.thumbnail.url %>
+              <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "200x200"  %>
+            <% elsif @article.category %>
+              <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{@article.category.name}.jpg", class: "article-show-image", size: "200x200" %>
             <% else %>
-              <%= image_tag 'default_thumbnail.png', class: "article-sidebar-image", size: "300x300" %>
+              <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-show-image", size: "200x200" %>
             <% end %>
             <p><%=link_to article.title, article_path(article), class: "h6 d-block"  %></p>
           </div>
