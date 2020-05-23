@@ -16,9 +16,9 @@
           <% if article.thumbnail.url %>
             <%= image_tag article.thumbnail.url, class: "article-top-image", size: "300x300", id: "attached-picture" %>
           <% elsif article.category %>
-            <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-top-image", size: "300x300", id: "category-picture" %>
+            <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{article.category.name}.jpg", class: "article-top-image", size: "300x300", id: "category-picture" %>
           <% else %>
-            <%= image_tag 'default_thumbnail.png', class: "article-top-image", size: "300x300", id: "default-picture" %>
+            <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-top-image", size: "300x300", id: "default-picture" %>
           <% end %>
 
           <div class="article-top-info"> 
