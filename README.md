@@ -12,7 +12,7 @@ Rails 5.2
 
 Nginx + puma
 
-AWS(EC2,RDS(mysql),Route53,SES,ACM), Docker
+AWS(ECS+ECR, RDS(mysql), Route53, SES, ACM, S3, Cloudfront), Docker
 
 CircleCIによるCI/CDパイプラインの構築
 
