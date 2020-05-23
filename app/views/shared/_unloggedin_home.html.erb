@@ -1,8 +1,8 @@
 
 <div class="main">
   <div class="top-image-text">
-     <p>科学をもっと身近に！！</p>
-     <%= link_to '新規登録', new_user_path, class: "btn-lg btn-primary", id: "signup-button" %>
+    <p>科学をもっと身近に</p>
+    <%= link_to '新規登録', new_user_path, class: "btn-lg btn-primary", id: "signup-button" %>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
     <div class="row">
       <% @top_articles.each do |article| %>
         <div class="article-top-wrapper col-12 col-sm-6 col-lg-4">
-           <% if article.thumbnail.url %>
+          <% if article.thumbnail.url %>
             <%= image_tag article.thumbnail.url, class: "article-top-image", size: "300x300", id: "attached-picture" %>
           <% elsif article.category %>
             <%= image_tag "categories/category_#{article.category.name}.jpg", class: "article-top-image", size: "300x300", id: "category-picture" %>
