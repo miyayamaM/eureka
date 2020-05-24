@@ -21,6 +21,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(id: params[:id])
+    @comment = Comment.new
+    @comments = @article.comments.includes(:user)
 
     if @article.category_id.nil?
       @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql('RAND()')).limit(5)

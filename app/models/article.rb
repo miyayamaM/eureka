@@ -8,6 +8,7 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :category, optional: true
   has_many :bookmarks, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   default_scope -> { order(created_at: :desc) }
 

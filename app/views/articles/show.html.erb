@@ -20,16 +20,31 @@
 
       <p class="article-posted-time mt-3"><%= @article.created_at.strftime("%Y年%m月%d日 %H:%M")%></p>
       
-      <div class="float-right pl-sm-3 pb-sm-2">
-        <% if @article.thumbnail.url %>
-          <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "300x300"  %>
-        <% elsif @article.category %>
-          <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{@article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
-        <% else %>
-          <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-show-image", size: "300x300" %>
+      <div class="clearfix">
+        <div class="float-right pl-sm-3 pb-sm-2">
+          <% if @article.thumbnail.url %>
+            <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "300x300"  %>
+          <% elsif @article.category %>
+            <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{@article.category.name}.jpg", class: "article-show-image", size: "300x300" %>
+          <% else %>
+            <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-show-image", size: "300x300" %>
+          <% end %>
+        </div>
+        <%= @article.content %>
+      </div>
+
+      <div class="comment">
+        <%= render 'comments/comment_area', comments: @comments %>
+        <% if logged_in? %>
+          <div class="comment-form">
+            <%= form_with(model: [@article, @comment], remote: true) do |f| %>
+              <%= f.text_area :content, class: "form-control my-3", placeholder: "コメントを入力" , rows: "4", id: "comment-textarea" %>
+              <%= f.submit "コメントする", class: "btn btn-primary" %>
+            <% end %>
+          </div>
         <% end %>
       </div>
-      <%= @article.content %>
+        
 
     </div>
 
