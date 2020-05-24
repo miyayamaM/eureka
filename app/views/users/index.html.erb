@@ -14,7 +14,7 @@
   <ul class="users">
     <% @users.each do |user| %>
       <li>
-         <div class="index-image-round">
+        <div class="index-image-round">
           <%= image_tag user.image.profile90.url, class: "index-profile-image" %>
         </div>
         <%= link_to user.name, user_path(user), class: "my-auto" %>

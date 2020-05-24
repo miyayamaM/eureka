@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/edit'
+  get 'comments/update'
+  get 'comments/destroy'
   root 'static_pages#home'
 
   get '/about', to: 'static_pages#about'
@@ -20,9 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :articles do
+  resources :articles, shallow:true do
     resources :bookmarks, only: [:create]
+    resources :comments, only: %i[create edit update destroy]
   end
+  
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
   resources :relationships, only: %i[create destroy]
