@@ -1,39 +1,101 @@
 # frozen_string_literal: true
 
 User.create!(name: 'First User',
-             email: 'first@example.com',
-             password: 'password',
-             password_confirmation: 'password',
-             activated: true,
-             activated_at: Time.zone.now)
+            email: 'first@example.com',
+            password: 'password',
+            password_confirmation: 'password',
+            activated: true,
+            activated_at: Time.zone.now)
 
 99.times do |n|
   name = "#{Faker::Name.name}#{n}"
   email = "example#{n + 1}@example.com"
   password = 'password'
   User.create!(name: name,
-               email: email,
-               password: password,
-               password_confirmation: password,
-               activated: true,
-               activated_at: Time.zone.now)
+              email: email,
+              password: password,
+              password_confirmation: password,
+              activated: true,
+              activated_at: Time.zone.now)
 end
 
 categories = %w[遺伝学 医学 化学 環境学 経済学 古生物学 昆虫学 細胞学 植物学 水産学 天文学 動物学 文学]
 
 categories.each { |category| Category.create(name: category) }
 
-user = User.find(1)
-50.times do
-  title = "#{Faker::Coffee.regions}に生息する#{Faker::Creature::Animal.name}の#{Faker::Lorem.word}"
-  user.articles.create!(title: title, content: 'test', citation: 'Book')
-end
+Article.create(title: '生物は遺伝子が全てを決めている？', citation: 'リチャード・ドーキンス「利己的な遺伝子」', content: '利己的遺伝子論（りこてきいでんしろん）とは、進化学における比喩表現および理論の一つで、自然選択や生物進化を遺伝子中心の視点で理解すること 。遺伝子選択説もほぼ同じものを指す。1970年代の血縁選択説、社会生物学の発展を受けてジョージ・ウィリアムズ、E・O・ウィルソンらによって提唱された。イギリスの動物行動学者リチャード・ドーキンスが1976年に、『The Selfish Gene』（邦題『利己的な遺伝子』）で一般向けに解説したことが広く受け入れられるきっかけとなったため、ドーキンスは代表的な論者と見なされるようになった。', category_id: 1, user_id: 1)
+Article.create(title: 'アオウミガメの休息深度は体サイズによって異なる', citation: 'Kristen M. Hart et al.,Trading shallow safety for deep sleep: juvenile green turtles select deeper resting sites as they grow (2016) ', content: '絶滅危惧種であるアオウミガメ（Chelonia mydas）の保護には各成長段階における行動や生態の解明が必要だが、アオウミガメの若齢個体が、成長に伴ってどのように生息地を変化させているかについては不明な点が多い。近年、アオウミガメに衛星発信機や深度記録計を装着することで、潜水プロファイルから水中での行動を推定することが可能になってきた。そこで本研究では、より細かいスケールでの行動を測定できる3軸加速度記録計を用いて、若齢アオウミガメの日周的な行動パターンを解明し、行動やその鉛直的な生息地選択の生理学的な制約について明らかにすることを目的とした。
+  本研究では、ドライトートゥガス国立公園（アメリカ、フロリダ州）にて、捕獲されたアオウミガメ11個体（CCL, Curved carapace length 41.1 ± 7.7 cm）に3軸加速度、水深、水温を記録するデータロガーを装着し放流した。水深0.25 m以深に30秒以上滞在しているものをdiveと定義し、そのうち最大深度が2 mを上回る潜水をdeep dive、最大深度が2 m以浅の潜水をshallow diveと定義した。ウミガメの潜水プロファイルのうち、羽ばたき回数が明らかに少なく、加速度振幅も小さい潜水をresting behaviorと定義した。このresting behaviorが潜水時間の50％を上回る潜水をresting dive、それ以外の潜水はactive diveとした。またactive diveのうち、深度がshallowからdeep、deepからshallowへと移動している潜水をtransiting diveとした。
+  体サイズと潜水深度を比較した結果、アオウミガメのCCLおよび体重と最大潜水深度に正の相関が認められた。さらに、エネルギー消費量の指標であるODBA（Overall Dynamic Body Acceleration）を潜水パターンごとに算出したところ、平均ODBAと平均水深はそれぞれ潜水時間との間に有意な相関が認められ、深く潜り活動性の低い状態のウミガメは、長時間潜水を続けていることがわかった。また、平均水深が2 mより浅い個体をshallow group（n =6）、2 mを上回る個体をdeep group（n =5）として分類し、夜間における活動パターンを比較した結果、deep groupはshallow groupと比較すると、１回の潜水あたりおよび１時間あたりのODBAは低く、潜水1回に占める休息時間の割合も多く、総休息時間が長かった。従って、夜間に深部で休息をとる若齢アオウミガメは、エネルギーを効率的に節約でき、成長に必要なエネルギーを蓄積することができると考えられる。以上の結果より、酸素保有量が多い体サイズの大きなウミガメは、夜間の休息を深場で長時間することでエネルギー節約を行っていることが明らかになった。一方、体サイズの小さいウミガメは、肺活量が少なく深部で長時間の休息ができないため、浅い海域に滞在し移動コストを節約していると考えられる。また、研究対象となった海域の浅い海域では、サメ類やイタヤラなどのウミガメ捕食者が生息しておらず、被食リスクを最小化している可能性もある。本研究によって、若齢アオウミガメは、体サイズが小さい間は浅い海域で休息することで移動コストと捕食リスクを軽減し、成長して大きくなると、エネルギーの節約効率を最大化するために深部で長時間の休息をとることで、鉛直的な行動パターンを変化させることが示唆された。
+  ', category_id: 12, user_id: 7)
+  Article.create(title: 'PD-1抗体の発見はなぜノーベル賞を受賞したのか', citation: 'The 2018 Nobel Prize in Physiology or Medicine', content: 'PD-1（Programmed cell death 1）は1992年にT細胞の細胞死誘導時に発現が増強される遺伝子として研究開始時にはまだ京都大学本庶佑研究室の大学院生であった石田靖雅らによって 同定・命名された[5][6]。T細胞は胸腺で作られるが[7]、その際自己攻撃性を獲得した危険なT細胞がアポトーシスで自死する際に重要な役割を果たすものであって欲しい、という願いをこめて、Programmed Death-1と命名した[6]、と石田は述べている[8]。
 
-users = User.all[2..50]
+    発見者の石田は発見後わずか一年でPD-1研究から離れたが[9]、その後も本庶佑の研究室では他の研究員らにより長年に渡って継続された。 不明であったPD-1の機能も当初石田が期待したT細胞のアポトーシス誘導は示されず、一方で1998年に作製されたPD-1欠損マウスが脾腫、血中免疫グロブリンの増加、脾B細胞の抗IgM刺激に対する反応性亢進等を来したことから、T細胞が生体内に広がった後に免疫反応を負に制御する事は示されるに至った[5][8]。
+    
+    またある種の腫瘍細胞はPD-1に結合し作用させるPD-L1/2蛋白を多く発現し、 免疫監視からの逃避を促進していることが明らかになり、これらの成果を基に2014年7月には世界初の免疫チェックポイント阻害剤である抗PD-1抗体薬が悪性黒色腫の治療薬として認可された。その後抗PD-L1抗体薬も認可されている[10][5]。', category_id: 2, user_id: 4)
+Article.create(title: 'スピノサウルスは水中移動に適した尻尾を持つ', citation: 'Nature (2020)', content: 'すごい恐竜', category_id: 6, user_id: 2)
+Article.create(title: 'オットセイは陸と海で違う寝方をする', citation: 'Lyamin et al., 2018, Current Biology 28', content: '全ての陸棲哺乳類や鳥類の睡眠には、激しい眼球運動を伴うREM睡眠と、眼球運動の少ないnon-REM睡眠という2種類の状態が認められる。しかしながら、水中に住む鯨類はREM睡眠をほとんど行わないことが知られている。そこで、同じ海棲哺乳類であるキタオットセイの睡眠が水中でどのように変化しているかを調べるため、飼育下キタオットセイの睡眠中の脳波を陸上と水中で測定した。
+  キタオットセイは陸上での睡眠中、REM睡眠、半球性徐波睡眠（半球性のnon-REM睡眠）、全球性徐波睡眠（全球性のnon-REM睡眠）が認められた。次に、陸のない水槽へ移したところ、1日あたりのREM睡眠量およびREM睡眠の回数は著しく減少し、2週間REM睡眠はほとんど認められなかった。2週間に渡りREM睡眠の負債は蓄積していたが、その後陸上へ再び戻したところ、REM睡眠が反跳的に増加することはなかった。一方、水中での睡眠において、徐波睡眠は1日目のみ優位に減少したが、それ以降ほとんど減少しなかった。しかし全球性の徐波睡眠はほとんど消失しており、キタオットセイは水中で主に半球睡眠を行うことが明らかになった。
+  全球性の徐波睡眠やREM睡眠は、筋弛緩や意識消失を伴うため周囲への警戒が薄れ、捕食リスクを高める可能性がある。したがって、キタオットセイは水中で半球睡眠を行い、眠りながら注意を維持することで捕食回避を行なっていると考えられる。またREM睡眠中は体温制御能力が低下することが報告されている。そのため、低水温中のREM睡眠により起こりうる低体温症を予防するため、REM睡眠を抑制している可能性もある。
+  また多くの哺乳類でREM睡眠量とnon-REM睡眠量に相関が認められる。水中でREM睡眠だけでなく全球睡眠も低下していたことから、REM睡眠はnon-REM睡眠の結果として起こる脳の高温状態を解消する機能があると示唆された。本研究により、キタオットセイは周囲の環境に応じて睡眠パターンを柔軟に変化させていることが明らかとなった。
+  ', category_id: 12, user_id: 1)
+Article.create(title: 'エピジェネティクスの世界', citation: 'XX出版「最新の分子生物学」', content: 'エピジェネティクス（英語: epigenetics）とは、一般的には「DNA塩基配列の変化を伴わない細胞分裂後も継承される遺伝子発現あるいは細胞表現型の変化を研究する学問領域」である。ただし、歴史的な用法や研究者による定義の違いもあり、その内容は必ずしも一致したものではない。
+  多くの生命現象に関連し、人工多能性幹細胞（iPS細胞）・胚性幹細胞（ES細胞）が多様な器官となる能力（分化能）、哺乳類クローン作成の成否と異常発生などに影響する要因（リプログラミング）、がんや遺伝子疾患の発生のメカニズム、脳機能[4][5]などにもかかわっている。', category_id: 1, user_id: 3)
+Article.create(title: '遺伝子の二重螺旋構造', citation: 'Nature volume 171, pages737–738(1953)', content: 'メンデルが遺伝の法則を発見してから，遺伝子についての研究が進み，遺伝子が染色体にあることが証明された。そして，肺炎菌やウイルスの研究から，遺伝子の正体がＤＮＡという物質であることも確かめられた。
+  ワトソンとクリックは，Ｘ線回折という実験のデータをもとに，分子の模型を組み立てて，ついに遺伝子の構造をつきとめることに成功した。この大発見で，彼らはノーベル生理学・医学賞を受賞した。
+  ＤＮＡは，二重らせんとよばれる構造をもった細長い分子で，４種類の物質が数十億も直線的に並び，その順番によって，生物のさまざまな特徴が表されている。
+  ワトソンとクリックの発見によって，今では遺伝子を解読し，人工的に生物の遺伝子を変えることもできるようになった。その技術は，農業，医療，犯罪捜査などあらゆる方面で役に立っている', category_id: 1, user_id: 4)
+Article.create(title: 'ウミガメはビニールゴミを見分ける', citation: 'Scientific report (2016)', content: '東京大学大気海洋研究所の福岡拓也大学院生および佐藤克文教授を中心とする国際共同研究グループは、自然の環境下で海洋ゴミに遭遇したウミガメ類の反応がウミガメの食性によって異なっており、動物を食べるアカウミガメに比べて藻類を主に食べているアオウミガメの方が高い確率で遭遇した海洋ゴミを飲み込んでいることを明らかにしました。
+
+  これまでの胃の内容物を調べた研究により、海洋ゴミの誤飲量はアカウミガメ（Caretta caretta）とアオウミガメ（Chelonia mydas）で異なることが示されてきましたが、自然環境下で海洋ゴミを誤飲する様子を観察することが困難であったため、なぜ海洋ゴミの誤飲量が種間で違うのかについてはわかっていませんでした。
+
+  今回、研究グループは、海洋ゴミに遭遇した時の反応をウミガメの種類によって比較するために、2007年から2015年にかけてアカウミガメ10個体とアオウミガメ6個体の背中に動物に搭載可能なビデオカメラを取り付けて、それぞれ60時間と52時間のビデオ映像を得ました。その結果、主に底生生物やクラゲ類など、能動的に動く動物を食べていたアカウミガメは、遭遇した海洋ゴミの内の17%（12回中2回）を飲み込んだのに対して、海藻を主体に時々クラゲ類を食べていたアオウミガメは62%（34回中21回）を飲み込んでいたことがわかりました。このことから、海洋ゴミと似た形で波間に漂う海藻を主な餌とするアオウミガメの方が、アカウミガメに比べて海洋ゴミを餌と混同しやすいことが示唆されました。
+  「ウミガメが誤って海洋ゴミを誤飲してしまう誤飲は、ウミガメを死に至らしめる脅威として問題視されています。しかし、ウミガメは人為起源の海洋ゴミ以外にも鳥の羽や小石、木の葉などの自然ゴミも多く飲み込んでいました。また、同時に行なった排泄物分析では、自然ゴミと共に海洋ゴミは排泄されており、海洋ゴミが直接の死因とはなっていませんでした」と佐藤教授は話します。「海洋ゴミの誤飲がウミガメ類の健康にどのような影響を及ぼすのかを調べるために、引き続き研究していく事が重要です」と続けます。', category_id: 12, user_id: 2)
+
+Article.create(title: '遺伝子とタンパク質の1対1対応', citation: 'PNAS, G. W. Beadle and E. L. Tatum, 「Genetic Control of Biochemical Reactions in Neurospora」(1941)', content: 'ジョージ・ウェルズ・ビードルは当初トーマス・モーガンの元でショウジョウバエを材料に遺伝の研究を行い、そこで遺伝子の生化学的な働きやその過程を研究していた。ショウジョウバエの複眼は本来は赤であるが、朱色眼や白眼などその色に関する突然変異がいくつか知られている。彼はそのような変異個体の複眼の原基を通常型の個体の体内へ移植する、あるいは変異個体間で移植するなどの実験を行い、それによって移植された複眼が通常の色に着色する場合があることを見つけた。彼はこのような変異個体では複眼の色素を合成する反応系のどこかに不具合があり、それに必要な何かが健常個体の方から供給されたものと考え、それが一連の反応の中間段階に対応しているらしいことを見つけた(1936)。', category_id: 1, user_id: 5)
+Article.create(title: 'ゲノム編集は人間を救うか？', citation: 'XXX', content: '倫理的問題もある', category_id: 1, user_id: 6)
+
+Article.create(title: '新型コロナウイルスのワクチンに対するレムデシビルの効果', citation: 'NEJM,「Compassionate Use of Remdesivir for Patients with Severe Covid-19」', content: '患者レポート', category_id: 2, user_id: 1)
+Article.create(title: '好きなBGMは風邪を予防する', citation: "'Effect of Music and Auditory Stimuli on Secretory Immunoglobulin a (IGA)', Carl J. Charnetski, Francis X. Brennan, Jr., James F. Harrison James F. Harrison, 1998", content: 'good is good for you', category_id: 2, user_id: 2)
+Article.create(title: 'iPS細胞の医学における貢献', citation: 'XX出版「xxx」', content: '山中伸哉先生が受賞', category_id: 2, user_id: 3)
+
+Article.create(title: 'ストレスは遺伝子に変化をもたらし、うつ病を引き起こす', citation: 'Nature Medicine', content: 'エピジェネティクス的発見', category_id: 2, user_id: 5)
+Article.create(title: "'痛くて寝れない'の生理学的メカニズム", citation: 'Nature', content: '精神的なものだけではなかった', category_id: 2, user_id: 6)
+
+
+Article.create(title: 'ベーリンジアにおけるマンモスの絶滅パターン', citation: 'Nature Communications volume 3, Article number: 893 (2012)', content: '時空間的パターンを調べた', category_id: 6, user_id: 3)
+Article.create(title: 'ラクダの祖先は北極で生まれた', citation: 'Nature Communications volume 4, Article number: 1550 (2013)', content: '化石を調べた', category_id: 6, user_id: 4)
+Article.create(title: '化石から太古の寄生ハチが見つかった', citation: 'Nature Communications volume 9, Article number: 3325 (2018)', content: '昆虫', category_id: 6, user_id: 5)
+Article.create(title: '世界最古のヘビの化石', citation: 'Nature Communications volume 6, Article number: 5996 (2015)', content: '7000万年前であると推定', category_id: 6, user_id: 6)
+Article.create(title: '生き残っていた古代のサメcladodontomorph', citation: 'Nature Communications volume 4, Article number: 2669 (2013)', content: '絶滅したと考えられていた', category_id: 6, user_id: 7)
+
+Article.create(title: '浮気をするオオミズナギドリ', citation: "Miho Sakao, Hirohiko Takeshima, Koji Inoue, Katsufumi Sato, 'Extra-pair paternity in socially monogamous Streaked Shearwater; forced copulation or female solicitation?' Journal of Ornithology Online edition: 2018年7月30日, doi:10.1007/s10336-018-1587-3.", content: '東京大学大気海洋研究所の坂尾美帆大学院生および佐藤克文教授を中心とする共同研究グループは、夫婦で協力して子育てをする海鳥で、雛の育ての父親と遺伝的な父親が異なる「浮気」が高い割合で起きていることを明らかにしました。また、浮気されたオスは他のオスに比べてくちばしと羽根の長さが短いことがわかり、体の小さいオスほど浮気されやすい傾向が示されました。
+
+  これまで鳥類の多くの種で「浮気」が確認されていますが、オスメスどちらが主導して起きているのかはよくわかっていませんでした。また、鳥類の中でも、ペアが協力して子供へ給餌し、一夫一妻の絆が長年にわたって維持される海鳥では浮気はほとんど起きないと考えられてきました。
+  
+  今回、研究グループは、海鳥の一種であるオオミズナギドリ（Calonectris leucomelas）の浮気率を調べるために、2014年から2016年にかけて、親鳥338羽、雛199羽からDNAを集め、親子鑑定を行いました。その結果、オオミズナギドリの雛のうち15%（17羽）は育ての父親と遺伝的な父親が異なっており、浮気が起きていたことがわかりました。また、浮気されてしまったオスのくちばしと羽根の長さは、浮気されずに自分の子供を残せたオスよりも、短いことが明らかになりました。さらに、目視観察の結果から、オオミズナギドリのメスはオスによる強制的な交尾を拒否できることがわかっています。これらのことは、オオミズナギドリでは、メスがパートナーの体サイズに応じて浮気するかどうかを決めている可能性を示しています。
+  
+  「絆が強く浮気をしないと言われてきた海鳥でも、実は高い割合で浮気していること、そして浮気がメス主導で起きている可能性を示すことができました」と佐藤教授は話します。「今後は、メスがどうやって浮気する相手を選んでいるのか、なぜオオミズナギドリは他の海鳥に比べて浮気率が高いのかなどを明らかにしていきたいと思います」と続けます。', category_id: 12, user_id: 3)
+Article.create(title: '早起きは三文の得な鳥', citation: "Lesku JA1, Rattenborg NC, Valcu M, Vyssotski AL, Kuhn S, Kuemmeth F, Heidrich W, Kempenaers B., 'Adaptive sleep loss in polygynous pectoral sandpipers.', Science (2012)", content: '昆虫', category_id: 12, user_id: 5)
+Article.create(title: 'ハイイロガンの刷り込み', citation: 'コンラート・ローレンツ「ソロモンの指輪」', content: '動物の行動観察から、何を考えているかわかる', category_id: 12, user_id: 6)
+Article.create(title: 'ミツバチのダンスによるコミュニケーション', citation: 'XX出版「生態学」', content: '8の字ダンスで餌の場所を教える', category_id: 12, user_id: 7)
+
+Article.create(title: 'タイマイの潜水行動にみられる規則性：正確な行動データからの新知見', citation: 'Junichi Okuyama et al., Animal Behavior 2012', content: '肺呼吸性の潜水動物は、潜水することによって得られる利益（餌、捕食者回避、繁殖など）を最大化するために、潜水時間と表層滞在時間を最適に割り当てると考えられる。ウミガメの潜水時間を決定する要因として、酸素の保有量や活動量が知られている。また、表層での滞在時間は、その前の潜水行動の影響を受けると思われる。しかし、潜水時間および表層滞在時間と、活動量の関係性を野外データで調べた例はない。本研究では、タイマイ（Eretmochelys imbricata）の活動量が、潜水時間や表層滞在時間にどのような影響を及ぼすのかを調べるため、加速度データから酸素保有量および活動量を算出し、潜水時間および表層滞在時間を説明するモデルを構築した。
+  まず野外での潜水データをプロットした結果、タイマイの潜水時間は、活動量が高くなるにつれて短くなった。また、酸素保有量が多くなるにしたがって潜水時間は長くなった。よって、タイマイの潜水時間は酸素保有量と活動度の影響を受けることがわかった。これらの関係は、モデルによる予測結果と合致していた。この潜水時間モデルは、保持している酸素を使い切るまでの潜水時間のモデルであることから、タイマイは実際の潜水においても、ほとんど酸素を使い切ってから浮上していたことが示唆される。
+  また、表層の滞在時間は、その前の潜水における活動量と潜水時間が増加するにつれて長くなった。タイマイが好気呼吸の範囲内で潜水をする限り、表層滞在時間はほぼ一定になるはずである。これは、タイマイが潜水するとき、酸素が行き渡らなかった末梢（血液や筋肉）では嫌気呼吸が行われ、その末梢に蓄積した乳酸を分解するために表層滞在時間が延びると考察された。
+  ', category_id: 12, user_id: 7)
+Article.create(title: 'ファインスケールでのオサガメの採餌生態', citation: 'Wallace, 2015', content: 'オサガメ（Dermochelys coriacea）は、熱帯域の産卵場と温帯域の採餌場を往来する大型回遊生物である。オサガメをはじめとする大型回遊生物を保護する上で、どのような海域を重点的に利用するかを解明し、保護区域を効果的に設定することが重要となる。近年、GPS追跡やテレメトリー技術の発展により、大雑把なスケールでオサガメの回遊ルートや利用海域が明らかになってきた。しかし、細かいスケールでの行動情報は少なく、特にオサガメが周辺の餌環境に応じてどのように行動を変化させるかについてはあまりわかっていない。　　　　　
+  オサガメが餌とするクラゲ類は不均一に分布しており、餌の存在を予測できない。そこで、オサガメは餌の豊富な海域では潜水を頻繁に繰り返すことで餌獲得量を増やす一方、餌の少ない海域では移動距離を増やすと仮説を立てた。本研究では、この仮説を検証するため、オサガメにGPSロガーおよび水温・深度ロガーおよびビデオカメラを装着した。GPSロガーからオサガメの移動距離を算出し、単位時間あたりの移動距離をオサガメの採餌努力量とした。また、水温・深度ロガーからオサガメの潜水頻度、潜水時間を算出した。ビデオカメラからは、餌獲得量や採餌頻度を算出した。
+  オサガメは餌密度が低い環境では移動距離が長く、採餌努力量も高かった。したがって、餌密度の低い海域にいる場合は、餌の豊富な海域を求めて移動を行なっていることが示唆された。一方、餌密度が高い環境では、移動距離が短く、採餌努力量は低かった。また、オサガメの1時間あたりの潜水回数が多いほど、餌の獲得量は多かった。さらに潜水回数と潜水時間は負の相関関係にあった。よって、オサガメは短時間の潜水を頻繁に繰り返すことで餌の獲得を最大化していると考えられた。これらの結果から、上述の仮説は正しく、餌の乏しい海域では、不利益（餌が得られない時間）を最小化するように行動するが、餌の豊富な海域では得られる利益を最大化するように行動をとることが明らかになった。
+  ', category_id: 12, user_id: 7)
+
+users = User.all[2..20]
+comments = %w[めちゃくちゃ面白かったです！ 最高です! ためになりました なぜこうなっているのでしょうか？ 難しいですね 〇〇についてどう思われますか どうやって論文を探してますか？ 素晴らしい内容です 次回も楽しみにしてます いろんな説があって興味深いですよね Good 驚きました 素晴らしいです]
 users.each do |user|
   12.times do |n|
     title = "#{Faker::Coffee.regions}に生息する#{Faker::Creature::Animal.name}の#{Faker::Lorem.word}"
     user.articles.create!(title: title, content: 'test', citation: 'Book', category_id: n + 1)
+    Comment.create(content: comments.sample, user_id: user.id, article_id: n)
   end
 end
 
@@ -47,31 +109,3 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
-
-Article.create(title: '生物は遺伝子が全てを決めている？', citation: 'リチャード・ドーキンス「利己的な遺伝子」', content: '遺伝子が決める', category_id: 1, user_id: 1)
-Article.create(title: '分子生物学の基礎', citation: '東京大学出版「分子生物学」', content: '遺伝子とは？', category_id: 1, user_id: 2)
-Article.create(title: 'エピジェネティクスの世界', citation: 'XX出版「最新の分子生物学」', content: 'ヒストンのメチル化', category_id: 1, user_id: 3)
-Article.create(title: '遺伝子の二重螺旋構造', citation: 'Nature volume 171, pages737–738(1953)', content: 'Watsonとcrickらが発見した', category_id: 1, user_id: 4)
-Article.create(title: '遺伝子とタンパク質の1対1対応', citation: 'PNAS, G. W. Beadle and E. L. Tatum, 「Genetic Control of Biochemical Reactions in Neurospora」(1941)', content: '一遺伝子一酵素説の説明', category_id: 1, user_id: 5)
-Article.create(title: 'ゲノム編集は人間を救うか？', citation: 'XXX', content: '倫理的問題もある', category_id: 1, user_id: 6)
-
-Article.create(title: '新型コロナウイルスのワクチンに対するレムデシビルの効果', citation: 'NEJM,「Compassionate Use of Remdesivir for Patients with Severe Covid-19」', content: '患者レポート', category_id: 2, user_id: 1)
-Article.create(title: '好きなBGMは風邪を予防する', citation: "'Effect of Music and Auditory Stimuli on Secretory Immunoglobulin a (IGA)', Carl J. Charnetski, Francis X. Brennan, Jr., James F. Harrison James F. Harrison, 1998", content: 'good is good for you', category_id: 2, user_id: 2)
-Article.create(title: 'iPS細胞の医学における貢献', citation: 'XX出版「xxx」', content: '山中伸哉先生が受賞', category_id: 2, user_id: 3)
-Article.create(title: 'PD-1抗体の発見はなぜノーベル賞を受賞したのか', citation: 'The 2018 Nobel Prize in Physiology or Medicine', content: '日本人の受賞', category_id: 2, user_id: 4)
-Article.create(title: 'ストレスは遺伝子に変化をもたらし、うつ病を引き起こす', citation: 'Nature Medicine', content: 'エピジェネティクス的発見', category_id: 2, user_id: 5)
-Article.create(title: "'痛くて寝れない'の生理学的メカニズム", citation: 'Nature', content: '精神的なものだけではなかった', category_id: 2, user_id: 6)
-
-Article.create(title: 'スピノサウルスは水中移動に適した尻尾を持つ', citation: 'Nature (2020)', content: 'すごい恐竜', category_id: 6, user_id: 2)
-Article.create(title: 'ベーリンジアにおけるマンモスの絶滅パターン', citation: 'Nature Communications volume 3, Article number: 893 (2012)', content: '時空間的パターンを調べた', category_id: 6, user_id: 3)
-Article.create(title: 'ラクダの祖先は北極で生まれた', citation: 'Nature Communications volume 4, Article number: 1550 (2013)', content: '化石を調べた', category_id: 6, user_id: 4)
-Article.create(title: '化石から太古の寄生ハチが見つかった', citation: 'Nature Communications volume 9, Article number: 3325 (2018)', content: '昆虫', category_id: 6, user_id: 5)
-Article.create(title: '世界最古のヘビの化石', citation: 'Nature Communications volume 6, Article number: 5996 (2015)', content: '7000万年前であると推定', category_id: 6, user_id: 6)
-Article.create(title: '生き残っていた古代のサメcladodontomorph', citation: 'Nature Communications volume 4, Article number: 2669 (2013)', content: '絶滅したと考えられていた', category_id: 6, user_id: 7)
-
-Article.create(title: 'オットセイは陸と海で違う寝方をする', citation: 'Lyamin et al., 2018, Current Biology 28', content: '脳波を測定', category_id: 12, user_id: 1)
-Article.create(title: 'ウミガメはビニールゴミを見分ける', citation: 'Scientific report (2016)', content: 'カメラをつけて解析', category_id: 12, user_id: 2)
-Article.create(title: '浮気をするオオミズナギドリ', citation: "Miho Sakao, Hirohiko Takeshima, Koji Inoue, Katsufumi Sato, 'Extra-pair paternity in socially monogamous Streaked Shearwater; forced copulation or female solicitation?' Journal of Ornithology Online edition: 2018年7月30日, doi:10.1007/s10336-018-1587-3.", content: '一夫一妻性の海鳥', category_id: 12, user_id: 3)
-Article.create(title: '早起きは三文の得な鳥', citation: "Lesku JA1, Rattenborg NC, Valcu M, Vyssotski AL, Kuhn S, Kuemmeth F, Heidrich W, Kempenaers B., 'Adaptive sleep loss in polygynous pectoral sandpipers.', Science (2012)", content: '昆虫', category_id: 12, user_id: 5)
-Article.create(title: 'ハイイロガンの刷り込み', citation: 'コンラート・ローレンツ「ソロモンの指輪」', content: '動物の行動観察から、何を考えているかわかる', category_id: 12, user_id: 6)
-Article.create(title: 'ミツバチのダンスによるコミュニケーション', citation: 'XX出版「生態学」', content: '8の字ダンスで餌の場所を教える', category_id: 12, user_id: 7)
