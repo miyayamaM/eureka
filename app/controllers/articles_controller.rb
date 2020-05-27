@@ -25,9 +25,9 @@ class ArticlesController < ApplicationController
     @comments = @article.comments.includes(:user)
 
     if @article.category_id.nil?
-      @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql('RAND()')).limit(5)
+      @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id, :user_id, :created_at).order(Arel.sql('RAND()')).limit(5)
     else
-      @related_articles = Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id).order(Arel.sql('RAND()')).limit(5)
+      @related_articles = Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id, :user_id, :created_at).order(Arel.sql('RAND()')).limit(5)
     end
   end
 

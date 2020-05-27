@@ -30,7 +30,7 @@ RSpec.describe 'ArticlesShow', type: :system do
         expect(page).to_not have_content article.title
       end
 
-      expect(find('.article-sidebar')).to_not have_text article.title
+      expect(find('.related-article')).to_not have_text article.title
     end
   end
 end

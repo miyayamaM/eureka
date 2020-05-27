@@ -87,32 +87,14 @@
   }
 }
 
-.article-sidebar {
-  border-left: 1px rgb(110, 110, 110) solid;
+.article-user-profile-image{
+  border: 2px rgb(110, 110, 110) solid;
+  border-radius: 5px;
+}
 
-  h5 {
-    text-decoration: underline;
-  }
 
-  .related-article-wrapper {
-
-    padding: 5px 0;
-
-    .article-sidebar-image {
-      width: 70%;
-      height: auto;
-      margin: 0 auto;
-      display: block;
-      border-radius: 5px;
-    }
-  
-    p {
-      width: 70%;
-      height: auto;
-      margin: 0 auto;
-    }
-
-  }  
+.related-article {
+  border-top: 1px rgb(177,177,177) solid;
 }
 
 .bookmark-wrapper {
@@ -154,6 +136,11 @@
 
 .article-content-form {
   height: auto;
+}
+
+.comment-author {
+  text-decoration: none;
+  color: rgb(110, 110, 110)
 }
 
 

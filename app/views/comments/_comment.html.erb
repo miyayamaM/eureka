@@ -3,7 +3,7 @@
   <div class="comment-upper d-flex justify-content-between mt-2">
     <div> 
       <%=image_tag comment.user.image.profile90.url, size: "30x30"%>
-      <p class="d-inline comment-username"><%= comment.user.name %></p>
+      <p class="d-inline comment-username"><%= link_to "#{comment.user.name}", user_path(comment.user), class: "comment-author" %></p>
     </div>
     <% if comment.user == current_user %>
       <div>
