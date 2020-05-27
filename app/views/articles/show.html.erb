@@ -3,6 +3,8 @@
 <div class="article-container mt-4">
   <div class="row">
     <div class="col-lg-9">
+      <%=image_tag @article.user.image.profile90.url, size: "50x50", class: "article-user-profile-image mb-4"%>
+      <h6 class="d-inline profile-image"><%= @article.user.name %></h6>
 
       <h2><%= @article.title %></h2>
 
@@ -33,7 +35,15 @@
         <%= @article.content %>
       </div>
 
-      <div class="comment">
+      <div class="related-article mt-5">
+        <p class="h4 mt-3 font-weight-bold">関連した記事</p>
+        <ul class="articles">
+          <%= render @related_articles %>
+        </ul>
+      </div>
+
+      <div class="comment mt-5">
+      <p class="h4 mt-3 font-weight-bold">コメント</p>
         <%= render 'comments/comment_area', comments: @comments %>
         <% if logged_in? %>
           <div class="comment-form">
@@ -48,20 +58,8 @@
 
     </div>
 
-    <div class="col-lg-3 article-sidebar">
-      <h5>関連した記事</h5>
-        <% @related_articles.each do |article| %>
-          <div class="related-article-wrapper">
-            <% if @article.thumbnail.url %>
-              <%= image_tag @article.thumbnail.url, class: "article-show-image", size: "200x200"  %>
-            <% elsif @article.category %>
-              <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{@article.category.name}.jpg", class: "article-show-image", size: "200x200" %>
-            <% else %>
-              <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-show-image", size: "200x200" %>
-            <% end %>
-            <p><%=link_to article.title, article_path(article), class: "h6 d-block"  %></p>
-          </div>
-        <% end %>
+    <div class="col-lg-3">
+    
     </div>
   </div>
 </div> 
