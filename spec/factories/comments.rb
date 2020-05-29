@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :comment do
-    content "Good!"
+    content 'Good!'
     association :article
     user { article.user }
   end
 
   factory :comments, class: Comment do
     sequence(:content) { |n| "Very good#{n}" }
-    sequence(:created_at) {|n| n.day.ago }
+    sequence(:created_at) { |n| n.day.ago }
   end
 end

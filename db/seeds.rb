@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-User.create!(name: 'First User',
-            email: 'first@example.com',
-            password: 'password',
-            password_confirmation: 'password',
-            activated: true,
-            activated_at: Time.zone.now)
+User.create!( name: 'First User',
+              email: 'first@example.com',
+              password: 'password',
+              password_confirmation: 'password',
+              activated: true,
+              activated_at: Time.zone.now )
 
 99.times do |n|
   name = "#{Faker::Name.name}#{n}"
   email = "example#{n + 1}@example.com"
   password = 'password'
-  User.create!(name: name,
-              email: email,
-              password: password,
-              password_confirmation: password,
-              activated: true,
-              activated_at: Time.zone.now)
+  User.create!( name: name,
+                email: email,
+                password: password,
+                password_confirmation: password,
+                activated: true,
+                activated_at: Time.zone.now )
 end
 
 categories = %w[遺伝学 医学 化学 環境学 経済学 古生物学 昆虫学 細胞学 植物学 水産学 天文学 動物学 文学]
@@ -28,10 +28,10 @@ Article.create(title: 'アオウミガメの休息深度は体サイズによっ
   本研究では、ドライトートゥガス国立公園（アメリカ、フロリダ州）にて、捕獲されたアオウミガメ11個体（CCL, Curved carapace length 41.1 ± 7.7 cm）に3軸加速度、水深、水温を記録するデータロガーを装着し放流した。水深0.25 m以深に30秒以上滞在しているものをdiveと定義し、そのうち最大深度が2 mを上回る潜水をdeep dive、最大深度が2 m以浅の潜水をshallow diveと定義した。ウミガメの潜水プロファイルのうち、羽ばたき回数が明らかに少なく、加速度振幅も小さい潜水をresting behaviorと定義した。このresting behaviorが潜水時間の50％を上回る潜水をresting dive、それ以外の潜水はactive diveとした。またactive diveのうち、深度がshallowからdeep、deepからshallowへと移動している潜水をtransiting diveとした。
   体サイズと潜水深度を比較した結果、アオウミガメのCCLおよび体重と最大潜水深度に正の相関が認められた。さらに、エネルギー消費量の指標であるODBA（Overall Dynamic Body Acceleration）を潜水パターンごとに算出したところ、平均ODBAと平均水深はそれぞれ潜水時間との間に有意な相関が認められ、深く潜り活動性の低い状態のウミガメは、長時間潜水を続けていることがわかった。また、平均水深が2 mより浅い個体をshallow group（n =6）、2 mを上回る個体をdeep group（n =5）として分類し、夜間における活動パターンを比較した結果、deep groupはshallow groupと比較すると、１回の潜水あたりおよび１時間あたりのODBAは低く、潜水1回に占める休息時間の割合も多く、総休息時間が長かった。従って、夜間に深部で休息をとる若齢アオウミガメは、エネルギーを効率的に節約でき、成長に必要なエネルギーを蓄積することができると考えられる。以上の結果より、酸素保有量が多い体サイズの大きなウミガメは、夜間の休息を深場で長時間することでエネルギー節約を行っていることが明らかになった。一方、体サイズの小さいウミガメは、肺活量が少なく深部で長時間の休息ができないため、浅い海域に滞在し移動コストを節約していると考えられる。また、研究対象となった海域の浅い海域では、サメ類やイタヤラなどのウミガメ捕食者が生息しておらず、被食リスクを最小化している可能性もある。本研究によって、若齢アオウミガメは、体サイズが小さい間は浅い海域で休息することで移動コストと捕食リスクを軽減し、成長して大きくなると、エネルギーの節約効率を最大化するために深部で長時間の休息をとることで、鉛直的な行動パターンを変化させることが示唆された。
   ', category_id: 12, user_id: 7)
-  Article.create(title: 'PD-1抗体の発見はなぜノーベル賞を受賞したのか', citation: 'The 2018 Nobel Prize in Physiology or Medicine', content: 'PD-1（Programmed cell death 1）は1992年にT細胞の細胞死誘導時に発現が増強される遺伝子として研究開始時にはまだ京都大学本庶佑研究室の大学院生であった石田靖雅らによって 同定・命名された[5][6]。T細胞は胸腺で作られるが[7]、その際自己攻撃性を獲得した危険なT細胞がアポトーシスで自死する際に重要な役割を果たすものであって欲しい、という願いをこめて、Programmed Death-1と命名した[6]、と石田は述べている[8]。
+Article.create(title: 'PD-1抗体の発見はなぜノーベル賞を受賞したのか', citation: 'The 2018 Nobel Prize in Physiology or Medicine', content: 'PD-1（Programmed cell death 1）は1992年にT細胞の細胞死誘導時に発現が増強される遺伝子として研究開始時にはまだ京都大学本庶佑研究室の大学院生であった石田靖雅らによって 同定・命名された[5][6]。T細胞は胸腺で作られるが[7]、その際自己攻撃性を獲得した危険なT細胞がアポトーシスで自死する際に重要な役割を果たすものであって欲しい、という願いをこめて、Programmed Death-1と命名した[6]、と石田は述べている[8]。
 
     発見者の石田は発見後わずか一年でPD-1研究から離れたが[9]、その後も本庶佑の研究室では他の研究員らにより長年に渡って継続された。 不明であったPD-1の機能も当初石田が期待したT細胞のアポトーシス誘導は示されず、一方で1998年に作製されたPD-1欠損マウスが脾腫、血中免疫グロブリンの増加、脾B細胞の抗IgM刺激に対する反応性亢進等を来したことから、T細胞が生体内に広がった後に免疫反応を負に制御する事は示されるに至った[5][8]。
-    
+
     またある種の腫瘍細胞はPD-1に結合し作用させるPD-L1/2蛋白を多く発現し、 免疫監視からの逃避を促進していることが明らかになり、これらの成果を基に2014年7月には世界初の免疫チェックポイント阻害剤である抗PD-1抗体薬が悪性黒色腫の治療薬として認可された。その後抗PD-L1抗体薬も認可されている[10][5]。', category_id: 2, user_id: 4)
 Article.create(title: 'スピノサウルスは水中移動に適した尻尾を持つ', citation: 'Nature (2020)', content: 'すごい恐竜', category_id: 6, user_id: 2)
 Article.create(title: 'オットセイは陸と海で違う寝方をする', citation: 'Lyamin et al., 2018, Current Biology 28', content: '全ての陸棲哺乳類や鳥類の睡眠には、激しい眼球運動を伴うREM睡眠と、眼球運動の少ないnon-REM睡眠という2種類の状態が認められる。しかしながら、水中に住む鯨類はREM睡眠をほとんど行わないことが知られている。そこで、同じ海棲哺乳類であるキタオットセイの睡眠が水中でどのように変化しているかを調べるため、飼育下キタオットセイの睡眠中の脳波を陸上と水中で測定した。
@@ -62,7 +62,6 @@ Article.create(title: 'iPS細胞の医学における貢献', citation: 'XX出�
 Article.create(title: 'ストレスは遺伝子に変化をもたらし、うつ病を引き起こす', citation: 'Nature Medicine', content: 'エピジェネティクス的発見', category_id: 2, user_id: 5)
 Article.create(title: "'痛くて寝れない'の生理学的メカニズム", citation: 'Nature', content: '精神的なものだけではなかった', category_id: 2, user_id: 6)
 
-
 Article.create(title: 'ベーリンジアにおけるマンモスの絶滅パターン', citation: 'Nature Communications volume 3, Article number: 893 (2012)', content: '時空間的パターンを調べた', category_id: 6, user_id: 3)
 Article.create(title: 'ラクダの祖先は北極で生まれた', citation: 'Nature Communications volume 4, Article number: 1550 (2013)', content: '化石を調べた', category_id: 6, user_id: 4)
 Article.create(title: '化石から太古の寄生ハチが見つかった', citation: 'Nature Communications volume 9, Article number: 3325 (2018)', content: '昆虫', category_id: 6, user_id: 5)
@@ -72,9 +71,9 @@ Article.create(title: '生き残っていた古代のサメcladodontomorph', cit
 Article.create(title: '浮気をするオオミズナギドリ', citation: "Miho Sakao, Hirohiko Takeshima, Koji Inoue, Katsufumi Sato, 'Extra-pair paternity in socially monogamous Streaked Shearwater; forced copulation or female solicitation?' Journal of Ornithology Online edition: 2018年7月30日, doi:10.1007/s10336-018-1587-3.", content: '東京大学大気海洋研究所の坂尾美帆大学院生および佐藤克文教授を中心とする共同研究グループは、夫婦で協力して子育てをする海鳥で、雛の育ての父親と遺伝的な父親が異なる「浮気」が高い割合で起きていることを明らかにしました。また、浮気されたオスは他のオスに比べてくちばしと羽根の長さが短いことがわかり、体の小さいオスほど浮気されやすい傾向が示されました。
 
   これまで鳥類の多くの種で「浮気」が確認されていますが、オスメスどちらが主導して起きているのかはよくわかっていませんでした。また、鳥類の中でも、ペアが協力して子供へ給餌し、一夫一妻の絆が長年にわたって維持される海鳥では浮気はほとんど起きないと考えられてきました。
-  
+
   今回、研究グループは、海鳥の一種であるオオミズナギドリ（Calonectris leucomelas）の浮気率を調べるために、2014年から2016年にかけて、親鳥338羽、雛199羽からDNAを集め、親子鑑定を行いました。その結果、オオミズナギドリの雛のうち15%（17羽）は育ての父親と遺伝的な父親が異なっており、浮気が起きていたことがわかりました。また、浮気されてしまったオスのくちばしと羽根の長さは、浮気されずに自分の子供を残せたオスよりも、短いことが明らかになりました。さらに、目視観察の結果から、オオミズナギドリのメスはオスによる強制的な交尾を拒否できることがわかっています。これらのことは、オオミズナギドリでは、メスがパートナーの体サイズに応じて浮気するかどうかを決めている可能性を示しています。
-  
+
   「絆が強く浮気をしないと言われてきた海鳥でも、実は高い割合で浮気していること、そして浮気がメス主導で起きている可能性を示すことができました」と佐藤教授は話します。「今後は、メスがどうやって浮気する相手を選んでいるのか、なぜオオミズナギドリは他の海鳥に比べて浮気率が高いのかなどを明らかにしていきたいと思います」と続けます。', category_id: 12, user_id: 3)
 Article.create(title: '早起きは三文の得な鳥', citation: "Lesku JA1, Rattenborg NC, Valcu M, Vyssotski AL, Kuhn S, Kuemmeth F, Heidrich W, Kempenaers B., 'Adaptive sleep loss in polygynous pectoral sandpipers.', Science (2012)", content: '昆虫', category_id: 12, user_id: 5)
 Article.create(title: 'ハイイロガンの刷り込み', citation: 'コンラート・ローレンツ「ソロモンの指輪」', content: '動物の行動観察から、何を考えているかわかる', category_id: 12, user_id: 6)

@@ -24,11 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :articles, shallow:true do
+  resources :articles, shallow: true do
     resources :bookmarks, only: [:create]
     resources :comments, only: %i[create edit update destroy]
   end
-  
+
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
   resources :relationships, only: %i[create destroy]

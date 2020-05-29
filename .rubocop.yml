@@ -1,3 +1,7 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rails
+
 AllCops:
   Exclude:
     - "tmp/**/*"
@@ -8,7 +12,7 @@ AllCops:
     - "db/migrate/*.rb"
     - "bin/*"
   DisplayCopNames: true
-  TargetRubyVersion: 2.6.0
+  TargetRubyVersion: 2.5.1
 
 Rails:
   Enabled: true
@@ -32,4 +36,32 @@ Bundler/OrderedGems:
   Enabled: false
 
 Lint/ShadowedException:
+  Enabled: false
+
+Layout/SpaceInsideParens:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Exclude:
+    - "app/uploaders/*"
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+    - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 20
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - 'app/helpers/sessions_helper.rb'
+
+Rails/InverseOf:
   Enabled: false

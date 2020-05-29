@@ -25,8 +25,7 @@ class User < ApplicationRecord
   mount_uploader :image, ImagesUploader
 
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -37,7 +36,7 @@ class User < ApplicationRecord
   # ランダムな文字列を生成し、remember_tokenとしてメモリに保存 + 暗号化してremember_digestとしてDBに保存
   def remember
     self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    update(remember_digest: User.digest(remember_token))
   end
 
   # 渡された「属性名_token」が、dbに登録されている「属性名_digest」と一致したらtrueを返す
@@ -49,11 +48,11 @@ class User < ApplicationRecord
   end
 
   def forget
-    update_attribute(:remember_digest, nil)
+    update(remember_digest: nil)
   end
 
   def activate
-    update_attributes(activated: true, activated_at: Time.zone.now)
+    update(activated: true, activated_at: Time.zone.now)
   end
 
   def send_activation_email
@@ -62,7 +61,7 @@ class User < ApplicationRecord
 
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attributes(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+    update(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
   end
 
   def send_password_reset_email

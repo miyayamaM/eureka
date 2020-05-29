@@ -19,10 +19,10 @@ class ApplicationController < ActionController::Base
   private
 
   def login_required
-    unless logged_in?
-      store_location
-      flash[:danger] = 'このページを閲覧するにはログインが必要です'
-      redirect_to login_url
-    end
+    return if logged_in?
+
+    store_location
+    flash[:danger] = 'このページを閲覧するにはログインが必要です'
+    redirect_to login_url
   end
 end

@@ -78,13 +78,11 @@ RSpec.describe 'Articles', type: :request do
         patch article_path(article), params: { article: { title: 'Changed Title',
                                                           citation: 'Changed Book',
                                                           content: 'Changed Content' } }
-        
+
         expect(article.reload.title).to eq 'Changed Title'
         expect(article.reload.citation).to eq 'Changed Book'
         expect(article.reload.content.body.to_plain_text).to  eq 'Changed Content'
-
       end
-
     end
 
     context 'not logged in' do
@@ -92,7 +90,7 @@ RSpec.describe 'Articles', type: :request do
         patch article_path(article), params: { article: { title: 'Changed Title',
                                                           citation: 'Changed Book',
                                                           content: 'Changed Content' } }
-        
+
         expect(response).to redirect_to login_url
         expect(article.reload.title).to eq 'Title'
         expect(article.reload.citation).to eq 'Nature 1999, Vol 20'

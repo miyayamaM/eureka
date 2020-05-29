@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only: %i[edit update]
+  before_action :user_setup, only: %i[edit update]
   before_action :valid_user, only: %i[edit update]
   before_action :check_expiration, only: %i[edit update]
 
@@ -27,7 +27,7 @@ class PasswordResetsController < ApplicationController
     if params[:user][:password].empty?
       @user.errors.add(:password, :blank)
       render 'edit'
-    elsif @user.update_attributes(user_params)
+    elsif @user.update(user_params)
       flash[:success] = 'パスワードが再設定されました'
       redirect_to login_path
     else
@@ -41,20 +41,20 @@ class PasswordResetsController < ApplicationController
     params.require(:user).permit(:password, :password_confirmation)
   end
 
-  def get_user
+  def user_setup
     @user = User.find_by(email: params[:email])
   end
 
   def valid_user
-    unless @user&.activated? && @user&.authenticated?(:reset, params[:id])
-      redirect_to root_url
-    end
+    return if @user&.activated? && @user&.authenticated?(:reset, params[:id])
+
+    redirect_to root_url
   end
 
   def check_expiration
-    if @user.password_reset_expired?
-      flash[:danger] = 'リンクの期限が切れています。もう一度メールを送信してください'
-      redirect_to new_password_reset_url
-    end
+    return unless @user.password_reset_expired?
+
+    flash[:danger] = 'リンクの期限が切れています。もう一度メールを送信してください'
+    redirect_to new_password_reset_url
   end
 end

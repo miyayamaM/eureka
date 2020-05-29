@@ -4,7 +4,7 @@ RSpec.describe 'ArticlesShow', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   describe 'article show page' do
-    it 'displays title and content', js:true do
+    it 'displays title and content', js: true do
       sign_in_as user
       post_new_article
 
@@ -22,12 +22,12 @@ RSpec.describe 'ArticlesShow', type: :system do
 
       visit article_path(article)
 
-      articles_in_same_category.each do |article|
-        expect(page).to have_content article.title
+      articles_in_same_category.each do |related_article|
+        expect(page).to have_content related_article.title
       end
 
-      articles_in_different_category.each do |article|
-        expect(page).to_not have_content article.title
+      articles_in_different_category.each do |related_article|
+        expect(page).to_not have_content related_article.title
       end
 
       expect(find('.related-article')).to_not have_text article.title
