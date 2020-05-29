@@ -108,4 +108,21 @@ RSpec.describe 'Users', type: :system do
       expect(page).to_not have_content '退会しました。ご利用ありがとうございました'
     end
   end
+
+  describe 'Search' do
+    it 'shows users including search word' do
+      FactoryBot.create(:other_user)
+      FactoryBot.create(:third_user)
+
+      sign_in_as user
+      visit users_path
+
+      find('#user-search-form').set('Patrick')
+      find('#user-search-button').click
+
+      expect(page).to have_content 'Patrick'
+      expect(page).to_not have_content 'Micheal'
+      expect(page).to_not have_content 'Tom'
+    end
+  end
 end

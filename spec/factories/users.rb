@@ -18,7 +18,7 @@ FactoryBot.define do
   end
 
   factory :third_user, class: User do
-    name { 'Patick' }
+    name { 'Patrick' }
     email { 'tester3@exmaple.com' }
     password { 'password3' }
     activated { true }

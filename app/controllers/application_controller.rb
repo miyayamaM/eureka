@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def set_search_word
     @search_words = Article.ransack(params[:q])
 
-    if !params[:q].nil?
+    if params[:q] && params[:q][:title_or_action_text_rich_text_body_or_category_name_or_tags_name_cont]
       @key_words = params[:q][:title_or_action_text_rich_text_body_or_category_name_or_tags_name_cont].split(/[\p{blank}\s]+/)
       word_array = @key_words.inject([]) { |array, word| array.push({ title_or_action_text_rich_text_body_or_category_name_or_tags_name_cont: word }) }
       @hit_articles = Article.ransack(combinator: 'and', groupings: word_array).result
