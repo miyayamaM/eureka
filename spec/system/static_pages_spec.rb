@@ -9,9 +9,9 @@ RSpec.describe 'StaticPages', type: :system do
       users = FactoryBot.create_list(:users, 20)
       articles = FactoryBot.create_list(:articles, 20, user: user)
 
-      users.each do |user|
+      users.each do |one_user|
         articles.last(6).each do |article|
-          Bookmark.create(user_id: user.id, article_id: article.id)
+          Bookmark.create(user_id: one_user.id, article_id: article.id)
         end
       end
 

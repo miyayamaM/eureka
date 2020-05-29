@@ -8,12 +8,12 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.account_activation(user) }
 
     let(:text_body) do
-      part = mail.body.parts.detect { |part| part.content_type == 'text/plain; charset=UTF-8' }
+      part = mail.body.parts.detect { |mail_part| mail_part.content_type == 'text/plain; charset=UTF-8' }
       part.body.raw_source
     end
 
     let(:html_body) do
-      part = mail.body.parts.detect { |part| part.content_type == 'text/html; charset=UTF-8' }
+      part = mail.body.parts.detect { |mail_part| mail_part.content_type == 'text/html; charset=UTF-8' }
       part.body.raw_source
     end
 
@@ -37,12 +37,12 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.password_reset(user) }
 
     let(:text_body) do
-      part = mail.body.parts.detect { |part| part.content_type == 'text/plain; charset=UTF-8' }
+      part = mail.body.parts.detect { |mail_part| mail_part.content_type == 'text/plain; charset=UTF-8' }
       part.body.raw_source
     end
 
     let(:html_body) do
-      part = mail.body.parts.detect { |part| part.content_type == 'text/html; charset=UTF-8' }
+      part = mail.body.parts.detect { |mail_part| mail_part.content_type == 'text/html; charset=UTF-8' }
       part.body.raw_source
     end
 

@@ -2,8 +2,8 @@
 
 class ArticlesController < ApplicationController
   before_action :login_required, only: %i[create new edit update destroy]
-  before_action :correct_user,   only: :destroy
-  before_action :get_all_categories,   only: %i[new create edit update]
+  before_action :correct_user, only: :destroy
+  before_action :all_categories, only: %i[new create edit update]
 
   def index
     if params[:tag]
@@ -24,11 +24,11 @@ class ArticlesController < ApplicationController
     @comment = Comment.new
     @comments = @article.comments.includes(:user)
 
-    if @article.category_id.nil?
-      @related_articles = Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id, :user_id, :created_at).order(Arel.sql('RAND()')).limit(5)
-    else
-      @related_articles = Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id, :user_id, :created_at).order(Arel.sql('RAND()')).limit(5)
-    end
+    @related_articles = if @article.category_id.nil?
+                          Article.where(category_id: nil).where.not(id: @article.id).select(:id, :title, :category_id, :user_id, :created_at).order(Arel.sql('RAND()')).limit(5)
+                        else
+                          Article.where(category_id: @article.category_id).where.not(id: @article.id).select(:id, :title, :category_id, :user_id, :created_at).order(Arel.sql('RAND()')).limit(5)
+                        end
   end
 
   def create
@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
   def update
     @article = current_user.articles.find_by(id: params[:id])
 
-    if @article.update_attributes(article_params)
+    if @article.update(article_params)
       flash[:success] = '記事を編集しました'
       redirect_to user_path(current_user)
     else
@@ -61,11 +61,10 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     flash[:success] = '記事を削除しました'
-    redirect_to request.referrer || root_url
+    redirect_to request.referer || root_url
   end
 
-  def result
-  end
+  def result; end
 
   private
 
@@ -78,7 +77,7 @@ class ArticlesController < ApplicationController
     redirect_to root_url if @article.nil?
   end
 
-  def get_all_categories
+  def all_categories
     @categories = Category.all
   end
 end

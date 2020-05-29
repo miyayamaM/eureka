@@ -20,7 +20,7 @@ FactoryBot.define do
 
     factory :article_2_days_ago do
       title 'Two days ago'
-      created_at 2.day.ago
+      created_at 2.days.ago
     end
 
     factory :article_today do

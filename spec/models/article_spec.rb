@@ -60,7 +60,7 @@ RSpec.describe Article, type: :model do
 
   describe 'when user is deleted' do
     it 'is deleted together' do
-      article = FactoryBot.create(:article, user: user)
+      FactoryBot.create(:article, user: user)
 
       expect { user.destroy }.to change(Article, :count).by(-1)
     end

@@ -58,7 +58,7 @@ gem 'carrierwave'
 
 gem 'unicorn'
 
-gem "webpacker"
+gem 'webpacker'
 
 gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'action_text'
 gem 'image_processing'
@@ -70,7 +70,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'rspec-rails', '~> 3.8.0'
-  gem 'rubocop'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails'
   gem 'rspec_junit_formatter'
 end
 
@@ -92,14 +93,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-end
-
-group :development, :test do
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
-  gem 'capistrano3-unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

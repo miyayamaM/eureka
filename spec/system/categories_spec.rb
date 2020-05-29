@@ -32,7 +32,7 @@ RSpec.describe 'Categories', type: :system, js: true do
         expect do
           fill_in 'タイトル', with: 'Test title'
           fill_in '引用', with: 'Book'
-          fill_in_rich_text_area "article_content", with: 'Test content'
+          fill_in_rich_text_area 'article_content', with: 'Test content'
           select '選択してください', from: 'カテゴリー'
           click_on '投稿する'
         end.to change(Article, :count).by(1)
@@ -51,7 +51,7 @@ RSpec.describe 'Categories', type: :system, js: true do
         expect do
           fill_in 'タイトル', with: 'Test title'
           fill_in '引用', with: 'Book'
-          fill_in_rich_text_area "article_content", with: 'Test content'
+          fill_in_rich_text_area 'article_content', with: 'Test content'
           select '遺伝学', from: 'カテゴリー'
           click_on '投稿する'
         end.to change(Article, :count).by(1)
@@ -70,8 +70,8 @@ RSpec.describe 'Categories', type: :system, js: true do
         expect do
           fill_in 'タイトル', with: 'Test title'
           fill_in '引用', with: 'Book'
-          fill_in_rich_text_area "article_content", with: 'Test content'
-          attach_file 'サムネイル画像', "#{Rails.root}/spec/factories/thumbnail.png"
+          fill_in_rich_text_area 'article_content', with: 'Test content'
+          attach_file 'サムネイル画像', Rails.root.join('spec/factories/thumbnail.png')
           click_on '投稿する'
         end.to change(Article, :count).by(1)
 
@@ -89,8 +89,8 @@ RSpec.describe 'Categories', type: :system, js: true do
         expect do
           fill_in 'タイトル', with: 'Test title'
           fill_in '引用', with: 'Book'
-          fill_in_rich_text_area "article_content", with: 'Test content'
-          attach_file 'サムネイル画像', "#{Rails.root}/spec/factories/thumbnail.png"
+          fill_in_rich_text_area 'article_content', with: 'Test content'
+          attach_file 'サムネイル画像', Rails.root.join('spec/factories/thumbnail.png')
           select '遺伝学', from: 'カテゴリー'
           click_on '投稿する'
         end.to change(Article, :count).by(1)
