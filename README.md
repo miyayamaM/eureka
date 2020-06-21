@@ -4,6 +4,7 @@
  自分は大学院で数年研究をしておりましたが、一般の方々にとって学術研究は敷居の高いものであったり、縁のないものという印象を持たれていると感じました。
  
  そこで研究の面白さ、身近さが共有できるようなwebサービスがあって欲しいという思いから作成しました。
+ <img width="1255" alt="screenshot" src="https://user-images.githubusercontent.com/59919826/85216075-761ba180-b3bb-11ea-81dc-740969873745.png">
  
 # 制作環境
 Ruby 2.5.1
@@ -21,7 +22,6 @@ CircleCIによるCI/CDパイプラインの構築
 # URL
 
 https://host.eureeeeka.com
-<img width="1209" alt="screenshot" src="https://user-images.githubusercontent.com/59919826/85216047-0ad1cf80-b3bb-11ea-8fbf-8bb97b31e6eb.png">
 
 # 機能一覧
 
