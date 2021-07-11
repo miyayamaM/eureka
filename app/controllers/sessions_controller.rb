@@ -24,6 +24,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def twitter_login
+    user = User.create_or_update_from_auth(request.env['omniauth.auth'])
+    session[:user_id] = user.id
+    flash[:success] = 'ログインしました。'
+    redirect_to root_path
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_path
