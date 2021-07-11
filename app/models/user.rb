@@ -97,6 +97,19 @@ class User < ApplicationRecord
     bookmarks.find_by(article_id: article.id).destroy
   end
 
+  # Twitterログイン
+  def self.create_or_update_from_auth(auth)
+    find_or_initialize_by(uid: auth[:uid]).tap do |user|
+      user.update!(
+        name: auth[:info][:name],
+        email:    "#{auth[:uid]}-#{auth[:provider]}@example.com", #twitterからはメールアドレスを取得できないのでダミーのemailを入れる
+        password: "#{auth[:uid]}-#{auth[:provider]}password",     #twitterからはパスワードを取得できないのでダミーのemailを入れる
+        remote_image_url: auth[:info][:image],                    #Carriewave経由でurlから画像をアップロード
+        provider: auth[:provider]
+      )
+    end
+  end
+
   private
 
   def downcase_email
