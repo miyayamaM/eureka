@@ -17,7 +17,7 @@ class Article < ApplicationRecord
   validates :content, presence: true
   validates :citation, presence: true
 
-  mount_uploader :thumbnail, ThumbnailUploader
+  mount_uploader :thumbnail, ImagesUploader
 
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?

@@ -1,11 +1,11 @@
 <li id="article-<%= article.id %>">
   <div class="article-top-left">
-    <% if article.thumbnail.url %>
+    <% if article.thumbnail? %>
       <%= image_tag article.thumbnail.url, class: "article-image", size: "70x70", id: "attached-picture" %>
     <% elsif article.category %>
-      <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{article.category.name}.jpg", class: "article-image", size: "70x70", id: "category-picture" %>
+      <%= image_tag "https://duh86hz37ecb2.cloudfront.net/thumbnail/category_#{article.category.name}.jpg", class: "article-image", size: "70x70", id: "category-picture" %>
     <% else %>
-      <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-image", size: "70x70", id: "default-picture" %>
+      <%= image_tag "https://duh86hz37ecb2.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-image", size: "70x70", id: "default-picture" %>
     <% end %>
   </div>
 
@@ -30,16 +30,16 @@
             <div class="bookmark-wrapper">
               <div class="bookmark-form", id="bookmark-form-<%= article.id %>">
                 <%= render partial: 'articles/bookmark_form', locals: {article: article} %>
-              </div> 
+              </div>
               <div id="bookmark-count-<%= article.id %>">
                 <span id="bookmark-number"><%= article.bookmarks.count %></span>
-              </div> 
+              </div>
             </div>
           <% end %>
         </div>
     </div>
 
-    <div> 
+    <div>
       <span class="article-category badge badge-warning">
         カテゴリ：<%= (article.category.nil?) ? "なし" : article.category.name %>
       </span>
@@ -47,7 +47,7 @@
         <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
       <% end %>
     </div>
-    
+
     <div class="article-information">
       <span ><%= link_to "投稿者: #{article.user.name}", user_path(article.user), class: "article-author" %></span>
       <span class="article-timestamp"><%= article.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>
