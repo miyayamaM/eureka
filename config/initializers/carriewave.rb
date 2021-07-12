@@ -1,5 +1,6 @@
 unless Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
+    config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: Rails.application.credentials.aws[:s3_access_key_id],
@@ -9,6 +10,6 @@ unless Rails.env.development? || Rails.env.test?
 
     config.fog_public  = false
     config.fog_directory  = 'bucket-eureeeeka'
-    config.cache_storage = :fog
+    config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" }
   end
 end
