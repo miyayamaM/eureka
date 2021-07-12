@@ -4,9 +4,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.development?
-    storage :file
-  elsif Rails.env.test?
+  if Rails.env.test?
     storage :file
   else
     storage :fog
@@ -15,7 +13,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    save_directory = "#{Rails.env}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # オリジナル画像を横幅400pxに制限して保存する。
@@ -39,5 +37,15 @@ class ImagesUploader < CarrierWave::Uploader::Base
 
   def default_url(*_args)
     '/images/' + [version_name, 'default.png'].compact.join('_')
+  end
+
+  def url
+    if path.present?
+      # 保存先がローカルの場合
+      return "#{super}?updatedAt=#{model.updated_at.to_i}" if Rails.env.test?
+      # 保存先がS3の場合
+      return "https://duh86hz37ecb2.cloudfront.net/#{path}?updatedAt=#{model.updated_at.to_i}"
+    end
+    super
   end
 end
