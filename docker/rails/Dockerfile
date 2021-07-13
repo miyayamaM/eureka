@@ -1,5 +1,8 @@
 FROM ruby:2.5.1
 
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+
 RUN apt-get update -qq && \
   apt-get install -y apt-utils \
   build-essential \
@@ -32,9 +35,6 @@ ADD . /app
 
 RUN bundle exec rake action_text:install
 RUN bundle exec rails assets:precompile
-
-ARG RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 EXPOSE 3000
 
