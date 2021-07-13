@@ -33,7 +33,8 @@ ADD . /app
 RUN bundle exec rake action_text:install
 RUN bundle exec rails assets:precompile
 
-ARG RAILS_MASTER_KEY ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 EXPOSE 3000
 
