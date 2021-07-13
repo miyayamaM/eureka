@@ -8,12 +8,12 @@ RUN apt-get update -qq && \
   default-mysql-client
 
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && apt-get install -y yarn
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt-get update && apt-get install -y yarn
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
 
 ENV LANG C.UTF-8
 
@@ -32,6 +32,8 @@ ADD . /app
 
 RUN bundle exec rake action_text:install
 RUN bundle exec rails assets:precompile
+
+ARG RAILS_MASTER_KEY ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 EXPOSE 3000
 

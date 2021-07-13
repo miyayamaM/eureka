@@ -55,21 +55,21 @@ jobs:
             - ./node_modules
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      - restore_cache:  
-          keys:  
-            - yarn-cache-v1-{{ checksum "yarn.lock" }}  
+      - restore_cache:
+          keys:
+            - yarn-cache-v1-{{ checksum "yarn.lock" }}
             - yarn-cache-v1-
 
-      - run: 
+      - run:
           name: update nodejs and npm
           command: |
             curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
             curl https://www.npmjs.com/install.sh | sudo bash
 
-      - save_cache:  
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}  
-          paths:  
-            - ~/.cache/yarn  
+      - save_cache:
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       # Database setup
       - run:
           name: waiting for stating database
@@ -92,7 +92,7 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-  
+
   nginx-deploy:
     executor: container
     steps:
