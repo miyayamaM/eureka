@@ -106,7 +106,6 @@ jobs:
           account-url: AWS_ECR_ACCOUNT_URL
           dockerfile: ./docker/nginx/Dockerfile
           tag: "${CIRCLE_SHA1}"
-          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY} --build-arg RAILS_ENV=${RAILS_ENV}'
 
       -  aws-ecs/update-service:
           family: '${ECS_TASK}'
@@ -128,6 +127,7 @@ jobs:
           dockerfile: ./docker/rails/Dockerfile
           repo: rails-eureka
           tag: "${CIRCLE_SHA1}"
+          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY} --build-arg RAILS_ENV=${RAILS_ENV}'
 
       - aws-ecs/update-service:
           family: '${ECS_TASK}'
