@@ -13,15 +13,15 @@
     <div class="row">
       <% @top_articles.each do |article| %>
         <div class="article-top-wrapper col-12 col-sm-6 col-lg-4">
-          <% if article.thumbnail.url %>
+          <% if article.thumbnail? %>
             <%= image_tag article.thumbnail.url, class: "article-top-image", size: "300x300", id: "attached-picture" %>
           <% elsif article.category %>
-            <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/category_#{article.category.name}.jpg", class: "article-top-image", size: "300x300", id: "category-picture" %>
+            <%= image_tag "https://duh86hz37ecb2.cloudfront.net/thumbnail/category_#{article.category.name}.jpg", class: "article-top-image", size: "300x300", id: "category-picture" %>
           <% else %>
-            <%= image_tag "https://d1y0f4wly1zzzj.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-top-image", size: "300x300", id: "default-picture" %>
+            <%= image_tag "https://duh86hz37ecb2.cloudfront.net/thumbnail/default_thumbnail.png", class: "article-top-image", size: "300x300", id: "default-picture" %>
           <% end %>
 
-          <div class="article-top-info"> 
+          <div class="article-top-info">
             <%= link_to article.title, article_path(article), class: "article-top-title d-block" %>
             <span class="article-category badge badge-warning">
               カテゴリ：<%= (article.category.nil?) ? "なし" : article.category.name %>
@@ -30,10 +30,10 @@
               <span class="badge badge-info"><%= link_to tag_name, tag_path(tag_name), class: "article-tag" %></span>
             <% end %>
           </div>
-      
+
         </div>
       <% end %>
-      
+
     </div>
   </div>
 </div>
