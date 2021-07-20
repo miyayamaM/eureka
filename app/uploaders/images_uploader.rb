@@ -38,14 +38,4 @@ class ImagesUploader < CarrierWave::Uploader::Base
   def default_url(*_args)
     '/images/' + [version_name, 'default.png'].compact.join('_')
   end
-
-  def url
-    if path.present?
-      # 保存先がローカルの場合
-      return "#{super}?updatedAt=#{model.updated_at.to_i}" if Rails.env.test?
-      # 保存先がS3の場合
-      return "https://duh86hz37ecb2.cloudfront.net/#{path}?updatedAt=#{model.updated_at.to_i}"
-    end
-    super
-  end
 end
