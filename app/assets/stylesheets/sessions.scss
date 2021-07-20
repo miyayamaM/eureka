@@ -1,3 +1,33 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 通常のボタン色 */
+.btn-twitter,
+.btn-twitter.disabled, .btn-twitter:disabled {
+  color: #fff;
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
+}
+
+/* focusされた時の枠線の色 */
+.btn-twitter:focus, .btn-twitter.focus,
+.btn-twitter:not(:disabled):not(.disabled):active:focus, .btn-twitter:not(:disabled):not(.disabled).active:focus,
+.show > .btn-twitter.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #7dc6f3;
+}
+
+/* hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定） */
+.btn-twitter:hover {
+  color: #fff;
+  background-color: #034e7c;
+  border-color: #034e7c;
+}
+
+/* active時の色（hover時と同等かさらに濃いor暗めの色を指定） */
+.btn-twitter:not(:disabled):not(.disabled):active, .btn-twitter:not(:disabled):not(.disabled).active,
+.show > .btn-twitter.dropdown-toggle {
+  color: #fff;
+  background-color: #034e7c;
+  border-color: #034e7c;
+}
