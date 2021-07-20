@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/easy_login', to: 'sessions#easy_login'
   get 'tags/:tag', to: 'articles#index', as: :tag
   get '/result', to: 'articles#result'
-  get '/auth/:provider/callback', to: 'sessions#twitter_login'
+  get '/auth/:provider/callback', to: 'sessions#api_login'
 
   resources :users do
     member do
