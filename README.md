@@ -31,7 +31,7 @@ https://host.eureeeeka.com
 
 ・アカウント登録時の有効化、パスワードリセット時にメールを送信/ AWS:SES
 
-・ログイン機能
+・メールアドレス、パスワードでログイン機能
 
 ・記事投稿機能（エンリッチテキスト）/ gem: action-text
 
@@ -40,3 +40,5 @@ https://host.eureeeeka.com
 ・検索機能（記事のタイトル・内容・タグ・カテゴリから検索）/ gem:ransack
 
 ・お気に入り機能/ Ajax
+
+・Twitter, Googleアカウントログイン機能
