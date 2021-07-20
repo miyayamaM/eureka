@@ -31,3 +31,33 @@
   background-color: #034e7c;
   border-color: #034e7c;
 }
+
+/* 通常のボタン色 */
+.btn-google,
+.btn-google.disabled, .btn-google:disabled {
+  color: #fff;
+  background-color: #DB4437;
+  border-color: #DB4437;
+}
+
+/* focusされた時の枠線の色 */
+.btn-google:focus, .btn-google.focus,
+.btn-google:not(:disabled):not(.disabled):active:focus, .btn-google:not(:disabled):not(.disabled).active:focus,
+.show > .btn-google.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #8a2920;
+}
+
+/* hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定） */
+.btn-google:hover {
+  color: #fff;
+  background-color: #8a2920;
+  border-color: #8a2920;
+}
+
+/* active時の色（hover時と同等かさらに濃いor暗めの色を指定） */
+.btn-google:not(:disabled):not(.disabled):active, .btn-google:not(:disabled):not(.disabled).active,
+.show > .btn-google.dropdown-toggle {
+  color: #fff;
+  background-color: #8a2920;
+  border-color: #8a2920;
+}
