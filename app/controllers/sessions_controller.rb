@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def twitter_login
+  def api_login
     user = User.create_or_update_from_auth(request.env['omniauth.auth'])
     session[:user_id] = user.id
     flash[:success] = 'ログインしました。'
